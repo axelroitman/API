@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import daos.EdificioDAO;
 import exceptions.EdificioException;
 import exceptions.PersonaException;
 import exceptions.ReclamoException;
@@ -31,7 +32,11 @@ public class Controlador {
 	}
 	
 	public List<EdificioView> getEdificios(){
-		return null;
+		List<EdificioView> resultado = new ArrayList<EdificioView>();
+		List<Edificio> edificios = new EdificioDAO().getEdificios();
+		for(Edificio edificio : edificios)
+			resultado.add(edificio.toView());
+		return resultado;
 	}
 	
 	public List<UnidadView> getUnidadesPorEdificio(int codigo) throws EdificioException{
