@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Set;
 
 import daos.EdificioDAO;
+import daos.InquilinoDAO;
+import daos.PersonaDAO;
 import exceptions.EdificioException;
 import exceptions.PersonaException;
 import exceptions.ReclamoException;
@@ -36,6 +38,19 @@ public class Controlador {
 		List<Edificio> edificios = new EdificioDAO().getEdificios();
 		for(Edificio edificio : edificios)
 			resultado.add(edificio.toView());
+		return resultado;
+	}
+	public List<PersonaView> getPersonas(){
+		List<PersonaView> resultado = new ArrayList<PersonaView>();
+		List<Persona> personas = new PersonaDAO().getPersonas();
+		for(Persona persona : personas)
+			resultado.add(persona.toView());
+		return resultado;
+	}
+	
+	public List<Persona> getInquilinos(){
+		List<Persona> resultado = new ArrayList<Persona>();
+		resultado = new InquilinoDAO().getInquilinos();
 		return resultado;
 	}
 	

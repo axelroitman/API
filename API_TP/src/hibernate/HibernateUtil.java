@@ -3,6 +3,10 @@ package hibernate;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
+import entities.EdificioEntity;
+import entities.InquilinoEntity;
+import entities.PersonaEntity;
+
 /*import bean.CajaAhorro;
 import bean.CuentaCorriente;
 import bean.Domicilio;
@@ -17,6 +21,10 @@ public class HibernateUtil
         try
         {
         	 AnnotationConfiguration config = new AnnotationConfiguration();
+             config.addAnnotatedClass(EdificioEntity.class);
+             config.addAnnotatedClass(InquilinoEntity.class);
+
+             config.addAnnotatedClass(PersonaEntity.class);
              /*config.addAnnotatedClass(Usuario.class);
              config.addAnnotatedClass(Telefono.class);
              config.addAnnotatedClass(Domicilio.class);
