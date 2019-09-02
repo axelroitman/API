@@ -53,11 +53,11 @@ public class EdificioDAO {
 		s.close();
 	}
 	
-	private EdificioEntity toEntity(Edificio edificio){
+	EdificioEntity toEntity(Edificio edificio){
 		return new EdificioEntity(edificio.getCodigo(), edificio.getNombre(), edificio.getDireccion());
 	} 
 	
-	private Edificio toNegocio(EdificioEntity entity){
+	Edificio toNegocio(EdificioEntity entity){
 		return new Edificio(entity.getCodigo(), entity.getNombre(), entity.getDireccion());
 	}
 	

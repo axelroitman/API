@@ -6,6 +6,7 @@ import org.hibernate.cfg.AnnotationConfiguration;
 import entities.EdificioEntity;
 import entities.InquilinoEntity;
 import entities.PersonaEntity;
+import entities.UnidadEntity;
 
 /*import bean.CajaAhorro;
 import bean.CuentaCorriente;
@@ -23,13 +24,8 @@ public class HibernateUtil
         	 AnnotationConfiguration config = new AnnotationConfiguration();
              config.addAnnotatedClass(EdificioEntity.class);
              config.addAnnotatedClass(InquilinoEntity.class);
-
+             config.addAnnotatedClass(UnidadEntity.class);
              config.addAnnotatedClass(PersonaEntity.class);
-             /*config.addAnnotatedClass(Usuario.class);
-             config.addAnnotatedClass(Telefono.class);
-             config.addAnnotatedClass(Domicilio.class);
-             config.addAnnotatedClass(CajaAhorro.class);
-             config.addAnnotatedClass(CuentaCorriente.class);*/
              sessionFactory = config.buildSessionFactory();
         }
         catch (Throwable ex)

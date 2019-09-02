@@ -193,9 +193,10 @@ public class Controlador {
 	}
 	
 	private Edificio buscarEdificio(int codigo) throws EdificioException {
-		return null;
-	}
+		Edificio edificio = new EdificioDAO().findById(codigo);
+		return edificio;
 
+	}
 	private Unidad buscarUnidad(int codigo, String piso, String numero) throws UnidadException{
 		return null;
 	}	

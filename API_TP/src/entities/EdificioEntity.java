@@ -1,11 +1,16 @@
 package entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import modelo.Unidad;
 
 @Entity
-@Table(name="edificios")
+@Table(name="dbo.edificios")
 public class EdificioEntity {
 
 	@Id
@@ -13,6 +18,10 @@ public class EdificioEntity {
 	private String nombre;
 	private String direccion;
 	
+	@Transient
+	private List<Unidad> unidades;
+
+
 	public EdificioEntity() { }
 
 	public EdificioEntity(int codigo, String nombre, String direccion){

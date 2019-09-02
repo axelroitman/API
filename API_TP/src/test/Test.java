@@ -7,11 +7,32 @@ import exceptions.EdificioException;
 import modelo.Persona;
 import views.EdificioView;
 import views.PersonaView;
+import views.UnidadView;
 
 public class Test {
 
 	public static void main(String[] args) {
-		List<EdificioView> edificios = Controlador.getInstancia().getEdificios();
+		
+List<EdificioView> edificios = Controlador.getInstancia().getEdificios();
+		
+		for(EdificioView e : edificios)
+		{
+			System.out.println(e.getNombre() + " - " + e.getDireccion());
+			try {
+				List<UnidadView> unidades = Controlador.getInstancia().getUnidadesPorEdificio(e.getCodigo());
+				for(UnidadView u : unidades){
+					System.out.println(u.toString());
+				}
+			} catch (EdificioException e1) {
+				//System.out.println(e.getMessage());
+				System.out.println("Error.");
+
+			}
+		}
+		for(EdificioView e : edificios)
+			System.out.println(e.toString());
+		
+		/*List<EdificioView> edificios = Controlador.getInstancia().getEdificios();
 		List<PersonaView> personas= Controlador.getInstancia().getPersonas();
 		List<Persona> inquilinos= Controlador.getInstancia().getInquilinos();
 		int count=0;
@@ -24,19 +45,7 @@ public class Test {
 		for(PersonaView p : personas){
 			count++;
 		}
-		System.out.println(count);
-		/*for(EdificioView e : edificios)
-			System.out.println(e.toString());
-		for (PersonaView p : personas)
-				System.out.println(p.toString());
-	*/
-		/*ClubView club = null;
-		try {
-			club = new Controlador().obtenerClub(2);
-			System.out.println(club.getNombre());
-		} catch (ClubException e) {
-			System.out.println(e.getMessage());
-		}*/
+		System.out.println(count);*/
 		
 
 	}
