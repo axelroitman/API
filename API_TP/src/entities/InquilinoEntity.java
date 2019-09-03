@@ -20,6 +20,8 @@ public class InquilinoEntity {
 	@JoinColumn(name="documento")
 	private PersonaEntity persona;
 	
+	public InquilinoEntity() {}
+	
 	public InquilinoEntity(int id, /*UnidadEntity unidad,*/ PersonaEntity persona) {
 		super();
 		this.id = id;

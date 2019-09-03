@@ -15,36 +15,24 @@ import views.PersonaView;
 
 public class InquilinoDAO {
 	public List<Persona> getInquilinos(){
-		/*List<PersonaView> personas = Controlador.getInstancia().getPersonas();
-		List<PersonaView> inquilinosView = new ArrayList<PersonaView>();
 		
-		for(PersonaView p : personas)
-		{
-			Session s = HibernateUtil.getSessionFactory().openSession();
-			s.beginTransaction();
-			List<InquilinoEntity> inquilino = s.createQuery("from InquilinoEntity i where i.documento = ?")
-					.setString(0, p.getDocumento())
-					.list();
-			s.getTransaction().commit();
-			s.close();
-			
-			if(inquilino != null)
-			{
-				inquilinosView.add(p);
-			}
-		}
-		
-		return inquilinosView;*/
 		List<Persona> resultado = new ArrayList<Persona>();
+		List<Persona> personas = new PersonaDAO().getPersonas();
+		List<InquilinoEntity> personasInq = new ArrayList<InquilinoEntity>();
+
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
-		List<PersonaEntity> personas = s.createQuery("from InquilinoEntity i where i.persona.documento = ? ")
-				.setInteger(0, documento)
+		for(Persona p : personas) {
+		personasInq = (List<InquilinoEntity>) s.createQuery("from InquilinoEntity i where i.persona.documento = ? ")
+				.setString(0, personas.iterator().next().getDocumento())
 				.list();
+		}
 		s.getTransaction().commit();
-		s.close();
-		for(PersonaEntity pe : personas)
+		
+		for(InquilinoEntity pe : personasInq)
 			resultado.add(toNegocio(pe));
+		s.close();
+		
 		return resultado;
 	}
 	/*
@@ -81,8 +69,8 @@ public class InquilinoDAO {
 		return new PersonaEntity(persona.getDocumento(), persona.getNombre());
 	} 
 	*/
-	private Persona toNegocio(PersonaEntity entity){
-		return new Persona (entity.getDni(), entity.getNombre());
+	private Persona toNegocio(InquilinoEntity entity){
+		return new Persona (entity.getPersona().getDni(), entity.getPersona().getNombre());
 	}
 	
 }

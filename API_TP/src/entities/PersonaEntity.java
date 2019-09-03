@@ -12,6 +12,7 @@ public class PersonaEntity {
 	@Id
 	private String documento;
 	private String nombre;
+	
 	public PersonaEntity(){}
 	
 	public String getDni() {

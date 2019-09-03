@@ -12,7 +12,7 @@ import views.UnidadView;
 public class Test {
 
 	public static void main(String[] args) {
-		
+		/*
 List<EdificioView> edificios = Controlador.getInstancia().getEdificios();
 		
 		for(EdificioView e : edificios)
@@ -31,13 +31,13 @@ List<EdificioView> edificios = Controlador.getInstancia().getEdificios();
 		}
 		for(EdificioView e : edificios)
 			System.out.println(e.toString());
-		
-		/*List<EdificioView> edificios = Controlador.getInstancia().getEdificios();
+		*/
+		//List<EdificioView> edificios = Controlador.getInstancia().getEdificios();
 		List<PersonaView> personas= Controlador.getInstancia().getPersonas();
 		List<Persona> inquilinos= Controlador.getInstancia().getInquilinos();
 		int count=0;
-		for(Persona i : inquilinos){
-			System.out.println(i.toString());
+		for(Persona i : inquilinos){ //SOLO MUESTRA TRES VECES A MAURICIO BANEGAS PORQUE ES INQUILINO EN 3 LUGARES. TODAVÍA NO RESUELTO...
+			System.out.println(i.getNombre());
 			count++;
 		}
 		System.out.println(count);
@@ -45,7 +45,7 @@ List<EdificioView> edificios = Controlador.getInstancia().getEdificios();
 		for(PersonaView p : personas){
 			count++;
 		}
-		System.out.println(count);*/
+		System.out.println(count);
 		
 
 	}
