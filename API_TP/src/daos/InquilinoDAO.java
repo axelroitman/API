@@ -38,7 +38,9 @@ public class InquilinoDAO {
 		List<Persona> resultado = new ArrayList<Persona>();
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
-		List<PersonaEntity> personas = s.createQuery("select persona from InquilinoEntity i join PersonaEntity").list();
+		List<PersonaEntity> personas = s.createQuery("from InquilinoEntity i where i.persona.documento = ? ")
+				.setInteger(0, documento)
+				.list();
 		s.getTransaction().commit();
 		s.close();
 		for(PersonaEntity pe : personas)
