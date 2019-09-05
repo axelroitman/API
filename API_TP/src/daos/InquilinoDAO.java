@@ -3,6 +3,8 @@ package daos;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.classic.Session;
 
 import controlador.Controlador;
@@ -23,9 +25,7 @@ public class InquilinoDAO {
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 		for(Persona p : personas) {
-		personasInq = (List<InquilinoEntity>) s.createQuery("from InquilinoEntity i where i.persona.documento = ? ")
-				.setString(0, personas.iterator().next().getDocumento())
-				.list();
+		personasInq = (List<InquilinoEntity>) s.createQuery("select i from InquilinoEntity i inner join i.persona").list();		
 		}
 		s.getTransaction().commit();
 		

@@ -24,11 +24,11 @@ public class PersonaDAO {
 		return resultado;
 	}
 	
-	public Persona findById(int dni) throws PersonaException{
+	public Persona findById(String dni) throws PersonaException{
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 		PersonaEntity persona = (PersonaEntity) s.createQuery("from PersonaEntity p where p.dni = ? ")
-				.setInteger(0, dni)
+				.setString(0, dni)
 				.uniqueResult();
 		if(persona == null)
 			throw new PersonaException("No existe la persona " + dni);

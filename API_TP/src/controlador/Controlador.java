@@ -201,8 +201,14 @@ public class Controlador {
 		return null;
 	}	
 	
-	private Persona buscarPersona(String documento) throws PersonaException {
-		return null;
+	private Persona buscarPersona(String documento) {
+		Persona aBuscar = null; //NO HAY FORMA DE INICIALIZARLO COMO PERSONA, Y DEBE INICIALIZARSE
+		try {
+			aBuscar = new PersonaDAO().findById(documento);
+		} catch (PersonaException e) {
+			e.printStackTrace();
+		}
+		return aBuscar;				
 	}
 	
 	private Reclamo buscarReclamo(int numero) throws ReclamoException {

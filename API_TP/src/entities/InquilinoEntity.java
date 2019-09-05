@@ -7,6 +7,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table (name="inquilinos")
@@ -14,7 +15,12 @@ public class InquilinoEntity {
 	//PRECISO UNA UNIDAD MANY TO ONE. Aparte una unidad puede tener muchos duenios
 	@Id
 	private int id;
-	//private UnidadEntity unidad;
+	
+	/*@ManyToOne
+	@JoinColumn(name= "id")
+	
+	private UnidadEntity unidad;
+	*/
 	
 	@OneToOne
 	@JoinColumn(name="documento")
