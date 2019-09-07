@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import views.Estado;
+import views.ReclamoView;
 
 public class Reclamo {
 
@@ -78,5 +79,9 @@ public class Reclamo {
 	
 	public void update() {
 		
+	}
+	
+	public ReclamoView toView(){
+		return new ReclamoView(usuario.toView(), edificio.toView(), ubicación, descripcion, unidad.toView(), estado);
 	}
 }

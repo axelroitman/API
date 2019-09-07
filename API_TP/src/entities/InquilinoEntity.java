@@ -17,7 +17,7 @@ public class InquilinoEntity {
 	private int id;
 	
 	@ManyToOne
-	@JoinColumn(name= "id")
+	@JoinColumn(name= "identificador")
 	
 	private UnidadEntity unidad;
 	

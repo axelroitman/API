@@ -16,8 +16,20 @@ public class ReclamoView {
 	private String descripcion;
 	private UnidadView unidad;
 	private Estado estado;
-	private List<ImagenView> imagenes;
 	
+	//private List<ImagenView> imagenes; POR AHORA COMENTADO
+	
+	
+	public ReclamoView(PersonaView usuario, EdificioView edificio, String ubicación, String descripcion,
+			UnidadView unidad, Estado estado) {
+		super();
+		this.usuario = usuario;
+		this.edificio = edificio;
+		this.ubicación = ubicación;
+		this.descripcion = descripcion;
+		this.unidad = unidad;
+		this.estado = estado;
+	}
 	
 	public int getNumero() {
 		return numero;
@@ -61,10 +73,11 @@ public class ReclamoView {
 	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
-	public List<ImagenView> getImagenes() {
+	
+	/*public List<ImagenView> getImagenes() {
 		return imagenes;
 	}
 	public void setImagenes(List<ImagenView> imagenes) {
 		this.imagenes = imagenes;
-	}
+	}*/
 }

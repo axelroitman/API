@@ -1,19 +1,15 @@
 package test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import controlador.Controlador;
-import exceptions.EdificioException;
-import exceptions.UnidadException;
-import modelo.Persona;
-import views.EdificioView;
-import views.PersonaView;
-import views.UnidadView;
+import views.ReclamoView;
 
 public class Test {
 
 	public static void main(String[] args) {
-		
+		/*
 List<EdificioView> edificios = Controlador.getInstancia().getEdificios();
 		
 		for(EdificioView e : edificios)
@@ -31,7 +27,9 @@ List<EdificioView> edificios = Controlador.getInstancia().getEdificios();
 			} catch (UnidadException e1) {
 				System.out.println("Error.");
 			}
-		}
+		}*/
+		
+		
 		/*
 		for(EdificioView e : edificios)
 			System.out.println(e.toString());
@@ -54,6 +52,11 @@ List<EdificioView> edificios = Controlador.getInstancia().getEdificios();
 		System.out.println(count);
 		*/
 
+		List<ReclamoView> reclamosPorEdificio = new ArrayList<ReclamoView>();
+		reclamosPorEdificio= Controlador.getInstancia().reclamosPorEdificio(1);
+		for(ReclamoView r : reclamosPorEdificio) {
+				System.out.println(r.getNumero());
+		}
 	}
 
 }

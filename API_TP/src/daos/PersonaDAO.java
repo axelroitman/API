@@ -53,11 +53,11 @@ public class PersonaDAO {
 		s.close();
 	}
 	
-	private PersonaEntity toEntity(Persona persona){
+	PersonaEntity toEntity(Persona persona){
 		return new PersonaEntity(persona.getDocumento(), persona.getNombre());
 	} 
 	
-	private Persona toNegocio(PersonaEntity entity){
+	Persona toNegocio(PersonaEntity entity){
 		return new Persona (entity.getDni(), entity.getNombre());
 	}
 	

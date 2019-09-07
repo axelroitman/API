@@ -7,6 +7,7 @@ import java.util.Set;
 import daos.EdificioDAO;
 import daos.InquilinoDAO;
 import daos.PersonaDAO;
+import daos.ReclamoDAO;
 import daos.UnidadDAO;
 import exceptions.EdificioException;
 import exceptions.PersonaException;
@@ -153,8 +154,19 @@ public class Controlador {
 		persona.delete();
 	}
 	
+	//REALIZANDO AHORA
 	public List<ReclamoView> reclamosPorEdificio(int codigo){
 		List<ReclamoView> resultado = new ArrayList<ReclamoView>();
+		List<Reclamo> reclamos = new ReclamoDAO().getReclamos();
+		
+		if(!reclamos.isEmpty() || reclamos != null) {
+			for(Reclamo r : reclamos) {
+					if(r.getEdificio().getCodigo() == codigo) {
+						resultado.add(r.toView());
+					}
+				}
+		}
+		
 		return resultado;
 	}
 	
