@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import daos.UnidadDAO;
+import exceptions.UnidadException;
 import views.EdificioView;
 
 public class Edificio {
@@ -51,6 +53,14 @@ public class Edificio {
 	}
 
 	public List<Unidad> getUnidades() {
+		if(unidades == null || unidades.size() == 0)
+		{
+			try {
+				unidades = UnidadDAO.getInstancia().findByEdificio(codigo);
+			} catch (UnidadException e) {
+				e.printStackTrace();
+			}
+		}
 		return unidades;
 	}
 
