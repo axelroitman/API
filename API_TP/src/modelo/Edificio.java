@@ -52,14 +52,10 @@ public class Edificio {
 		return direccion;
 	}
 
-	public List<Unidad> getUnidades() {
+	public List<Unidad> getUnidades() throws UnidadException {
 		if(unidades == null || unidades.size() == 0)
 		{
-			try {
-				unidades = UnidadDAO.getInstancia().findByEdificio(codigo);
-			} catch (UnidadException e) {
-				e.printStackTrace();
-			}
+			unidades = UnidadDAO.getInstancia().findByEdificio(codigo);
 		}
 		return unidades;
 	}

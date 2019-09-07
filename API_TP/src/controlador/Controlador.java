@@ -7,6 +7,7 @@ import java.util.Set;
 import daos.EdificioDAO;
 import daos.InquilinoDAO;
 import daos.PersonaDAO;
+import daos.UnidadDAO;
 import exceptions.EdificioException;
 import exceptions.PersonaException;
 import exceptions.ReclamoException;
@@ -24,7 +25,7 @@ import views.UnidadView;
 public class Controlador {
 
 	private static Controlador instancia;
-	
+	private Persona aBuscar; //Estoy bastante seguro de que esto esta mal.
 	private Controlador() { }
 	
 	public static Controlador getInstancia() {
@@ -54,7 +55,7 @@ public class Controlador {
 		return resultado;
 	}
 	
-	public List<UnidadView> getUnidadesPorEdificio(int codigo) throws EdificioException{
+	public List<UnidadView> getUnidadesPorEdificio(int codigo) throws EdificioException, UnidadException{
 		List<UnidadView> resultado = new ArrayList<UnidadView>();
 		Edificio edificio = buscarEdificio(codigo);
 		List<Unidad> unidades = edificio.getUnidades();
@@ -198,11 +199,14 @@ public class Controlador {
 
 	}
 	private Unidad buscarUnidad(int codigo, String piso, String numero) throws UnidadException{
-		return null;
+		Unidad aBuscar = null;
+		aBuscar = UnidadDAO.getInstancia().find(codigo, piso, numero);
+		
+		return aBuscar;				
 	}	
 	
 	private Persona buscarPersona(String documento) {
-		Persona aBuscar = null; //NO HAY FORMA DE INICIALIZARLO COMO PERSONA, Y DEBE INICIALIZARSE
+		Persona aBuscar = null;
 		try {
 			aBuscar = new PersonaDAO().findById(documento);
 		} catch (PersonaException e) {

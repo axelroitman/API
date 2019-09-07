@@ -4,6 +4,7 @@ import java.util.List;
 
 import controlador.Controlador;
 import exceptions.EdificioException;
+import exceptions.UnidadException;
 import modelo.Persona;
 import views.EdificioView;
 import views.PersonaView;
@@ -17,17 +18,18 @@ List<EdificioView> edificios = Controlador.getInstancia().getEdificios();
 		
 		for(EdificioView e : edificios)
 		{
-			System.out.println(e.getNombre() + " - " + e.getDireccion());
+			//System.out.println(e.getNombre() + " - " + e.getDireccion());
 			
 			try {
 				List<UnidadView> unidades = Controlador.getInstancia().getUnidadesPorEdificio(e.getCodigo());
 				for(UnidadView u : unidades){
-					System.out.println(u.toString());
+					System.out.println(u.getEdificio().getNombre() + " - " + u.toString());
 				}
 			} catch (EdificioException e1) {
-				//System.out.println(e.getMessage());
 				System.out.println("Error.");
 
+			} catch (UnidadException e1) {
+				System.out.println("Error.");
 			}
 		}
 		/*

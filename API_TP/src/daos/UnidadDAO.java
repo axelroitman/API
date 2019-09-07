@@ -13,9 +13,7 @@ import modelo.Unidad;
 public class UnidadDAO {
 	
 	private static UnidadDAO instancia;
-	
-	private UnidadDAO() { }
-	
+		
 	public static UnidadDAO getInstancia() {
 		if(instancia == null)
 			instancia = new UnidadDAO();
@@ -45,6 +43,19 @@ public class UnidadDAO {
 		return toNegocio(unidad);
 	}
 	
+	public Unidad find(int codigo, String piso, String numero) throws UnidadException {
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		s.beginTransaction();
+		UnidadEntity unidad = (UnidadEntity) s.createQuery("from UnidadEntity u where u.edificio.codigo = ? and u.piso = ? and u.numero = ? ")
+				.setInteger(0, codigo)
+				.setString(1, piso)
+				.setString(2, numero)
+				.uniqueResult();
+		if(unidad == null)
+			throw new UnidadException("No existe la unidad ");
+		return toNegocio(unidad);
+	}
+
 	public List<Unidad> findByEdificio(int codigoEdificio) throws UnidadException{
 		System.out.println(codigoEdificio);
 		Session s = HibernateUtil.getSessionFactory().openSession();
@@ -89,6 +100,7 @@ public class UnidadDAO {
 	Unidad toNegocio(UnidadEntity entity){
 		return new Unidad(entity.getId(), entity.getPiso(), entity.getNumero(), new EdificioDAO().toNegocio(entity.getEdificio()));
 	}
+
 	
 	
 }

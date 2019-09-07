@@ -16,11 +16,11 @@ public class InquilinoEntity {
 	@Id
 	private int id;
 	
-	/*@ManyToOne
+	@ManyToOne
 	@JoinColumn(name= "id")
 	
 	private UnidadEntity unidad;
-	*/
+	
 	
 	@OneToOne
 	@JoinColumn(name="documento")
