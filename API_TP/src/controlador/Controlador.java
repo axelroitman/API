@@ -33,8 +33,6 @@ public class Controlador {
 		return instancia;
 	}
 	
-	private Persona aBuscar;
-	
 	public List<EdificioView> getEdificios(){
 		List<EdificioView> resultado = new ArrayList<EdificioView>();
 		List<Edificio> edificios = new EdificioDAO().getEdificios();
@@ -204,12 +202,13 @@ public class Controlador {
 	}	
 	
 	private Persona buscarPersona(String documento) {
+		Persona aBuscar = null; //NO HAY FORMA DE INICIALIZARLO COMO PERSONA, Y DEBE INICIALIZARSE
 		try {
 			aBuscar = new PersonaDAO().findById(documento);
 		} catch (PersonaException e) {
 			e.printStackTrace();
 		}
-		return aBuscar;			
+		return aBuscar;				
 	}
 	
 	private Reclamo buscarReclamo(int numero) throws ReclamoException {
