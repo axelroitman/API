@@ -35,19 +35,22 @@ public class InquilinoDAO {
 		
 		return resultado;
 	}
-	/*
+	
 	public PersonaView findById(int id) throws PersonaException{
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
-		PersonaEntity inquilino = (InquilinoEntity) s.createQuery("from InquilinoEntity i where i.id = ? ")
-				.setInteger(0, i)
-				.uniqueResult();
+		InquilinoEntity inquilino = (InquilinoEntity) s.createQuery("from InquilinoEntity i where i.id = ? ")
+				.setInteger(0, id).uniqueResult();
 		if(inquilino == null)
-			throw new InquilinoException("No existe el inquilino " + id);
-		return toNegocio(inquilino);
+			throw new PersonaException("No existe el inquilino " + id);
+		
+		PersonaView inquilinoView = new PersonaView();
+		inquilinoView = toNegocio(inquilino).toView();
+		return inquilinoView;
 	}
 
-	public void save(PersonaView persona){
+	public void save(PersonaView inquilino){
+		PersonaEntity persona = new PersonaEntity(inquilino.getDocumento(), inquilino.getNombre());
 		InquilinoEntity aGrabar = toEntity(persona);
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
@@ -56,8 +59,9 @@ public class InquilinoDAO {
 		s.close();
 	}
 	
-	public void update(Persona persona){
-		PersonaEntity aGrabar = toEntity(persona);
+	public void update(PersonaView inquilino){
+		PersonaEntity persona = new PersonaEntity(inquilino.getDocumento(), inquilino.getNombre());
+		InquilinoEntity aGrabar = toEntity(persona);
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 		s.update(aGrabar);
@@ -65,10 +69,14 @@ public class InquilinoDAO {
 		s.close();
 	}
 	
-	private PersonaEntity toEntity(Persona persona){
-		return new PersonaEntity(persona.getDocumento(), persona.getNombre());
+	/*toEntity se lleva PersonaEntity para que no rompa todo, 
+	pero en otros DAOs se lleva siempre una view. 
+	El tema es que InquilinoEntity se crea con un PersonaEntity, no con un PersonaView.
+	Si esta mal, corregir.*/
+	private InquilinoEntity toEntity(PersonaEntity persona){ 
+		return new InquilinoEntity(persona);
 	} 
-	*/
+	
 	private Persona toNegocio(InquilinoEntity entity){
 		return new Persona (entity.getPersona().getDni(), entity.getPersona().getNombre());
 	}

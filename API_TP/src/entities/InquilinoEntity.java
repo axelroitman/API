@@ -28,7 +28,7 @@ public class InquilinoEntity {
 	
 	public InquilinoEntity() {}
 	
-	public InquilinoEntity(int id, /*UnidadEntity unidad,*/ PersonaEntity persona) {
+	public InquilinoEntity(/*int id, UnidadEntity unidad,*/ PersonaEntity persona) {
 		super();
 		this.id = id;
 		//this.unidad = unidad;
