@@ -58,5 +58,5 @@ List<EdificioView> edificios = Controlador.getInstancia().getEdificios();
 				System.out.println(r.getNumero());
 		}
 	}
-
 }
+

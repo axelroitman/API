@@ -2,7 +2,7 @@ package hibernate;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
-
+ 
 import entities.EdificioEntity;
 import entities.InquilinoEntity;
 import entities.PersonaEntity;

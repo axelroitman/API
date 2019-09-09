@@ -2,18 +2,18 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/gianf/Desktop/UADE/Tercero/Segundo Cuatrimestre/API/API/lib/antlr-2.7.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/gianf/Desktop/UADE/Tercero/Segundo Cuatrimestre/API/API/lib/commons-collections-3.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/gianf/Desktop/UADE/Tercero/Segundo Cuatrimestre/API/API/lib/commons-logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/gianf/Desktop/UADE/Tercero/Segundo Cuatrimestre/API/API/lib/dom4j-1.6.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/gianf/Desktop/UADE/Tercero/Segundo Cuatrimestre/API/API/lib/ejb3-persistence.jar"/>
-	<classpathentry kind="lib" path="C:/Users/gianf/Desktop/UADE/Tercero/Segundo Cuatrimestre/API/API/lib/hibernate3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/gianf/Desktop/UADE/Tercero/Segundo Cuatrimestre/API/API/lib/hibernate-annotations.jar"/>
-	<classpathentry kind="lib" path="C:/Users/gianf/Desktop/UADE/Tercero/Segundo Cuatrimestre/API/API/lib/hibernate-commons-annotations.jar"/>
-	<classpathentry kind="lib" path="C:/Users/gianf/Desktop/UADE/Tercero/Segundo Cuatrimestre/API/API/lib/javassist-3.4.GA.jar"/>
-	<classpathentry kind="lib" path="C:/Users/gianf/Desktop/UADE/Tercero/Segundo Cuatrimestre/API/API/lib/jta-1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/gianf/Desktop/UADE/Tercero/Segundo Cuatrimestre/API/API/lib/jtds-1.2.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/gianf/Desktop/UADE/Tercero/Segundo Cuatrimestre/API/API/lib/slf4j-api-1.5.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/gianf/Desktop/UADE/Tercero/Segundo Cuatrimestre/API/API/lib/slf4j-simple-1.5.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/gianf/Desktop/UADE/Tercero/Segundo Cuatrimestre/API/lib/antlr-2.7.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/gianf/Desktop/UADE/Tercero/Segundo Cuatrimestre/API/lib/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/gianf/Desktop/UADE/Tercero/Segundo Cuatrimestre/API/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/gianf/Desktop/UADE/Tercero/Segundo Cuatrimestre/API/lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/gianf/Desktop/UADE/Tercero/Segundo Cuatrimestre/API/lib/ejb3-persistence.jar"/>
+	<classpathentry kind="lib" path="C:/Users/gianf/Desktop/UADE/Tercero/Segundo Cuatrimestre/API/lib/hibernate3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/gianf/Desktop/UADE/Tercero/Segundo Cuatrimestre/API/lib/hibernate-annotations.jar"/>
+	<classpathentry kind="lib" path="C:/Users/gianf/Desktop/UADE/Tercero/Segundo Cuatrimestre/API/lib/hibernate-commons-annotations.jar"/>
+	<classpathentry kind="lib" path="C:/Users/gianf/Desktop/UADE/Tercero/Segundo Cuatrimestre/API/lib/javassist-3.4.GA.jar"/>
+	<classpathentry kind="lib" path="C:/Users/gianf/Desktop/UADE/Tercero/Segundo Cuatrimestre/API/lib/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/gianf/Desktop/UADE/Tercero/Segundo Cuatrimestre/API/lib/jtds-1.2.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/gianf/Desktop/UADE/Tercero/Segundo Cuatrimestre/API/lib/slf4j-api-1.5.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/gianf/Desktop/UADE/Tercero/Segundo Cuatrimestre/API/lib/slf4j-simple-1.5.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -6,6 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.classic.Session;
 
+import entities.DuenioEntity;
 import entities.InquilinoEntity;
 import entities.PersonaEntity;
 import exceptions.PersonaException;
@@ -13,21 +14,21 @@ import hibernate.HibernateUtil;
 import modelo.Persona;
 import views.PersonaView;
 
-public class InquilinoDAO {
-	public List<Persona> getInquilinos(){
+public class DuenioDAO {
+	public List<Persona> getDuenios(){
 		
 		List<Persona> resultado = new ArrayList<Persona>();
 		List<Persona> personas = new PersonaDAO().getPersonas();
-		List<InquilinoEntity> personasInq = new ArrayList<InquilinoEntity>();
+		List<DuenioEntity> personasDuen = new ArrayList<DuenioEntity>();
 
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 		for(Persona p : personas) {
-		personasInq = (List<InquilinoEntity>) s.createQuery("select i from InquilinoEntity i inner join i.persona").list();		
+		personasDuen = (List<DuenioEntity>) s.createQuery("select i from DuenioEntity i inner join i.persona").list();		
 		}
 		s.getTransaction().commit();
 		
-		for(InquilinoEntity pe : personasInq)
+		for(DuenioEntity pe : personasDuen)
 			resultado.add(toNegocio(pe));
 		s.close();
 		
@@ -37,19 +38,19 @@ public class InquilinoDAO {
 	public PersonaView findById(int id) throws PersonaException{
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
-		InquilinoEntity inquilino = (InquilinoEntity) s.createQuery("from InquilinoEntity i where i.id = ? ")
+		DuenioEntity duenio = (DuenioEntity) s.createQuery("from DuenioEntity i where i.id = ? ")
 				.setInteger(0, id).uniqueResult();
-		if(inquilino == null)
-			throw new PersonaException("No existe el inquilino " + id);
+		if(duenio == null)
+			throw new PersonaException("No existe el duenio " + id);
 		
-		PersonaView inquilinoView = new PersonaView();
-		inquilinoView = toNegocio(inquilino).toView();
-		return inquilinoView;
+		PersonaView duenioView = new PersonaView();
+		duenioView = toNegocio(duenio).toView();
+		return duenioView;
 	}
 
-	public void save(PersonaView inquilino){
-		PersonaEntity persona = new PersonaEntity(inquilino.getDocumento(), inquilino.getNombre());
-		InquilinoEntity aGrabar = toEntity(persona);
+	public void save(PersonaView duenio){
+		PersonaEntity persona = new PersonaEntity(duenio.getDocumento(), duenio.getNombre());
+		DuenioEntity aGrabar = toEntity(persona);
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 		s.save(aGrabar);
@@ -57,9 +58,9 @@ public class InquilinoDAO {
 		s.close();
 	}
 	
-	public void update(PersonaView inquilino){
-		PersonaEntity persona = new PersonaEntity(inquilino.getDocumento(), inquilino.getNombre());
-		InquilinoEntity aGrabar = toEntity(persona);
+	public void update(PersonaView duenio){
+		PersonaEntity persona = new PersonaEntity(duenio.getDocumento(), duenio.getNombre());
+		DuenioEntity aGrabar = toEntity(persona);
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 		s.update(aGrabar);
@@ -71,13 +72,12 @@ public class InquilinoDAO {
 	pero en otros DAOs se lleva siempre una view. 
 	El tema es que InquilinoEntity se crea con un PersonaEntity, no con un PersonaView.
 	Si esta mal, corregir.*/
-	private InquilinoEntity toEntity(PersonaEntity persona){ 
-		return new InquilinoEntity(persona);
+	private DuenioEntity toEntity(PersonaEntity persona){ 
+		return new DuenioEntity(persona);
 	} 
 	
-	private Persona toNegocio(InquilinoEntity entity){
+	private Persona toNegocio(DuenioEntity entity){
 		return new Persona (entity.getPersona().getDni(), entity.getPersona().getNombre());
 	}
 	
 }
-	
