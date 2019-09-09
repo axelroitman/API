@@ -3,6 +3,9 @@ package modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import daos.DuenioDAO;
+import daos.UnidadDAO;
+import exceptions.PersonaException;
 import exceptions.UnidadException;
 import views.EdificioView;
 import views.UnidadView;
@@ -84,6 +87,16 @@ public class Unidad {
 	}
 
 	public List<Persona> getDuenios() {
+		if(duenios == null || duenios.size() == 0)
+		{
+			try {
+				duenios = new DuenioDAO().findByIdentificador(id);
+			} catch (PersonaException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
 		return duenios;
 	}
 

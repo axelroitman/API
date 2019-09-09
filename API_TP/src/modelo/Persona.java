@@ -6,7 +6,7 @@ public class Persona {
 
 	private String documento;
 	private String nombre;
-	
+		
 	public Persona(String documento, String nombre) {
 		this.documento = documento;
 		this.nombre = nombre;

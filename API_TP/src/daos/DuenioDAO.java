@@ -47,6 +47,27 @@ public class DuenioDAO {
 		duenioView = toNegocio(duenio).toView();
 		return duenioView;
 	}
+	
+	public List<Persona> findByIdentificador(int id) throws PersonaException{
+		List<Persona> personas = new ArrayList<Persona>();
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		s.beginTransaction();
+		List<DuenioEntity> duenio = s.createQuery("from DuenioEntity i where i.unidad.id = ? ")
+				.setInteger(0, id).list();
+		if(duenio == null)
+			throw new PersonaException("No existe el duenio " + id);
+		
+		for(DuenioEntity d: duenio)
+		{
+			Persona persona = null;
+			persona = toNegocio(d);
+			
+			personas.add(persona);
+			
+		}
+		return personas;
+	}
+
 
 	public void save(PersonaView duenio){
 		PersonaEntity persona = new PersonaEntity(duenio.getDocumento(), duenio.getNombre());

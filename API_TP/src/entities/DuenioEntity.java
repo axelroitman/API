@@ -18,7 +18,6 @@ public class DuenioEntity {
 	
 	@ManyToOne
 	@JoinColumn(name= "identificador")
-	
 	private UnidadEntity unidad;
 	
 	
