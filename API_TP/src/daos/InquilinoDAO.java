@@ -2,10 +2,12 @@ package daos;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.classic.Session;
 
+import controlador.Controlador;
 import entities.InquilinoEntity;
 import entities.PersonaEntity;
 import exceptions.PersonaException;
