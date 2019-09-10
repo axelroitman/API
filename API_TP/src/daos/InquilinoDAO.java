@@ -10,9 +10,11 @@ import org.hibernate.classic.Session;
 import controlador.Controlador;
 import entities.InquilinoEntity;
 import entities.PersonaEntity;
+import entities.UnidadEntity;
 import exceptions.PersonaException;
 import hibernate.HibernateUtil;
 import modelo.Persona;
+import modelo.Unidad;
 import views.PersonaView;
 
 public class InquilinoDAO {
@@ -30,28 +32,41 @@ public class InquilinoDAO {
 		s.getTransaction().commit();
 		
 		for(InquilinoEntity pe : personasInq)
-			resultado.add(toNegocio(pe));
+			resultado.add(PersonatoNegocio(pe));
 		s.close();
 		
 		return resultado;
 	}
 	
-	public PersonaView findById(int id) throws PersonaException{
+public Unidad getUnidadPorInquilinoId(int id) throws PersonaException{
+		
+		InquilinoEntity personaInq = new InquilinoEntity();
+		UnidadEntity rdo = new UnidadEntity();
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		s.beginTransaction();
+		personaInq = (InquilinoEntity) s.createQuery("select i from InquilinoEntity i where i.id = ?").setInteger(0, id).uniqueResult();
+		if(personaInq == null) {
+			throw new PersonaException("No existe el inquilino " + id);
+		}
+		rdo = (UnidadEntity) s.createQuery("select u from UnidadEntity u where u.id = ?").setInteger(0, personaInq.getUnidad().getId()).uniqueResult();
+		s.getTransaction().commit();		
+		s.close();
+		
+		return new UnidadDAO().toNegocio(rdo);
+	}
+	
+	public Persona findById(int id) throws PersonaException {
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 		InquilinoEntity inquilino = (InquilinoEntity) s.createQuery("from InquilinoEntity i where i.id = ? ")
 				.setInteger(0, id).uniqueResult();
 		if(inquilino == null)
 			throw new PersonaException("No existe el inquilino " + id);
-		
-		PersonaView inquilinoView = new PersonaView();
-		inquilinoView = toNegocio(inquilino).toView();
-		return inquilinoView;
+		return PersonatoNegocio(inquilino);
 	}
 
-	public void save(PersonaView inquilino){
-		PersonaEntity persona = new PersonaEntity(inquilino.getDocumento(), inquilino.getNombre());
-		InquilinoEntity aGrabar = toEntity(persona);
+	public void save(Unidad unidad, Persona inquilino){
+		InquilinoEntity aGrabar = toEntity(unidad, inquilino);
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 		s.save(aGrabar);
@@ -59,9 +74,8 @@ public class InquilinoDAO {
 		s.close();
 	}
 	
-	public void update(PersonaView inquilino){
-		PersonaEntity persona = new PersonaEntity(inquilino.getDocumento(), inquilino.getNombre());
-		InquilinoEntity aGrabar = toEntity(persona);
+	public void update(Unidad unidad, Persona inquilino){
+		InquilinoEntity aGrabar = toEntity(unidad, inquilino);
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 		s.update(aGrabar);
@@ -69,15 +83,11 @@ public class InquilinoDAO {
 		s.close();
 	}
 	
-	/*toEntity se lleva PersonaEntity para que no rompa todo, 
-	pero en otros DAOs se lleva siempre una view. 
-	El tema es que InquilinoEntity se crea con un PersonaEntity, no con un PersonaView.
-	Si esta mal, corregir.*/
-	private InquilinoEntity toEntity(PersonaEntity persona){ 
-		return new InquilinoEntity(persona);
+	private InquilinoEntity toEntity(Unidad unidad, Persona persona){ 
+		return new InquilinoEntity(new UnidadDAO().toEntity(unidad),new PersonaDAO().toEntity(persona));
 	} 
 	
-	private Persona toNegocio(InquilinoEntity entity){
+	private Persona PersonatoNegocio(InquilinoEntity entity){
 		return new Persona (entity.getPersona().getDni(), entity.getPersona().getNombre());
 	}
 	

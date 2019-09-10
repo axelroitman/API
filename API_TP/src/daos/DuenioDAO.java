@@ -2,20 +2,24 @@ package daos;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.classic.Session;
 
+import controlador.Controlador;
 import entities.DuenioEntity;
 import entities.InquilinoEntity;
 import entities.PersonaEntity;
+import entities.UnidadEntity;
 import exceptions.PersonaException;
 import hibernate.HibernateUtil;
 import modelo.Persona;
+import modelo.Unidad;
 import views.PersonaView;
 
 public class DuenioDAO {
-	public List<Persona> getDuenios(){
+	public List<Persona> getInquilinos(){
 		
 		List<Persona> resultado = new ArrayList<Persona>();
 		List<Persona> personas = new PersonaDAO().getPersonas();
@@ -24,54 +28,46 @@ public class DuenioDAO {
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 		for(Persona p : personas) {
-		personasDuen = (List<DuenioEntity>) s.createQuery("select i from DuenioEntity i inner join i.persona").list();		
+		personasDuen = (List<DuenioEntity>) s.createQuery("select d from DuenioEntity d inner join d.persona").list();		
 		}
 		s.getTransaction().commit();
 		
-		for(DuenioEntity pe : personasDuen)
-			resultado.add(toNegocio(pe));
+		for(DuenioEntity de : personasDuen)
+			resultado.add(PersonatoNegocio(de));
 		s.close();
 		
 		return resultado;
 	}
 	
-	public PersonaView findById(int id) throws PersonaException{
+public Unidad getUnidadPorDuenioId(int id) throws PersonaException{
+		
+		DuenioEntity duenio = new DuenioEntity();
+		UnidadEntity rdo = new UnidadEntity();
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
-		DuenioEntity duenio = (DuenioEntity) s.createQuery("from DuenioEntity i where i.id = ? ")
+		duenio = (DuenioEntity) s.createQuery("select i from InquilinoEntity i where i.id = ?").setInteger(0, id).uniqueResult();
+		if(duenio == null) {
+			throw new PersonaException("No existe el duenio " + id);
+		}
+		rdo = (UnidadEntity) s.createQuery("select u from UnidadEntity u where u.id = ?").setInteger(0, duenio.getUnidad().getId()).uniqueResult();
+		s.getTransaction().commit();		
+		s.close();
+		
+		return new UnidadDAO().toNegocio(rdo);
+	}
+	
+	public Persona findById(int id) throws PersonaException {
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		s.beginTransaction();
+		DuenioEntity duenio = (DuenioEntity) s.createQuery("from DuenioEntity d where d.id = ? ")
 				.setInteger(0, id).uniqueResult();
 		if(duenio == null)
 			throw new PersonaException("No existe el duenio " + id);
-		
-		PersonaView duenioView = new PersonaView();
-		duenioView = toNegocio(duenio).toView();
-		return duenioView;
-	}
-	
-	public List<Persona> findByIdentificador(int id) throws PersonaException{
-		List<Persona> personas = new ArrayList<Persona>();
-		Session s = HibernateUtil.getSessionFactory().openSession();
-		s.beginTransaction();
-		List<DuenioEntity> duenio = s.createQuery("from DuenioEntity i where i.unidad.id = ? ")
-				.setInteger(0, id).list();
-		if(duenio == null)
-			throw new PersonaException("No existe el duenio " + id);
-		
-		for(DuenioEntity d: duenio)
-		{
-			Persona persona = null;
-			persona = toNegocio(d);
-			
-			personas.add(persona);
-			
-		}
-		return personas;
+		return PersonatoNegocio(duenio);
 	}
 
-
-	public void save(PersonaView duenio){
-		PersonaEntity persona = new PersonaEntity(duenio.getDocumento(), duenio.getNombre());
-		DuenioEntity aGrabar = toEntity(persona);
+	public void save(Unidad unidad, Persona duenio){
+		DuenioEntity aGrabar = toEntity(unidad, duenio);
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 		s.save(aGrabar);
@@ -79,9 +75,8 @@ public class DuenioDAO {
 		s.close();
 	}
 	
-	public void update(PersonaView duenio){
-		PersonaEntity persona = new PersonaEntity(duenio.getDocumento(), duenio.getNombre());
-		DuenioEntity aGrabar = toEntity(persona);
+	public void update(Unidad unidad, Persona duenio){
+		DuenioEntity aGrabar = toEntity(unidad, duenio);
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 		s.update(aGrabar);
@@ -89,16 +84,12 @@ public class DuenioDAO {
 		s.close();
 	}
 	
-	/*toEntity se lleva PersonaEntity para que no rompa todo, 
-	pero en otros DAOs se lleva siempre una view. 
-	El tema es que InquilinoEntity se crea con un PersonaEntity, no con un PersonaView.
-	Si esta mal, corregir.*/
-	private DuenioEntity toEntity(PersonaEntity persona){ 
-		return new DuenioEntity(persona);
+	private DuenioEntity toEntity(Unidad unidad, Persona persona){ 
+		return new DuenioEntity(new UnidadDAO().toEntity(unidad),new PersonaDAO().toEntity(persona));
 	} 
 	
-	private Persona toNegocio(DuenioEntity entity){
-		return new Persona (entity.getPersona().getDni(), entity.getPersona().getNombre());
+	private Persona PersonatoNegocio(DuenioEntity de){
+		return new Persona (de.getPersona().getDni(), de.getPersona().getNombre());
 	}
 	
 }

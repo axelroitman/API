@@ -27,10 +27,9 @@ public class DuenioEntity {
 	
 	public DuenioEntity() {}
 	
-	public DuenioEntity(/*int id, UnidadEntity unidad,*/ PersonaEntity persona) {
+	public DuenioEntity(UnidadEntity unidad, PersonaEntity persona) {
 		super();
-		this.id = id;
-		//this.unidad = unidad;
+		this.unidad = unidad;
 		this.persona = persona;
 	}
 
@@ -42,13 +41,13 @@ public class DuenioEntity {
 		this.id = id;
 	}
 
-	/*public UnidadEntity getUnidad() {
+	public UnidadEntity getUnidad() {
 		return unidad;
 	}
 
 	public void setUnidad(UnidadEntity unidad) {
 		this.unidad = unidad;
-	}*/
+	}
 
 	public PersonaEntity getPersona() {
 		return persona;

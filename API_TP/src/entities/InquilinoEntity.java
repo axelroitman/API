@@ -28,10 +28,9 @@ public class InquilinoEntity {
 	
 	public InquilinoEntity() {}
 	
-	public InquilinoEntity(/*int id, UnidadEntity unidad,*/ PersonaEntity persona) {
+	public InquilinoEntity(UnidadEntity unidad, PersonaEntity persona) {
 		super();
-		this.id = id;
-		//this.unidad = unidad;
+		this.unidad = unidad;
 		this.persona = persona;
 	}
 
@@ -43,13 +42,13 @@ public class InquilinoEntity {
 		this.id = id;
 	}
 
-	/*public UnidadEntity getUnidad() {
+	public UnidadEntity getUnidad() {
 		return unidad;
 	}
 
 	public void setUnidad(UnidadEntity unidad) {
 		this.unidad = unidad;
-	}*/
+	}
 
 	public PersonaEntity getPersona() {
 		return persona;
