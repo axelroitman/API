@@ -4,11 +4,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 import controlador.Controlador;
+import exceptions.EdificioException;
+import exceptions.UnidadException;
+import views.PersonaView;
 import views.ReclamoView;
 
 public class Test {
 
 	public static void main(String[] args) {
+		
+		List<PersonaView> duenios;
+		try {
+			//duenios = Controlador.getInstancia().dueniosPorEdificio(1);
+			//duenios = Controlador.getInstancia().dueniosPorUnidad(1, "2", "4");
+			
+			duenios = Controlador.getInstancia().inquilinosPorUnidad(1, "2", "4"); //- PRUEBA DE INQUILINOS.
+			for(PersonaView p : duenios) 
+			{
+				System.out.println(p.getNombre() + " - " + p.getDocumento() + ".");
+			}
+			
+		}/* catch (EdificioException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Error.");
+		}*/ catch (UnidadException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		/*
 List<EdificioView> edificios = Controlador.getInstancia().getEdificios();
 		
@@ -52,11 +76,11 @@ List<EdificioView> edificios = Controlador.getInstancia().getEdificios();
 		System.out.println(count);
 		*/
 
-		List<ReclamoView> reclamosPorEdificio = new ArrayList<ReclamoView>();
+		/*List<ReclamoView> reclamosPorEdificio = new ArrayList<ReclamoView>();
 		reclamosPorEdificio= Controlador.getInstancia().reclamosPorEdificio(1);
 		for(ReclamoView r : reclamosPorEdificio) {
 				System.out.println(r.getNumero());
-		}
+		}*/
 	}
 
 }

@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table (name="inquilinos")
+@Table (name="duenios")
 public class DuenioEntity {
 	//PRECISO UNA UNIDAD MANY TO ONE. Aparte una unidad puede tener muchos duenios
 	@Id

@@ -65,6 +65,28 @@ public Unidad getUnidadPorDuenioId(int id) throws PersonaException{
 			throw new PersonaException("No existe el duenio " + id);
 		return PersonatoNegocio(duenio);
 	}
+	
+	public List<Persona> findByIdentificador(int id) throws PersonaException {
+		List<Persona> duenios = new ArrayList<Persona>();
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		s.beginTransaction();
+			List<DuenioEntity> dueniosEntity = s.createQuery("from DuenioEntity d where d.unidad.id = ? ")
+					.setInteger(0, id).list();
+			if(dueniosEntity == null)
+			{
+				throw new PersonaException("No existen duenios.");
+			}
+			else 
+			{
+				for(DuenioEntity d: dueniosEntity) 
+				{
+					Persona per = PersonatoNegocio(d);
+					duenios.add(per);
+				}
+			}
+		return duenios;
+	}
+
 
 	public void save(Unidad unidad, Persona duenio){
 		DuenioEntity aGrabar = toEntity(unidad, duenio);

@@ -23,7 +23,6 @@ public class UnidadEntity {
 
 	@Id
 	@Column(name="identificador")
-	
 	private int id;
 	private String piso;
 	private String numero;

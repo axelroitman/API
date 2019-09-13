@@ -62,10 +62,20 @@ public class Edificio {
 
 	public Set<Persona> duenios() {
 		Set<Persona> resultado = new HashSet<Persona>();
+		
+		if(unidades == null  || unidades.size() == 0)
+		{
+			try {
+				unidades = getUnidades();
+			} catch (UnidadException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		for(Unidad unidad : unidades) {
 			List<Persona> duenios = unidad.getDuenios();
 			for(Persona p : duenios)
-				duenios.add(p);
+				resultado.add(p);
 		}
 		return resultado;
 	}

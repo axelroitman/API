@@ -74,12 +74,14 @@ public class Controlador {
 		return resultado;
 	}
 
-	public List<PersonaView> dueniosPorEdificio(int codigo) throws EdificioException{ 
+	public List<PersonaView> dueniosPorEdificio(int codigo) throws EdificioException{ //hecho
 		List<PersonaView> resultado = new ArrayList<PersonaView>();
 		Edificio edificio = buscarEdificio(codigo);
 		Set<Persona> duenios = edificio.duenios();
 		for(Persona persona : duenios)
+		{
 			resultado.add(persona.toView());
+		}
 		return resultado;
 	}
 
@@ -92,7 +94,7 @@ public class Controlador {
 		return resultado;
 	}
 
-	public List<PersonaView> dueniosPorUnidad(int codigo, String piso, String numero) throws UnidadException{
+	public List<PersonaView> dueniosPorUnidad(int codigo, String piso, String numero) throws UnidadException{ //HECHO
 		List<PersonaView> resultado = new ArrayList<PersonaView>();
 		Unidad unidad = buscarUnidad(codigo, piso, numero);
 		List<Persona> duenios = unidad.getDuenios();
@@ -101,7 +103,7 @@ public class Controlador {
 		return resultado;
 	}
 
-	public List<PersonaView> inquilinosPorUnidad(int codigo, String piso, String numero) throws UnidadException{
+	public List<PersonaView> inquilinosPorUnidad(int codigo, String piso, String numero) throws UnidadException{ //HECHO
 		List<PersonaView> resultado = new ArrayList<PersonaView>();
 		Unidad unidad = buscarUnidad(codigo, piso, numero);
 		List<Persona> inquilinos = unidad.getInquilinos();

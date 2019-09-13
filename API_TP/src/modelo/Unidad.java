@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import daos.DuenioDAO;
+import daos.InquilinoDAO;
 import daos.UnidadDAO;
 import exceptions.PersonaException;
 import exceptions.UnidadException;
@@ -95,12 +96,22 @@ public class Unidad {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 		}
-
 		return duenios;
 	}
 
 	public List<Persona> getInquilinos() {
+		if(inquilinos == null || inquilinos.size() == 0)
+		{
+			try {
+				inquilinos = new InquilinoDAO().findByIdentificador(id);
+			} catch (PersonaException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
 		return inquilinos;
 	}
 

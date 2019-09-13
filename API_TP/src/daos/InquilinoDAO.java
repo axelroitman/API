@@ -8,6 +8,7 @@ import org.hibernate.Query;
 import org.hibernate.classic.Session;
 
 import controlador.Controlador;
+import entities.DuenioEntity;
 import entities.InquilinoEntity;
 import entities.PersonaEntity;
 import entities.UnidadEntity;
@@ -64,6 +65,28 @@ public Unidad getUnidadPorInquilinoId(int id) throws PersonaException{
 			throw new PersonaException("No existe el inquilino " + id);
 		return PersonatoNegocio(inquilino);
 	}
+	
+	public List<Persona> findByIdentificador(int id) throws PersonaException {
+		List<Persona> inquilinos = new ArrayList<Persona>();
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		s.beginTransaction();
+			List<InquilinoEntity> inquilinosEntity = s.createQuery("from InquilinoEntity i where i.unidad.id = ? ")
+					.setInteger(0, id).list();
+			if(inquilinosEntity == null)
+			{
+				throw new PersonaException("No existen inquilinos.");
+			}
+			else 
+			{
+				for(InquilinoEntity i: inquilinosEntity) 
+				{
+					Persona per = PersonatoNegocio(i);
+					inquilinos.add(per);
+				}
+			}
+		return inquilinos;
+	}
+
 
 	public void save(Unidad unidad, Persona inquilino){
 		InquilinoEntity aGrabar = toEntity(unidad, inquilino);
