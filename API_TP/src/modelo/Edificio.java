@@ -28,6 +28,15 @@ public class Edificio {
 	}
 	
 	public Set<Persona> habilitados(){
+		if(unidades == null  || unidades.size() == 0)
+		{
+			try {
+				unidades = getUnidades();
+			} catch (UnidadException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		Set<Persona> habilitados = new HashSet<Persona>();
 		for(Unidad unidad : unidades) {
 			List<Persona> duenios = unidad.getDuenios();
@@ -82,9 +91,23 @@ public class Edificio {
 
 	public Set<Persona> habitantes() {
 		Set<Persona> resultado = new HashSet<Persona>();
+		
+		if(unidades == null  || unidades.size() == 0)
+		{
+			try {
+				unidades = getUnidades();
+			} catch (UnidadException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+
 		for(Unidad unidad : unidades) {
+
 			if(unidad.estaHabitado()) {
 				List<Persona> inquilinos = unidad.getInquilinos();
+				
 				if(inquilinos.size() > 0) 
 					for(Persona p : inquilinos)
 						resultado.add(p);

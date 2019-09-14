@@ -12,6 +12,14 @@ import modelo.Reclamo;
 
 public class ReclamoDAO {
 	
+	private static ReclamoDAO instancia;
+	
+	public static ReclamoDAO getInstancia() {
+		if(instancia == null)
+			instancia = new ReclamoDAO();
+		return instancia;
+	}
+	
 	public List<Reclamo> getReclamos(){
 		List<Reclamo> resultado = new ArrayList<Reclamo>();
 		Session s = HibernateUtil.getSessionFactory().openSession();
@@ -54,10 +62,10 @@ public class ReclamoDAO {
 	}
 	
 	ReclamoEntity toEntity(Reclamo reclamo){
-		return new ReclamoEntity(new PersonaDAO().toEntity(reclamo.getUsuario()), new EdificioDAO().toEntity(reclamo.getEdificio()), reclamo.getUbicación(), reclamo.getDescripcion(), new UnidadDAO().toEntity(reclamo.getUnidad()), reclamo.getEstado());
+		return new ReclamoEntity(PersonaDAO.getInstancia().toEntity(reclamo.getUsuario()), EdificioDAO.getInstancia().toEntity(reclamo.getEdificio()), reclamo.getUbicación(), reclamo.getDescripcion(), UnidadDAO.getInstancia().toEntity(reclamo.getUnidad()), reclamo.getEstado());
 	} 
 	
 	Reclamo toNegocio(ReclamoEntity entity){
-		return new Reclamo(new PersonaDAO().toNegocio(entity.getUsuario()), new EdificioDAO().toNegocio(entity.getEdificio()), entity.getUbicación(), entity.getDescripcion(), new UnidadDAO().toNegocio(entity.getUnidad()));
+		return new Reclamo(PersonaDAO.getInstancia().toNegocio(entity.getUsuario()), EdificioDAO.getInstancia().toNegocio(entity.getEdificio()), entity.getUbicación(), entity.getDescripcion(), UnidadDAO.getInstancia().toNegocio(entity.getUnidad()));
 	}
 }

@@ -5,13 +5,21 @@ import java.util.List;
 
 import org.hibernate.classic.Session;
 
-import entities.EdificioEntity;
 import entities.PersonaEntity;
 import exceptions.PersonaException;
 import hibernate.HibernateUtil;
 import modelo.Persona;
 
 public class PersonaDAO {
+	
+private static PersonaDAO instancia;
+	
+	public static PersonaDAO getInstancia() {
+		if(instancia == null)
+			instancia = new PersonaDAO();
+		return instancia;
+	}
+	
 	public List<Persona> getPersonas(){
 		List<Persona> resultado = new ArrayList<Persona>();
 		Session s = HibernateUtil.getSessionFactory().openSession();

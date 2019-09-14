@@ -12,6 +12,14 @@ import modelo.Edificio;
 
 public class EdificioDAO {
 	
+	private static EdificioDAO instancia;
+	
+	public static EdificioDAO getInstancia() {
+		if(instancia == null)
+			instancia = new EdificioDAO();
+		return instancia;
+	}
+	
 	public List<Edificio> getEdificios(){
 		List<Edificio> resultado = new ArrayList<Edificio>();
 		Session s = HibernateUtil.getSessionFactory().openSession();

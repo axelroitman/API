@@ -19,10 +19,19 @@ import modelo.Unidad;
 import views.PersonaView;
 
 public class InquilinoDAO {
+	
+	private static InquilinoDAO instancia;
+	
+	public static InquilinoDAO getInstancia() {
+		if(instancia == null)
+			instancia = new InquilinoDAO();
+		return instancia;
+	}
+	
 	public List<Persona> getInquilinos(){
 		
 		List<Persona> resultado = new ArrayList<Persona>();
-		List<Persona> personas = new PersonaDAO().getPersonas();
+		List<Persona> personas = PersonaDAO.getInstancia().getPersonas();
 		List<InquilinoEntity> personasInq = new ArrayList<InquilinoEntity>();
 
 		Session s = HibernateUtil.getSessionFactory().openSession();
@@ -53,7 +62,7 @@ public Unidad getUnidadPorInquilinoId(int id) throws PersonaException{
 		s.getTransaction().commit();		
 		s.close();
 		
-		return new UnidadDAO().toNegocio(rdo);
+		return UnidadDAO.getInstancia().toNegocio(rdo);
 	}
 	
 	public Persona findById(int id) throws PersonaException {
@@ -107,7 +116,7 @@ public Unidad getUnidadPorInquilinoId(int id) throws PersonaException{
 	}
 	
 	private InquilinoEntity toEntity(Unidad unidad, Persona persona){ 
-		return new InquilinoEntity(new UnidadDAO().toEntity(unidad),new PersonaDAO().toEntity(persona));
+		return new InquilinoEntity(UnidadDAO.getInstancia().toEntity(unidad),PersonaDAO.getInstancia().toEntity(persona));
 	} 
 	
 	private Persona PersonatoNegocio(InquilinoEntity entity){

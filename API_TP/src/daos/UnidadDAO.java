@@ -57,7 +57,6 @@ public class UnidadDAO {
 	}
 
 	public List<Unidad> findByEdificio(int codigoEdificio) throws UnidadException{
-		System.out.println(codigoEdificio);
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 		List<UnidadEntity> unidades = s.createQuery("from UnidadEntity u where u.edificio.codigo = ? ")				
@@ -94,13 +93,10 @@ public class UnidadDAO {
 	}
 	
 	UnidadEntity toEntity(Unidad unidad){
-		return new UnidadEntity(unidad.getId(), unidad.getPiso(), unidad.getNumero(), new EdificioDAO().toEntity(unidad.getEdificio()));
+		return new UnidadEntity(unidad.getId(), unidad.getPiso(), unidad.getNumero(), EdificioDAO.getInstancia().toEntity(unidad.getEdificio()));
 	} 
 	
 	Unidad toNegocio(UnidadEntity entity){
-		return new Unidad(entity.getId(), entity.getPiso(), entity.getNumero(), new EdificioDAO().toNegocio(entity.getEdificio()));
+		return new Unidad(entity.getId(), entity.getPiso(), entity.getNumero(), EdificioDAO.getInstancia().toNegocio(entity.getEdificio()));	
+		}
 	}
-
-	
-	
-}

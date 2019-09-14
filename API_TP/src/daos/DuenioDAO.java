@@ -19,10 +19,19 @@ import modelo.Unidad;
 import views.PersonaView;
 
 public class DuenioDAO {
+	
+	private static DuenioDAO instancia;
+	
+	public static DuenioDAO getInstancia() {
+		if(instancia == null)
+			instancia = new DuenioDAO();
+		return instancia;
+	}
+	
 	public List<Persona> getInquilinos(){
 		
 		List<Persona> resultado = new ArrayList<Persona>();
-		List<Persona> personas = new PersonaDAO().getPersonas();
+		List<Persona> personas = PersonaDAO.getInstancia().getPersonas();
 		List<DuenioEntity> personasDuen = new ArrayList<DuenioEntity>();
 
 		Session s = HibernateUtil.getSessionFactory().openSession();
@@ -53,7 +62,7 @@ public Unidad getUnidadPorDuenioId(int id) throws PersonaException{
 		s.getTransaction().commit();		
 		s.close();
 		
-		return new UnidadDAO().toNegocio(rdo);
+		return UnidadDAO.getInstancia().toNegocio(rdo);
 	}
 	
 	public Persona findById(int id) throws PersonaException {
@@ -107,7 +116,7 @@ public Unidad getUnidadPorDuenioId(int id) throws PersonaException{
 	}
 	
 	private DuenioEntity toEntity(Unidad unidad, Persona persona){ 
-		return new DuenioEntity(new UnidadDAO().toEntity(unidad),new PersonaDAO().toEntity(persona));
+		return new DuenioEntity(UnidadDAO.getInstancia().toEntity(unidad),new PersonaDAO().getInstancia().toEntity(persona));
 	} 
 	
 	private Persona PersonatoNegocio(DuenioEntity de){

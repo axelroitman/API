@@ -91,7 +91,7 @@ public class Unidad {
 		if(duenios == null || duenios.size() == 0)
 		{
 			try {
-				duenios = new DuenioDAO().findByIdentificador(id);
+				duenios = DuenioDAO.getInstancia().findByIdentificador(id);
 			} catch (PersonaException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -105,7 +105,7 @@ public class Unidad {
 		if(inquilinos == null || inquilinos.size() == 0)
 		{
 			try {
-				inquilinos = new InquilinoDAO().findByIdentificador(id);
+				inquilinos = InquilinoDAO.getInstancia().findByIdentificador(id);
 			} catch (PersonaException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

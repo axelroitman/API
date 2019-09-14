@@ -26,7 +26,6 @@ import views.UnidadView;
 public class Controlador {
 
 	private static Controlador instancia;
-	private Persona aBuscar; //Estoy bastante seguro de que esto esta mal.
 	private Controlador() { }
 	
 	public static Controlador getInstancia() {
@@ -37,7 +36,7 @@ public class Controlador {
 	
 	public List<EdificioView> getEdificios(){ //hecho
 		List<EdificioView> resultado = new ArrayList<EdificioView>();
-		List<Edificio> edificios = new EdificioDAO().getEdificios();
+		List<Edificio> edificios = EdificioDAO.getInstancia().getEdificios();
 		for(Edificio edificio : edificios)
 			resultado.add(edificio.toView());
 		return resultado;
@@ -52,7 +51,7 @@ public class Controlador {
 	
 	public List<Persona> getInquilinos(){ //hecho
 		List<Persona> resultado = new ArrayList<Persona>();
-		resultado = new InquilinoDAO().getInquilinos();
+		resultado = InquilinoDAO.getInstancia().getInquilinos();
 		return resultado;
 	}
 	
@@ -65,7 +64,7 @@ public class Controlador {
 		return resultado;
 	}
 	
-	public List<PersonaView> habilitadosPorEdificio(int codigo) throws EdificioException{ 
+	public List<PersonaView> habilitadosPorEdificio(int codigo) throws EdificioException{ //hecho
 		List<PersonaView> resultado = new ArrayList<PersonaView>();
 		Edificio edificio = buscarEdificio(codigo);
 		Set<Persona> habilitados = edificio.habilitados();
@@ -88,7 +87,11 @@ public class Controlador {
 	public List<PersonaView> habitantesPorEdificio(int codigo) throws EdificioException{
 		List<PersonaView> resultado = new ArrayList<PersonaView>();
 		Edificio edificio = buscarEdificio(codigo);
-		Set<Persona> habitantes = edificio.duenios();
+		Set<Persona> habitantes = edificio.habitantes(); 
+		
+		/*El método habitantes() devuelve solo a los que habitan unidades,
+		 y en la BD todas las unidades tienen una N en "habitado"*/
+		
 		for(Persona persona : habitantes)
 			resultado.add(persona.toView());
 		return resultado;
@@ -159,7 +162,7 @@ public class Controlador {
 	
 	public List<ReclamoView> reclamosPorEdificio(int codigo){  //hecho. Falta prueba
 		List<ReclamoView> resultado = new ArrayList<ReclamoView>();
-		List<Reclamo> reclamos = new ReclamoDAO().getReclamos();
+		List<Reclamo> reclamos = ReclamoDAO.getInstancia().getReclamos();
 		
 		if(!reclamos.isEmpty() || reclamos != null) {
 			for(Reclamo r : reclamos) {
@@ -208,7 +211,7 @@ public class Controlador {
 	}
 	
 	private Edificio buscarEdificio(int codigo) throws EdificioException {
-		Edificio edificio = new EdificioDAO().findById(codigo);
+		Edificio edificio = EdificioDAO.getInstancia().findById(codigo);
 		return edificio;
 
 	}
@@ -222,7 +225,7 @@ public class Controlador {
 	private Persona buscarPersona(String documento) { //hecho
 		Persona aBuscar = null;
 		try {
-			aBuscar = new PersonaDAO().findById(documento);
+			aBuscar = PersonaDAO.getInstancia().findById(documento);
 		} catch (PersonaException e) {
 			e.printStackTrace();
 		}

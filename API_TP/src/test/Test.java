@@ -12,7 +12,20 @@ import views.ReclamoView;
 public class Test {
 
 	public static void main(String[] args) {
+		List<PersonaView> habilitados = null;
+		try {
+			habilitados= Controlador.getInstancia().habilitadosPorEdificio(1);
+		} catch (EdificioException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int cant=0;
+		for(PersonaView pers : habilitados) {
+		System.out.println(pers.getNombre());
+		cant++;}
+		System.out.println(cant);
 		
+	/*	
 		List<PersonaView> duenios;
 		try {
 			//duenios = Controlador.getInstancia().dueniosPorEdificio(1);
@@ -27,11 +40,11 @@ public class Test {
 		}/* catch (EdificioException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Error.");
-		}*/ catch (UnidadException e) {
+		}*//* catch (UnidadException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		*/
 		
 		/*
 List<EdificioView> edificios = Controlador.getInstancia().getEdificios();
