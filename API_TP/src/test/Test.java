@@ -5,6 +5,7 @@ import java.util.List;
 
 import controlador.Controlador;
 import exceptions.EdificioException;
+import exceptions.PersonaException;
 import exceptions.UnidadException;
 import views.PersonaView;
 import views.ReclamoView;
@@ -12,7 +13,30 @@ import views.ReclamoView;
 public class Test {
 
 	public static void main(String[] args) {
-		List<PersonaView> habilitados = null;
+		
+		
+		try {
+			Controlador.getInstancia().agregarReclamo(1, "9", "5", "CI 13230978", "Escaleras", "Patinan mucho"); //tira error en PersonaDAO
+		} catch (EdificioException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnidadException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (PersonaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/*List<PersonaView> habilitados = null;
 		try {
 			habilitados= Controlador.getInstancia().habilitadosPorEdificio(1);
 		} catch (EdificioException e) {
@@ -23,7 +47,9 @@ public class Test {
 		for(PersonaView pers : habilitados) {
 		System.out.println(pers.getNombre());
 		cant++;}
-		System.out.println(cant);
+		System.out.println(cant);*/
+		
+		
 		
 	/*	
 		List<PersonaView> duenios;

@@ -116,10 +116,10 @@ public Unidad getUnidadPorDuenioId(int id) throws PersonaException{
 	}
 	
 	public void delete(Unidad unidad, Persona duenio){
-		DuenioEntity aGrabar = toEntity(unidad, duenio);
+		DuenioEntity aEliminar = toEntity(unidad, duenio);
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
-		s.delete(aGrabar);
+		s.delete(aEliminar);
 		s.getTransaction().commit();
 		s.close();
 	}

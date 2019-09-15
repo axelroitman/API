@@ -3,6 +3,7 @@ package modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import daos.ReclamoDAO;
 import views.Estado;
 import views.ReclamoView;
 
@@ -74,11 +75,11 @@ public class Reclamo {
 	}
 
 	public void save() {
-		
+		ReclamoDAO.getInstancia().save(this);
 	}
 	
 	public void update() {
-		
+		ReclamoDAO.getInstancia().update(this);
 	}
 	
 	public ReclamoView toView(){

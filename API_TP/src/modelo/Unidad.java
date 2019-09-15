@@ -32,11 +32,11 @@ public class Unidad {
 	}
 
 	public void transferir(Persona nuevoDuenio) throws PersonaException {
-		duenios = new ArrayList<Persona>();
-		duenios.add(nuevoDuenio);
-		getDuenios(); 
+		duenios = new ArrayList<Persona>(); 
 		for (Persona p : duenios)
 			DuenioDAO.getInstancia().delete(this, p);
+		duenios.add(nuevoDuenio);
+		getDuenios();
 		DuenioDAO.getInstancia().save(this, nuevoDuenio);
 	}
 	
@@ -57,7 +57,7 @@ public class Unidad {
 
 	public void agregarInquilino(Persona inquilino) {
 		inquilinos.add(inquilino);
-		InquilinoDAO.getInstancia().update(this, inquilino);
+		InquilinoDAO.getInstancia().save(this, inquilino);
 	}
 	
 	public boolean estaHabitado() {

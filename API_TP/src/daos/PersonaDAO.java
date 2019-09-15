@@ -35,7 +35,7 @@ private static PersonaDAO instancia;
 	public Persona findById(String dni) throws PersonaException{
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
-		PersonaEntity persona = (PersonaEntity) s.createQuery("from PersonaEntity p where p.dni = ? ")
+		PersonaEntity persona = (PersonaEntity) s.createQuery("select from PersonaEntity p where p.dni = ?")
 				.setString(0, dni)
 				.uniqueResult();
 		if(persona == null)

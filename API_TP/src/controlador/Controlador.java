@@ -210,15 +210,23 @@ public class Controlador {
 		reclamo.update();
 	}
 	
-	private Edificio buscarEdificio(int codigo) throws EdificioException {
-		Edificio edificio = EdificioDAO.getInstancia().findById(codigo);
-		return edificio;
+	private Edificio buscarEdificio(int codigo) throws EdificioException { //hecho
+		Edificio aBuscar = null;
+		try {
+			aBuscar = EdificioDAO.getInstancia().findById(codigo);
+		} catch (EdificioException e) {
+			e.printStackTrace();
+		}
+		return aBuscar;	
 
 	}
 	private Unidad buscarUnidad(int codigo, String piso, String numero) throws UnidadException{ //hecho
 		Unidad aBuscar = null;
-		aBuscar = UnidadDAO.getInstancia().find(codigo, piso, numero);
-		
+		try {
+			aBuscar = UnidadDAO.getInstancia().find(codigo, piso, numero);
+		} catch (UnidadException e) {
+			e.printStackTrace();
+		}
 		return aBuscar;				
 	}	
 	
@@ -232,7 +240,13 @@ public class Controlador {
 		return aBuscar;				
 	}
 	
-	private Reclamo buscarReclamo(int numero) throws ReclamoException {
-		return null;
+	private Reclamo buscarReclamo(int numero) throws ReclamoException { //hecho
+		Reclamo aBuscar = null;
+		try {
+			aBuscar = ReclamoDAO.getInstancia().findById(numero);
+		} catch (ReclamoException e) {
+			e.printStackTrace();
+		}
+		return aBuscar;
 	}
 }
