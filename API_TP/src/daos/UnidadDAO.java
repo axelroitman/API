@@ -73,7 +73,6 @@ public class UnidadDAO {
 		return unidadesNegocio;
 	}
 
-	
 
 	public void save(Unidad unidad){
 		UnidadEntity aGrabar = toEntity(unidad);

@@ -20,7 +20,6 @@ public class Unidad {
 	private Edificio edificio;
 	private List<Persona> duenios;
 	private List<Persona> inquilinos;
-	private Object unidad;
 	
 	public Unidad(int id, String piso, String numero, Edificio edificio) {
 		this.id = id;
@@ -32,18 +31,13 @@ public class Unidad {
 		this.inquilinos = new ArrayList<Persona>();
 	}
 
-	public void transferir(Persona nuevoDuenio) throws PersonaException {
+	public void transferir(Persona nuevoDuenio) {
 		duenios = new ArrayList<Persona>();
 		duenios.add(nuevoDuenio);
-		getDuenios(); 
-		for (Persona p : duenios)
-			DuenioDAO.getInstancia().delete(this, p);
-		DuenioDAO.getInstancia().save(this, nuevoDuenio);
 	}
 	
 	public void agregarDuenio(Persona duenio) {
 		duenios.add(duenio);
-		DuenioDAO.getInstancia().save(this, duenio);
 	}
 	
 	public void alquilar(Persona inquilino) throws UnidadException {
@@ -58,7 +52,6 @@ public class Unidad {
 
 	public void agregarInquilino(Persona inquilino) {
 		inquilinos.add(inquilino);
-		InquilinoDAO.getInstancia().save(this, inquilino);
 	}
 	
 	public boolean estaHabitado() {
@@ -89,6 +82,7 @@ public class Unidad {
 		return numero;
 	}
 
+	
 	public Edificio getEdificio() {
 		return edificio;
 	}
