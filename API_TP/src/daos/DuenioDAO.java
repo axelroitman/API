@@ -115,6 +115,16 @@ public Unidad getUnidadPorDuenioId(int id) throws PersonaException{
 		s.close();
 	}
 	
+	public void delete(Unidad unidad, Persona duenio){
+		DuenioEntity aGrabar = toEntity(unidad, duenio);
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		s.beginTransaction();
+		s.delete(aGrabar);
+		s.getTransaction().commit();
+		s.close();
+	}
+	
+	
 	private DuenioEntity toEntity(Unidad unidad, Persona persona){ 
 		return new DuenioEntity(UnidadDAO.getInstancia().toEntity(unidad),new PersonaDAO().getInstancia().toEntity(persona));
 	} 

@@ -31,13 +31,18 @@ public class Unidad {
 		this.inquilinos = new ArrayList<Persona>();
 	}
 
-	public void transferir(Persona nuevoDuenio) {
+	public void transferir(Persona nuevoDuenio) throws PersonaException {
 		duenios = new ArrayList<Persona>();
 		duenios.add(nuevoDuenio);
+		getDuenios(); 
+		for (Persona p : duenios)
+			DuenioDAO.getInstancia().delete(this, p);
+		DuenioDAO.getInstancia().save(this, nuevoDuenio);
 	}
 	
 	public void agregarDuenio(Persona duenio) {
 		duenios.add(duenio);
+		DuenioDAO.getInstancia().save(this, duenio);
 	}
 	
 	public void alquilar(Persona inquilino) throws UnidadException {
