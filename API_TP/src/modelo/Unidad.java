@@ -57,6 +57,7 @@ public class Unidad {
 
 	public void agregarInquilino(Persona inquilino) {
 		inquilinos.add(inquilino);
+		InquilinoDAO.getInstancia().update(this, inquilino);
 	}
 	
 	public boolean estaHabitado() {
