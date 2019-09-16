@@ -7,6 +7,7 @@ import controlador.Controlador;
 import exceptions.EdificioException;
 import exceptions.PersonaException;
 import exceptions.UnidadException;
+import modelo.Persona;
 import views.PersonaView;
 import views.ReclamoView;
 
@@ -14,8 +15,27 @@ public class Test {
 
 	public static void main(String[] args) {
 		
-		
 		try {
+			List<PersonaView> dueniosActuales = Controlador.getInstancia().dueniosPorUnidad(1, "2", "4");
+			for(PersonaView p : dueniosActuales)
+			{
+				System.out.println(p.toString());
+			}
+			try {
+				//Controlador.getInstancia().transferirUnidad(1, "2", "4", "DNI30829463");
+				Controlador.getInstancia().agregarDuenioUnidad(1, "2", "4", "DNI30829463");
+
+				System.out.println("OK.");
+			} catch (PersonaException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (UnidadException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		/*try {
 			Controlador.getInstancia().agregarReclamo(1, "9", "5", "CI 13230978", "Escaleras", "Patinan mucho"); //tira error en PersonaDAO
 		} catch (EdificioException e) {
 			// TODO Auto-generated catch block
@@ -26,7 +46,7 @@ public class Test {
 		} catch (PersonaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		
 		
 		

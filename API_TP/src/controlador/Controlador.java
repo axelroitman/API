@@ -115,13 +115,13 @@ public class Controlador {
 		return resultado;
 	}
 	
-	public void transferirUnidad(int codigo, String piso, String numero, String documento) throws UnidadException, PersonaException {
+	public void transferirUnidad(int codigo, String piso, String numero, String documento) throws UnidadException, PersonaException { //hecho
 		Unidad unidad = buscarUnidad(codigo, piso, numero);
 		Persona persona = buscarPersona(documento);
 		unidad.transferir(persona);
 	}
 
-	public void agregarDuenioUnidad(int codigo, String piso, String numero, String documento) throws UnidadException, PersonaException {
+	public void agregarDuenioUnidad(int codigo, String piso, String numero, String documento) throws UnidadException, PersonaException { //hecho
 		Unidad unidad = buscarUnidad(codigo, piso, numero);
 		Persona persona = buscarPersona(documento);
 		unidad.agregarDuenio(persona);

@@ -2,6 +2,8 @@ package entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,6 +16,7 @@ import javax.persistence.Transient;
 public class InquilinoEntity {
 	//PRECISO UNA UNIDAD MANY TO ONE. Aparte una unidad puede tener muchos duenios
 	@Id
+	@GeneratedValue(strategy= GenerationType.AUTO)	
 	private int id;
 	
 	@ManyToOne

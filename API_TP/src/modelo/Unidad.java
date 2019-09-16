@@ -5,7 +5,6 @@ import java.util.List;
 
 import daos.DuenioDAO;
 import daos.InquilinoDAO;
-import daos.UnidadDAO;
 import exceptions.PersonaException;
 import exceptions.UnidadException;
 import views.EdificioView;
@@ -32,17 +31,33 @@ public class Unidad {
 	}
 
 	public void transferir(Persona nuevoDuenio) throws PersonaException {
-		duenios = new ArrayList<Persona>(); 
+		duenios = getDuenios();
 		for (Persona p : duenios)
+		{
 			DuenioDAO.getInstancia().delete(this, p);
+		}
+		duenios = new ArrayList<Persona>(); 
 		duenios.add(nuevoDuenio);
-		getDuenios();
+		
 		DuenioDAO.getInstancia().save(this, nuevoDuenio);
 	}
 	
 	public void agregarDuenio(Persona duenio) {
-		duenios.add(duenio);
-		DuenioDAO.getInstancia().save(this, duenio);
+		boolean aparece = false;
+		getDuenios();
+		for(Persona p : duenios)
+		{
+			if(p.getDocumento().equals(duenio.getDocumento()))
+			{
+				aparece = true;
+			}
+		}
+		
+		if(aparece == false)
+		{
+			duenios.add(duenio);
+			DuenioDAO.getInstancia().save(this, duenio);
+		}
 	}
 	
 	public void alquilar(Persona inquilino) throws UnidadException {

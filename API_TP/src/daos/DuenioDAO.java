@@ -54,7 +54,7 @@ public Unidad getUnidadPorDuenioId(int id) throws PersonaException{
 		UnidadEntity rdo = new UnidadEntity();
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
-		duenio = (DuenioEntity) s.createQuery("select i from InquilinoEntity i where i.id = ?").setInteger(0, id).uniqueResult();
+		duenio = (DuenioEntity) s.createQuery("select i from DuenioEntity i where i.id = ?").setInteger(0, id).uniqueResult();
 		if(duenio == null) {
 			throw new PersonaException("No existe el duenio " + id);
 		}
@@ -116,9 +116,15 @@ public Unidad getUnidadPorDuenioId(int id) throws PersonaException{
 	}
 	
 	public void delete(Unidad unidad, Persona duenio){
-		DuenioEntity aEliminar = toEntity(unidad, duenio);
+		//DuenioEntity aEliminar = toEntity(unidad, duenio);
+		//System.out.println(aEliminar.getPersona().getDni());
+
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
+		DuenioEntity aEliminar = (DuenioEntity) s.createQuery("from DuenioEntity i where i.persona.documento = ? and i.unidad.id = ?")
+				.setString(0, duenio.getDocumento())
+				.setInteger(1, unidad.getId())
+				.uniqueResult();
 		s.delete(aEliminar);
 		s.getTransaction().commit();
 		s.close();
