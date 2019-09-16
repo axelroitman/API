@@ -1,6 +1,7 @@
 package modelo;
 
 import daos.PersonaDAO;
+import exceptions.PersonaException;
 import views.PersonaView;
 
 public class Persona {
@@ -30,6 +31,11 @@ public class Persona {
 	}
 
 	public void delete() {
-		//PersonaDAO.getInstancia().delete(this); HACER EN EL DAO (AL BORRAR CHEQUEAR SI TIENE UNIDADES ASOCIADAS O NO, ETC)
+		try {
+			PersonaDAO.getInstancia().delete(this);
+		} catch (PersonaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} //HACER EN EL DAO (AL BORRAR CHEQUEAR SI TIENE UNIDADES ASOCIADAS O NO, ETC)
 	}	
 }

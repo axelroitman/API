@@ -28,17 +28,14 @@ public class DuenioDAO {
 		return instancia;
 	}
 	
-	public List<Persona> getInquilinos(){
+	public List<Persona> getDuenios(){
 		
 		List<Persona> resultado = new ArrayList<Persona>();
-		List<Persona> personas = PersonaDAO.getInstancia().getPersonas();
 		List<DuenioEntity> personasDuen = new ArrayList<DuenioEntity>();
 
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
-		for(Persona p : personas) {
-		personasDuen = (List<DuenioEntity>) s.createQuery("select d from DuenioEntity d inner join d.persona").list();		
-		}
+		personasDuen = (List<DuenioEntity>) s.createQuery("select d from DuenioEntity d inner join d.persona").list();
 		s.getTransaction().commit();
 		
 		for(DuenioEntity de : personasDuen)
@@ -137,6 +134,18 @@ public Unidad getUnidadPorDuenioId(int id) throws PersonaException{
 	
 	private Persona PersonatoNegocio(DuenioEntity de){
 		return new Persona (de.getPersona().getDni(), de.getPersona().getNombre());
+	}
+
+	public List<Unidad> unidadesPorDuenio(Persona duenio){
+		List<Unidad> resultado = new ArrayList<Unidad>();
+		List<Unidad> un = UnidadDAO.getInstancia().getUnidades();
+		for(Unidad unidad : un) {
+			List<Persona> due = unidad.getDuenios();
+			if(due.contains(duenio)) {
+				resultado.add(unidad);
+			}
+		}
+		return resultado;
 	}
 	
 }

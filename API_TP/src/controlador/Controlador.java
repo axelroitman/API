@@ -260,12 +260,12 @@ public class Controlador {
 		return aBuscar;				
 	}	
 	
-	private Persona buscarPersona(String documento) { //hecho
+	private Persona buscarPersona(String documento) throws PersonaException { //hecho
 		Persona aBuscar = null;
 		try {
 			aBuscar = PersonaDAO.getInstancia().findById(documento);
 		} catch (PersonaException e) {
-			e.printStackTrace();
+			throw new PersonaException("No Existe la Persona");
 		}
 		return aBuscar;				
 	}

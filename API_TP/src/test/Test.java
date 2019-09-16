@@ -15,6 +15,13 @@ public class Test {
 
 	public static void main(String[] args) {
 		
+		try {
+			Controlador.getInstancia().eliminarPersona("CI 13230978");
+		} catch (PersonaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		/*try {
 			List<PersonaView> dueniosActuales = Controlador.getInstancia().dueniosPorUnidad(1, "2", "4");
 			for(PersonaView p : dueniosActuales)
@@ -60,8 +67,8 @@ public class Test {
 			System.out.println(res.getDescripcion());
 		*/
 		
-		Controlador.getInstancia().agregarPersona("DNI78908978", "MIGUEL, LUIS");
-		
+		/*Controlador.getInstancia().agregarPersona("DNI78908978", "MIGUEL, LUIS");
+		*/
 		
 		
 		
