@@ -151,7 +151,21 @@ public class Controlador {
 	
 	public void agregarPersona(String documento, String nombre) {
 		Persona persona = new Persona(documento, nombre);
-		persona.save();
+		Persona buscoPersona = null;		
+		try {
+			buscoPersona = PersonaDAO.getInstancia().findById(documento);
+		} catch (PersonaException e) {
+			e.printStackTrace();
+		}
+		
+		if(buscoPersona == null)
+		{	
+			persona.save();
+		}
+		else
+		{
+			System.out.println("Ya existe la persona.");
+		}
 	}
 	
 	public void eliminarPersona(String documento) throws PersonaException {
@@ -180,17 +194,33 @@ public class Controlador {
 		return resultado;
 	}
 	
-	public ReclamoView reclamosPorNumero(int numero) {
+	public ReclamoView reclamosPorNumero(int numero) { //Hecho
+		Reclamo reclamo;
 		ReclamoView resultado = null;
+		try {
+			reclamo = ReclamoDAO.getInstancia().findById(numero);
+			resultado = reclamo.toView();
+
+		} catch (ReclamoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return resultado;
 	}
 	
-	public List<ReclamoView> reclamosPorPersona(String documento) {
+	public List<ReclamoView> reclamosPorPersona(String documento) { //Hecho
 		List<ReclamoView> resultado = new ArrayList<ReclamoView>();
+		List<Reclamo> reclamos = ReclamoDAO.getInstancia().findByDocumento(documento);
+
+		for(Reclamo r: reclamos)
+		{
+			resultado.add(r.toView());
+		}
 		return resultado;
 	}
  
 	public int agregarReclamo(int codigo, String piso, String numero, String documento, String ubicación, String descripcion) throws EdificioException, UnidadException, PersonaException {
+		//Hecho, pero falta el tema del estado.
 		Edificio edificio = buscarEdificio(codigo);
 		Unidad unidad = buscarUnidad(codigo, piso, numero);
 		Persona persona = buscarPersona(documento);

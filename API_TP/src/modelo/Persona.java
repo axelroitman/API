@@ -1,5 +1,6 @@
 package modelo;
 
+import daos.PersonaDAO;
 import views.PersonaView;
 
 public class Persona {
@@ -25,10 +26,10 @@ public class Persona {
 	}
 
 	public void save() {
-		
+		PersonaDAO.getInstancia().save(this);
 	}
 
 	public void delete() {
-		
+		//PersonaDAO.getInstancia().delete(this); HACER EN EL DAO (AL BORRAR CHEQUEAR SI TIENE UNIDADES ASOCIADAS O NO, ETC)
 	}	
 }

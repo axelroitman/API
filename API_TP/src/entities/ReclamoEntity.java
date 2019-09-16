@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -18,14 +20,22 @@ public class ReclamoEntity {
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	@Column(name= "idReclamo")
 	int id;
-	@Transient
+	
+	@ManyToOne
+	@JoinColumn(name= "documento")
 	PersonaEntity usuario;
-	@Transient
+	
+	@ManyToOne
+	@JoinColumn(name= "codigo")	
 	EdificioEntity edificio;
+	
 	String ubicacion;
 	String descripcion;
-	@Transient
+	
+	@ManyToOne
+	@JoinColumn(name= "identificador")	
 	UnidadEntity unidad;
+	
 	@Transient
 	Estado estado;
 	

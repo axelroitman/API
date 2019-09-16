@@ -68,4 +68,18 @@ public class ReclamoDAO {
 	Reclamo toNegocio(ReclamoEntity entity){
 		return new Reclamo(PersonaDAO.getInstancia().toNegocio(entity.getUsuario()), EdificioDAO.getInstancia().toNegocio(entity.getEdificio()), entity.getUbicación(), entity.getDescripcion(), UnidadDAO.getInstancia().toNegocio(entity.getUnidad()));
 	}
+
+	public List<Reclamo> findByDocumento(String documento) {
+		List<Reclamo> resultado = new ArrayList<Reclamo>();
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		s.beginTransaction();
+		List<ReclamoEntity> reclamos = s.createQuery("from ReclamoEntity r where r.usuario.documento = ?")
+				.setString(0, documento)
+				.list();
+		s.getTransaction().commit();
+		s.close();
+		for(ReclamoEntity rec : reclamos)
+			resultado.add(toNegocio(rec));
+		return resultado;
+	}
 }
