@@ -168,13 +168,13 @@ public class Controlador {
 		}
 	}
 	
-	public void eliminarPersona(String documento) throws PersonaException {
+	public void eliminarPersona(String documento) throws PersonaException { //hecho.
 		Persona persona = buscarPersona(documento);
 		persona.delete();
 	}
 	
 	
-	public List<ReclamoView> reclamosPorEdificio(int codigo){  //hecho. Falta prueba
+	public List<ReclamoView> reclamosPorEdificio(int codigo){  //hecho.
 		List<ReclamoView> resultado = new ArrayList<ReclamoView>();
 		List<Reclamo> reclamos = ReclamoDAO.getInstancia().getReclamos();
 		
@@ -189,10 +189,19 @@ public class Controlador {
 		return resultado;
 	}
 	
-	public List<ReclamoView> reclamosPorUnidad(int codigo, String piso, String numero) {
+	public List<ReclamoView> reclamosPorUnidad(int codigo, String piso, String numero) { //hecho.
 		List<ReclamoView> resultado = new ArrayList<ReclamoView>();
+		List<Reclamo> reclamos = ReclamoDAO.getInstancia().getReclamos();
+		
+		if(!reclamos.isEmpty() || reclamos != null) {
+			for(Reclamo r : reclamos) {
+					if(r.getEdificio().getCodigo() == codigo && r.getUnidad().getNumero().equals(numero) && r.getUnidad().getPiso().equals(piso)) {
+							resultado.add(r.toView());
+						}
+					}
+				}
 		return resultado;
-	}
+		}
 	
 	public ReclamoView reclamosPorNumero(int numero) { //Hecho
 		Reclamo reclamo;

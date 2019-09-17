@@ -15,12 +15,12 @@ public class Test {
 
 	public static void main(String[] args) {
 		
-		try {
+		/*try {
 			Controlador.getInstancia().eliminarPersona("CI 13230978");
 		} catch (PersonaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		
 		/*try {
 			List<PersonaView> dueniosActuales = Controlador.getInstancia().dueniosPorUnidad(1, "2", "4");
@@ -42,9 +42,9 @@ public class Test {
 			e1.printStackTrace();
 		}*/
 		
-		/*
-		try {
-			Controlador.getInstancia().agregarReclamo(1, "2", "4", "DNI30829463", "Escaleras", "Patinan mucho"); //tira error en PersonaDAO
+		
+		/*try {
+			Controlador.getInstancia().agregarReclamo(1, "2", "4", "DNI30829463", "Escaleras", "Patinan mucho");
 			System.out.println("OK");
 		} catch (EdificioException e) {
 			// TODO Auto-generated catch block
@@ -57,6 +57,12 @@ public class Test {
 			e.printStackTrace();
 		}
 		*/
+		
+		List<ReclamoView> rec= Controlador.getInstancia().reclamosPorUnidad(1, "2","4");
+		for(ReclamoView r : rec) {
+			System.out.println(r.getDescripcion());
+		}
+		
 		/*List<ReclamoView> res = Controlador.getInstancia().reclamosPorPersona("DNI30829463");
 		for(ReclamoView r: res){
 			System.out.println(r.getDescripcion());
