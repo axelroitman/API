@@ -75,38 +75,35 @@ private static PersonaDAO instancia;
 	public void delete(Persona persona) throws PersonaException {
 		List<Persona> inquilinos = InquilinoDAO.getInstancia().getInquilinos();
 		List<Persona> duenios = DuenioDAO.getInstancia().getDuenios();
-		boolean band = false;
+		boolean bandera=false;
 		
-		if(duenios.contains(persona)) {
-			band=true;
-			System.out.println("No podes");
-			throw new PersonaException("No puede eliminar a un dueño sin transferir la unidad previamente");
-		}
-		
-		if(band==false) {
-		for(Persona inq : inquilinos) {
-
-			if(inq.getDocumento().equals(persona.getDocumento())) {
-				List<Unidad> uADeshab = InquilinoDAO.getInstancia().unidadesPorInquilino(persona);
-				
-				for(Unidad u : uADeshab) {
-					InquilinoDAO.getInstancia().delete(u, inq);
+		for(Persona in: inquilinos) {
+			if(in.getDocumento().equals(persona.getDocumento())) {
+				bandera=true;
 				}
+		}
+		for(Persona due: duenios) {
+			if(due.getDocumento().equals(persona.getDocumento())) {
+				bandera=true;
 			}
 		}
 		
-		
-		Session s = HibernateUtil.getSessionFactory().openSession();
-		s.beginTransaction();
-		PersonaEntity aEliminar = (PersonaEntity) s.createQuery("from PersonaEntity p where p.documento = ?")
-				.setString(0, persona.getDocumento())
-				.uniqueResult();
-		s.delete(aEliminar);
-		s.getTransaction().commit();
-		s.close();
+		if(bandera == false) {
+			Session s = HibernateUtil.getSessionFactory().openSession();
+			s.beginTransaction();
+			PersonaEntity aEliminar = (PersonaEntity) s.createQuery("from PersonaEntity p where p.documento = ?")
+					.setString(0, persona.getDocumento())
+					.uniqueResult();
+			s.delete(aEliminar);
+			s.getTransaction().commit();
+			s.close();
+			System.out.println("La persona ha sido eliminada con éxito."); //CORREGIR EN LA PRÓXIMA ETAPA DEL TP (ADAPTAR A INTERFAZ)
+		}
+		else {
+			System.out.println("No se puede eliminar a la persona porque es un dueño o un inquilino."); //CORREGIR EN LA PRÓXIMA ETAPA DEL TP (ADAPTAR A INTERFAZ)
 		}
 	}
-	
 }
+
 
 
