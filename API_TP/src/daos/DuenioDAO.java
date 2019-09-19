@@ -129,7 +129,8 @@ public Unidad getUnidadPorDuenioId(int id) throws PersonaException{
 	
 	
 	private DuenioEntity toEntity(Unidad unidad, Persona persona){ 
-		return new DuenioEntity(UnidadDAO.getInstancia().toEntity(unidad),new PersonaDAO().getInstancia().toEntity(persona));
+		new PersonaDAO();
+		return new DuenioEntity(UnidadDAO.getInstancia().toEntity(unidad),PersonaDAO.getInstancia().toEntity(persona));
 	} 
 	
 	private Persona PersonatoNegocio(DuenioEntity de){
