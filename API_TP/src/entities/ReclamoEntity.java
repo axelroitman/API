@@ -45,12 +45,12 @@ public class ReclamoEntity {
 	public ReclamoEntity() {}
 
 
-	public ReclamoEntity(PersonaEntity usuario, EdificioEntity edificio, String ubicación, String descripcion,
+	public ReclamoEntity(PersonaEntity usuario, EdificioEntity edificio, String ubicacion, String descripcion,
 			UnidadEntity unidad, Estado estado) {
 		super();
 		this.usuario = usuario;
 		this.edificio = edificio;
-		this.ubicacion = ubicación;
+		this.ubicacion = ubicacion;
 		this.descripcion = descripcion;
 		this.unidad = unidad;
 		this.estado = estado;

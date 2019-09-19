@@ -27,6 +27,18 @@ public class Reclamo {
 		this.estado = Estado.nuevo;
 		imagenes = new ArrayList<Imagen>();
 	}
+	
+	public Reclamo(Persona usuario, Edificio edificio, String ubicacion, String descripcion, Unidad unidad, int numero) {
+		this.usuario = usuario;
+		this.edificio = edificio;
+		this.ubicación = ubicacion;
+		this.descripcion = descripcion;
+		this.unidad = unidad;
+		this.estado = Estado.nuevo;
+		this.numero = numero;
+		imagenes = new ArrayList<Imagen>();
+	}
+
 
 	public void agregarImagen(String direccion, String tipo) {
 		Imagen imagen = new Imagen(direccion, tipo);

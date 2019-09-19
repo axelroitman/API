@@ -66,7 +66,7 @@ public class ReclamoDAO {
 	} 
 	
 	Reclamo toNegocio(ReclamoEntity entity){
-		return new Reclamo(PersonaDAO.getInstancia().toNegocio(entity.getUsuario()), EdificioDAO.getInstancia().toNegocio(entity.getEdificio()), entity.getUbicación(), entity.getDescripcion(), UnidadDAO.getInstancia().toNegocio(entity.getUnidad()));
+		return new Reclamo(PersonaDAO.getInstancia().toNegocio(entity.getUsuario()), EdificioDAO.getInstancia().toNegocio(entity.getEdificio()), entity.getUbicación(), entity.getDescripcion(), UnidadDAO.getInstancia().toNegocio(entity.getUnidad()), entity.getId());
 	}
 
 	public List<Reclamo> findByDocumento(String documento) {

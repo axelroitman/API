@@ -81,14 +81,18 @@ public class ImagenDAO {
 	
 	private ImagenEntity toEntity(Imagen im, int idReclamo) {
 		Reclamo reclamo = null;
+		ImagenEntity imEnt = null;
 		try {
 			reclamo = ReclamoDAO.getInstancia().findById(idReclamo);
+			ReclamoEntity re = ReclamoDAO.getInstancia().toEntity(reclamo);
+			imEnt = new ImagenEntity(im.getNumero(), im.getDireccion(), im.getTipo(), re);
+			
 		} catch (ReclamoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		ReclamoEntity re = ReclamoDAO.getInstancia().toEntity(reclamo);
-		return new ImagenEntity(im.getNumero(), im.getDireccion(), re);
+		
+		return imEnt;
 	}
 
 

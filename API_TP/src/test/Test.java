@@ -6,6 +6,7 @@ import java.util.List;
 import controlador.Controlador;
 import exceptions.EdificioException;
 import exceptions.PersonaException;
+import exceptions.ReclamoException;
 import exceptions.UnidadException;
 import views.PersonaView;
 import views.ReclamoView;
@@ -15,12 +16,38 @@ public class Test {
 	public static void main(String[] args) {
 		
 		try {
+			Controlador.getInstancia().agregarImagenAReclamo(1, "escalera", "jpg");
+		} catch (ReclamoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("OK - Imagen");
+
+		
+		/*try {
+			Controlador.getInstancia().agregarReclamo(1, "2", "4", "DNI30829463", "Escaleras", "Patinan mucho");
+			System.out.println("OK - Reclamo");
+			
+
+		} catch (EdificioException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnidadException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (PersonaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} */		
+		
+		
+		/*try {
 			Controlador.getInstancia().liberarUnidad(1, "10", "6");
 			System.out.println("OK");
 		} catch (UnidadException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		
 		/*List<PersonaView> personas;
 		try {
@@ -94,20 +121,7 @@ public class Test {
 		}*/
 		
 		
-		/*try {
-			Controlador.getInstancia().agregarReclamo(1, "2", "4", "DNI30829463", "Escaleras", "Patinan mucho");
-			System.out.println("OK");
-		} catch (EdificioException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnidadException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (PersonaException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
+		
 		
 		/*List<ReclamoView> rec= Controlador.getInstancia().reclamosPorUnidad(1, "2","4");
 		for(ReclamoView r : rec) {

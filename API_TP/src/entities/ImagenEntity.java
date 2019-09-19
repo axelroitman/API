@@ -16,6 +16,7 @@ public class ImagenEntity {
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private int numero;
+	
 	private String path;
 	private String tipo;
 	
@@ -23,12 +24,12 @@ public class ImagenEntity {
 	@JoinColumn(name="idReclamo")
 	private ReclamoEntity reclamo;
 	
-	public ImagenEntity() {}
 	
-	public ImagenEntity(int numero, String path, ReclamoEntity reclamo) {
+	public ImagenEntity(int numero, String path,String tipo, ReclamoEntity reclamo) {
 		super();
 		this.numero = numero;
 		this.path = path;
+		this.tipo = tipo;
 		this.reclamo = reclamo;
 	}
 	

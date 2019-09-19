@@ -1,5 +1,7 @@
 package modelo;
 
+import daos.ImagenDAO;
+
 public class Imagen {
 
 	private int numero;
@@ -36,7 +38,7 @@ public class Imagen {
 	}
 
 	public void save(int numeroReclamo) {
-		
+		ImagenDAO.getInstancia().save(this, numeroReclamo);
 	}
 
 }
