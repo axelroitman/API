@@ -9,14 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import daos.EdificioDAO;
-import modelo.Edificio;
 import modelo.Persona;
 
 @Entity
@@ -29,7 +25,7 @@ public class UnidadEntity {
 	private int id;
 	private String piso;
 	private String numero;
-	private boolean habitado;
+	private String habitado;
 	
 	@ManyToOne
 	@JoinColumn(name="codigoEdificio")
@@ -46,14 +42,25 @@ public class UnidadEntity {
 		
 	}
 
-	public UnidadEntity(int id, String piso, String numero, EdificioEntity edificio) {
+	public UnidadEntity(int id, String piso, String numero, EdificioEntity edificio, boolean habitado) {
+		
+		
 		this.id = id;
 		this.piso = piso;
 		this.numero = numero;
-		this.habitado = false;
 		this.edificio = edificio;
 		this.duenios = new ArrayList<Persona>();
 		this.inquilinos = new ArrayList<Persona>();
+		if(habitado == true) 
+		{
+			this.habitado = "S";
+			
+		}
+		else 
+		{
+			this.habitado = "N";
+			
+		}
 	}
 
 	public int getId() {
@@ -81,11 +88,25 @@ public class UnidadEntity {
 	}
 
 	public boolean isHabitado() {
-		return habitado;
+		boolean h = false;
+		if(habitado.equals("S")) 
+		{
+			h = true;
+		}
+		return h;
 	}
 
 	public void setHabitado(boolean habitado) {
-		this.habitado = habitado;
+		if(habitado == true) 
+		{
+			this.habitado = "S";
+			
+		}
+		else 
+		{
+			this.habitado = "N";
+			
+		}
 	}
 
 	public EdificioEntity getEdificio() {

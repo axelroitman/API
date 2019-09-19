@@ -40,9 +40,9 @@ private static PersonaDAO instancia;
 		PersonaEntity persona = (PersonaEntity) s.createQuery("from PersonaEntity p where p.documento = ?")
 				.setString(0, dni)
 				.uniqueResult();
-		/*if(persona == null)
+		if(persona == null)
 			throw new PersonaException("No existe la persona " + dni);
-			*/
+			
 		return toNegocio(persona);
 	}
 

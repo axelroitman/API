@@ -93,10 +93,10 @@ public class UnidadDAO {
 	}
 	
 	UnidadEntity toEntity(Unidad unidad){
-		return new UnidadEntity(unidad.getId(), unidad.getPiso(), unidad.getNumero(), EdificioDAO.getInstancia().toEntity(unidad.getEdificio()));
+		return new UnidadEntity(unidad.getId(), unidad.getPiso(), unidad.getNumero(), EdificioDAO.getInstancia().toEntity(unidad.getEdificio()), unidad.estaHabitado());
 	} 
 	
 	Unidad toNegocio(UnidadEntity entity){
-		return new Unidad(entity.getId(), entity.getPiso(), entity.getNumero(), EdificioDAO.getInstancia().toNegocio(entity.getEdificio()));	
+		return new Unidad(entity.getId(), entity.getPiso(), entity.getNumero(), EdificioDAO.getInstancia().toNegocio(entity.getEdificio()), entity.isHabitado());	
 		}
 	}

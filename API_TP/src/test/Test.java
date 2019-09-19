@@ -7,13 +7,64 @@ import controlador.Controlador;
 import exceptions.EdificioException;
 import exceptions.PersonaException;
 import exceptions.UnidadException;
-import modelo.Persona;
 import views.PersonaView;
 import views.ReclamoView;
 
 public class Test {
 
 	public static void main(String[] args) {
+		
+		try {
+			Controlador.getInstancia().liberarUnidad(1, "10", "6");
+			System.out.println("OK");
+		} catch (UnidadException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		/*List<PersonaView> personas;
+		try {
+			personas = Controlador.getInstancia().habitantesPorEdificio(1);
+			for(PersonaView p : personas) 
+			{
+				System.out.println(p.toString());
+			}
+
+		} catch (EdificioException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		
+		
+		/*try {
+			Controlador.getInstancia().agregarPersona("DNI30600888", "PEREZ, JUAN");
+		} catch (PersonaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		
+		/*try {
+			Controlador.getInstancia().habitarUnidad(1, "10", "4");
+		} catch (UnidadException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+
+		/*
+		try {
+			Controlador.getInstancia().agregarInquilinoUnidad(1, "10", "3", "DNI30600888");
+			System.out.println("OK");
+		} catch (UnidadException | PersonaException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}*/
+
+		/*try {
+			Controlador.getInstancia().alquilarUnidad(1, "10", "5", "DNI30600888");
+		} catch (UnidadException | PersonaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
 		
 		/*try {
 			Controlador.getInstancia().eliminarPersona("CI 13230978");
@@ -58,10 +109,10 @@ public class Test {
 		}
 		*/
 		
-		List<ReclamoView> rec= Controlador.getInstancia().reclamosPorUnidad(1, "2","4");
+		/*List<ReclamoView> rec= Controlador.getInstancia().reclamosPorUnidad(1, "2","4");
 		for(ReclamoView r : rec) {
 			System.out.println(r.getDescripcion());
-		}
+		}*/
 		
 		/*List<ReclamoView> res = Controlador.getInstancia().reclamosPorPersona("DNI30829463");
 		for(ReclamoView r: res){

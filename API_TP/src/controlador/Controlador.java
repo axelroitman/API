@@ -84,14 +84,11 @@ public class Controlador {
 		return resultado;
 	}
 
-	public List<PersonaView> habitantesPorEdificio(int codigo) throws EdificioException{
+	public List<PersonaView> habitantesPorEdificio(int codigo) throws EdificioException{ //hecho
 		List<PersonaView> resultado = new ArrayList<PersonaView>();
 		Edificio edificio = buscarEdificio(codigo);
 		Set<Persona> habitantes = edificio.habitantes(); 
-		
-		/*El método habitantes() devuelve solo a los que habitan unidades,
-		 y en la BD todas las unidades tienen una N en "habitado"*/
-		
+				
 		for(Persona persona : habitantes)
 			resultado.add(persona.toView());
 		return resultado;
@@ -127,29 +124,29 @@ public class Controlador {
 		unidad.agregarDuenio(persona);
 	}
 
-	public void alquilarUnidad(int codigo, String piso, String numero, String documento) throws UnidadException, PersonaException{
+	public void alquilarUnidad(int codigo, String piso, String numero, String documento) throws UnidadException, PersonaException{ //HECHO
 		Unidad unidad = buscarUnidad(codigo, piso, numero);
 		Persona persona = buscarPersona(documento);
 		unidad.alquilar(persona);
 	}
 
-	public void agregarInquilinoUnidad(int codigo, String piso, String numero, String documento) throws UnidadException, PersonaException{
+	public void agregarInquilinoUnidad(int codigo, String piso, String numero, String documento) throws UnidadException, PersonaException{ //Hecho
 		Unidad unidad = buscarUnidad(codigo, piso, numero);
 		Persona persona = buscarPersona(documento);
 		unidad.agregarInquilino(persona);
 	}
 
-	public void liberarUnidad(int codigo, String piso, String numero) throws UnidadException {
+	public void liberarUnidad(int codigo, String piso, String numero) throws UnidadException { //Hecho
 		Unidad unidad = buscarUnidad(codigo, piso, numero);
 		unidad.liberar();
 	}
 	
-	public void habitarUnidad(int codigo, String piso, String numero) throws UnidadException {
+	public void habitarUnidad(int codigo, String piso, String numero) throws UnidadException { //Hecho.
 		Unidad unidad = buscarUnidad(codigo, piso, numero);
 		unidad.habitar();;
 	}
 	
-	public void agregarPersona(String documento, String nombre) {
+	public void agregarPersona(String documento, String nombre) throws PersonaException { //hecho
 		Persona persona = new Persona(documento, nombre);
 		Persona buscoPersona = null;		
 		try {
@@ -164,7 +161,7 @@ public class Controlador {
 		}
 		else
 		{
-			System.out.println("Ya existe la persona.");
+			throw new PersonaException("Ya existe la persona a agregar.");
 		}
 	}
 	
