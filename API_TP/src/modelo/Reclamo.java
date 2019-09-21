@@ -84,6 +84,7 @@ public class Reclamo {
 	
 	public void cambiarEstado(Estado estado) {
 		this.estado = estado;
+		ReclamoDAO.getInstancia().update(this);
 	}
 
 	public void save() {

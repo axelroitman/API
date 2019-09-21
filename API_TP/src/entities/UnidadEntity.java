@@ -51,16 +51,7 @@ public class UnidadEntity {
 		this.edificio = edificio;
 		this.duenios = new ArrayList<Persona>();
 		this.inquilinos = new ArrayList<Persona>();
-		if(habitado == true) 
-		{
-			this.habitado = "S";
-			
-		}
-		else 
-		{
-			this.habitado = "N";
-			
-		}
+		setHabitado(habitado);
 	}
 
 	public int getId() {

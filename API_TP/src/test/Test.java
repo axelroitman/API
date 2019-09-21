@@ -8,6 +8,7 @@ import exceptions.EdificioException;
 import exceptions.PersonaException;
 import exceptions.ReclamoException;
 import exceptions.UnidadException;
+import views.Estado;
 import views.PersonaView;
 import views.ReclamoView;
 
@@ -16,13 +17,20 @@ public class Test {
 	public static void main(String[] args) {
 		
 		try {
-			Controlador.getInstancia().agregarImagenAReclamo(1, "escalera", "jpg");
+			Controlador.getInstancia().cambiarEstado(2, Estado.enProceso);
+		} catch (ReclamoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		/*try {
+			Controlador.getInstancia().agregarImagenAReclamo(2, "escalera", "jpg");
 		} catch (ReclamoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println("OK - Imagen");
-
+*/
 		
 		/*try {
 			Controlador.getInstancia().agregarReclamo(1, "2", "4", "DNI30829463", "Escaleras", "Patinan mucho");

@@ -1,0 +1,2 @@
+ALTER TABLE dbo.reclamos
+  ADD estado tinyint

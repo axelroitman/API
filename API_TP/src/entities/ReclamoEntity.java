@@ -1,5 +1,8 @@
 package entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import modelo.Imagen;
 import views.Estado;
 
 @Entity
@@ -36,11 +40,10 @@ public class ReclamoEntity {
 	@JoinColumn(name= "identificador")	
 	UnidadEntity unidad;
 	
+	int estado;
+	
 	@Transient
-	Estado estado;
-	
-	
-	//List<Imagen> imagenes;
+	List<ImagenEntity> imagenes;
 	
 	public ReclamoEntity() {}
 
@@ -53,7 +56,13 @@ public class ReclamoEntity {
 		this.ubicacion = ubicacion;
 		this.descripcion = descripcion;
 		this.unidad = unidad;
-		this.estado = estado;
+		this.imagenes= new ArrayList<ImagenEntity>();
+		setEstado(estado);
+	}
+
+
+	public List<ImagenEntity> getImagenes() {
+		return imagenes;
 	}
 
 
@@ -116,14 +125,55 @@ public class ReclamoEntity {
 		this.unidad = unidad;
 	}
 
+	public void setImagenes(List<ImagenEntity> imagenes) {
+		this.imagenes = imagenes;
+	}
+
 
 	public Estado getEstado() {
-		return estado;
+		Estado est = null;
+		if(estado == 1) {
+			est = Estado.nuevo;
+		}
+		else if (estado == 2) {
+			est= Estado.abierto;
+		}
+		else if(estado == 3) {
+			est= Estado.enProceso;
+		}
+		else if(estado == 4) {
+			est= Estado.desestimado;
+		}
+		else if(estado == 5) {
+			est= Estado.anulado;
+		}
+		else if(estado == 6) {
+			est= Estado.terminado;
+		}
+		return est;
 	}
 
 
 	public void setEstado(Estado estado) {
-		this.estado = estado;
+		
+		if(Estado.nuevo == estado) {
+			this.estado= 1;
+		}
+		else if (Estado.abierto == estado) {
+			this.estado= 2;
+		}
+		else if(Estado.enProceso == estado) {
+			this.estado= 3;
+		}
+		else if(Estado.desestimado == estado) {
+			this.estado= 4;
+		}
+		else if(Estado.anulado == estado) {
+			this.estado= 5;
+		}
+		else if(Estado.terminado == estado) {
+			this.estado= 6;
+		}
 	}	
 	
 }
