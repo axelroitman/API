@@ -34,14 +34,14 @@ public class Controlador {
 		return instancia;
 	}
 	
-	public List<EdificioView> getEdificios(){ //hecho
+	public List<EdificioView> getEdificios(){
 		List<EdificioView> resultado = new ArrayList<EdificioView>();
 		List<Edificio> edificios = EdificioDAO.getInstancia().getEdificios();
 		for(Edificio edificio : edificios)
 			resultado.add(edificio.toView());
 		return resultado;
 	}
-	public List<PersonaView> getPersonas(){ //hecho 
+	public List<PersonaView> getPersonas(){ 
 		List<PersonaView> resultado = new ArrayList<PersonaView>();
 		List<Persona> personas = new PersonaDAO().getPersonas();
 		for(Persona persona : personas)
@@ -49,13 +49,17 @@ public class Controlador {
 		return resultado;
 	}
 	
-	public List<Persona> getInquilinos(){ //hecho
-		List<Persona> resultado = new ArrayList<Persona>();
-		resultado = InquilinoDAO.getInstancia().getInquilinos();
-		return resultado;
+	public List<PersonaView> getInquilinos(){ 
+		List<Persona> inq = new ArrayList<Persona>();
+		List<PersonaView> res = new ArrayList<PersonaView>();
+		inq = InquilinoDAO.getInstancia().getInquilinos();
+		for(Persona i : inq) {
+			res.add(i.toView());
+		}
+		return res;
 	}
 	
-	public List<UnidadView> getUnidadesPorEdificio(int codigo) throws EdificioException, UnidadException{ //hecho
+	public List<UnidadView> getUnidadesPorEdificio(int codigo) throws EdificioException, UnidadException{
 		List<UnidadView> resultado = new ArrayList<UnidadView>();
 		Edificio edificio = buscarEdificio(codigo);
 		List<Unidad> unidades = edificio.getUnidades();
@@ -64,7 +68,7 @@ public class Controlador {
 		return resultado;
 	}
 	
-	public List<PersonaView> habilitadosPorEdificio(int codigo) throws EdificioException{ //hecho
+	public List<PersonaView> habilitadosPorEdificio(int codigo) throws EdificioException{ //NO ANDA
 		List<PersonaView> resultado = new ArrayList<PersonaView>();
 		Edificio edificio = buscarEdificio(codigo);
 		Set<Persona> habilitados = edificio.habilitados();
