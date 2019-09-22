@@ -28,13 +28,13 @@ public class Reclamo {
 		imagenes = new ArrayList<Imagen>();
 	}
 	
-	public Reclamo(Persona usuario, Edificio edificio, String ubicacion, String descripcion, Unidad unidad, int numero) {
+	public Reclamo(Persona usuario, Edificio edificio, String ubicacion, String descripcion, Unidad unidad, int numero, Estado estado) {
 		this.usuario = usuario;
 		this.edificio = edificio;
 		this.ubicación = ubicacion;
 		this.descripcion = descripcion;
 		this.unidad = unidad;
-		this.estado = Estado.nuevo;
+		this.estado = estado;
 		this.numero = numero;
 		imagenes = new ArrayList<Imagen>();
 	}

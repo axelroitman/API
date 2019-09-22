@@ -226,7 +226,7 @@ public class Controlador {
 	}
  
 	public int agregarReclamo(int codigo, String piso, String numero, String documento, String ubicación, String descripcion) throws EdificioException, UnidadException, PersonaException {
-		//Hecho, pero falta el tema del estado.
+		//Hecho
 		Edificio edificio = buscarEdificio(codigo);
 		Unidad unidad = buscarUnidad(codigo, piso, numero);
 		Persona persona = buscarPersona(documento);
@@ -235,12 +235,12 @@ public class Controlador {
 		return reclamo.getNumero();
 	}
 	
-	public void agregarImagenAReclamo(int numero, String direccion, String tipo) throws ReclamoException {
+	public void agregarImagenAReclamo(int numero, String direccion, String tipo) throws ReclamoException { //Hecho
 		Reclamo reclamo = buscarReclamo(numero);
 		reclamo.agregarImagen(direccion, tipo);
 	}
 	
-	public void cambiarEstado(int numero, Estado estado) throws ReclamoException {
+	public void cambiarEstado(int numero, Estado estado) throws ReclamoException { //hecho
 		Reclamo reclamo = buscarReclamo(numero);
 		reclamo.cambiarEstado(estado);
 		reclamo.update();

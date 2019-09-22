@@ -16,15 +16,15 @@ public class Test {
 
 	public static void main(String[] args) {
 		
-		try {
-			Controlador.getInstancia().cambiarEstado(2, Estado.enProceso);
+		/*try {
+			Controlador.getInstancia().cambiarEstado(1, Estado.enProceso);
 		} catch (ReclamoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		
 		/*try {
-			Controlador.getInstancia().agregarImagenAReclamo(2, "escalera", "jpg");
+			Controlador.getInstancia().agregarImagenAReclamo(1, "escalera2", "jpg");
 		} catch (ReclamoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -32,8 +32,8 @@ public class Test {
 		System.out.println("OK - Imagen");
 */
 		
-		/*try {
-			Controlador.getInstancia().agregarReclamo(1, "2", "4", "DNI30829463", "Escaleras", "Patinan mucho");
+		try {
+			Controlador.getInstancia().agregarReclamo(1, "2", "4", "DNI30829463", "Humedad", "Hay humedad en el techo del baño.");
 			System.out.println("OK - Reclamo");
 			
 
@@ -46,7 +46,7 @@ public class Test {
 		} catch (PersonaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} */		
+		}		
 		
 		
 		/*try {

@@ -59,17 +59,9 @@ public class ImagenDAO {
 	
 	public void save(Imagen im, int idReclamo){
 		ImagenEntity aGrabar = toEntity(im, idReclamo);
-		ReclamoEntity reclamo= null;
-		try {
-			reclamo = ReclamoDAO.getInstancia().toEntity(ReclamoDAO.getInstancia().findById(idReclamo));
-		} catch (ReclamoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 		s.save(aGrabar);
-		reclamo.getImagenes().add(aGrabar);
 		s.getTransaction().commit();
 		s.close();
 	}
