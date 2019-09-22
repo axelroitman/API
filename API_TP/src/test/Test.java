@@ -72,7 +72,7 @@ public class Test {
 		
 		
 		/*
-		 * Método habilitadosPorEdificio.  -------->NO FUNCIONA
+		 * Método habilitadosPorEdificio.
 		 */
 		/*List<PersonaView> habilitados = null;
 		try {
@@ -91,7 +91,7 @@ public class Test {
 		
 		
 		/*
-		 * Método dueniosPorEdificio.  -------->NO FUNCIONA
+		 * Método dueniosPorEdificio.
 		 */
 		/*List<PersonaView> duenios = null;
 		try {
@@ -102,11 +102,11 @@ public class Test {
 		}
 		for(PersonaView p : duenios) {
 			System.out.println(p.getNombre());
-		}
-		*/
+		}*/
+		
 		
 		/*
-		 * Método habitantesPorEdificio. ------>NO DEVUELVE NADA
+		 * Método habitantesPorEdificio.
 		 */
 		/*List<PersonaView> personas;
 		try {

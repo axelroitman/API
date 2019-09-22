@@ -12,7 +12,6 @@ import javax.persistence.Table;
 @Entity
 @Table (name="inquilinos")
 public class InquilinoEntity {
-	//PRECISO UNA UNIDAD MANY TO ONE. Aparte una unidad puede tener muchos duenios
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)	
 	private int id;

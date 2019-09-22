@@ -68,7 +68,7 @@ public class Controlador {
 		return resultado;
 	}
 	
-	public List<PersonaView> habilitadosPorEdificio(int codigo) throws EdificioException{ //NO ANDA
+	public List<PersonaView> habilitadosPorEdificio(int codigo) throws EdificioException{
 		List<PersonaView> resultado = new ArrayList<PersonaView>();
 		Edificio edificio = buscarEdificio(codigo);
 		Set<Persona> habilitados = edificio.habilitados();
@@ -77,7 +77,7 @@ public class Controlador {
 		return resultado;
 	}
 
-	public List<PersonaView> dueniosPorEdificio(int codigo) throws EdificioException{ //hecho
+	public List<PersonaView> dueniosPorEdificio(int codigo) throws EdificioException{ 
 		List<PersonaView> resultado = new ArrayList<PersonaView>();
 		Edificio edificio = buscarEdificio(codigo);
 		Set<Persona> duenios = edificio.duenios();
@@ -88,7 +88,7 @@ public class Controlador {
 		return resultado;
 	}
 
-	public List<PersonaView> habitantesPorEdificio(int codigo) throws EdificioException{ //hecho
+	public List<PersonaView> habitantesPorEdificio(int codigo) throws EdificioException{ 
 		List<PersonaView> resultado = new ArrayList<PersonaView>();
 		Edificio edificio = buscarEdificio(codigo);
 		Set<Persona> habitantes = edificio.habitantes(); 
@@ -98,7 +98,7 @@ public class Controlador {
 		return resultado;
 	}
 
-	public List<PersonaView> dueniosPorUnidad(int codigo, String piso, String numero) throws UnidadException{ //HECHO
+	public List<PersonaView> dueniosPorUnidad(int codigo, String piso, String numero) throws UnidadException{
 		List<PersonaView> resultado = new ArrayList<PersonaView>();
 		Unidad unidad = buscarUnidad(codigo, piso, numero);
 		List<Persona> duenios = unidad.getDuenios();
@@ -107,7 +107,7 @@ public class Controlador {
 		return resultado;
 	}
 
-	public List<PersonaView> inquilinosPorUnidad(int codigo, String piso, String numero) throws UnidadException{ //HECHO
+	public List<PersonaView> inquilinosPorUnidad(int codigo, String piso, String numero) throws UnidadException{ 
 		List<PersonaView> resultado = new ArrayList<PersonaView>();
 		Unidad unidad = buscarUnidad(codigo, piso, numero);
 		List<Persona> inquilinos = unidad.getInquilinos();
@@ -116,41 +116,41 @@ public class Controlador {
 		return resultado;
 	}
 	
-	public void transferirUnidad(int codigo, String piso, String numero, String documento) throws UnidadException, PersonaException { //hecho
+	public void transferirUnidad(int codigo, String piso, String numero, String documento) throws UnidadException, PersonaException { 
 		Unidad unidad = buscarUnidad(codigo, piso, numero);
 		Persona persona = buscarPersona(documento);
 		unidad.transferir(persona);
 	}
 
-	public void agregarDuenioUnidad(int codigo, String piso, String numero, String documento) throws UnidadException, PersonaException { //hecho
+	public void agregarDuenioUnidad(int codigo, String piso, String numero, String documento) throws UnidadException, PersonaException { 
 		Unidad unidad = buscarUnidad(codigo, piso, numero);
 		Persona persona = buscarPersona(documento);
 		unidad.agregarDuenio(persona);
 	}
 
-	public void alquilarUnidad(int codigo, String piso, String numero, String documento) throws UnidadException, PersonaException{ //HECHO
+	public void alquilarUnidad(int codigo, String piso, String numero, String documento) throws UnidadException, PersonaException{ 
 		Unidad unidad = buscarUnidad(codigo, piso, numero);
 		Persona persona = buscarPersona(documento);
 		unidad.alquilar(persona);
 	}
 
-	public void agregarInquilinoUnidad(int codigo, String piso, String numero, String documento) throws UnidadException, PersonaException{ //Hecho
+	public void agregarInquilinoUnidad(int codigo, String piso, String numero, String documento) throws UnidadException, PersonaException{ 
 		Unidad unidad = buscarUnidad(codigo, piso, numero);
 		Persona persona = buscarPersona(documento);
 		unidad.agregarInquilino(persona);
 	}
 
-	public void liberarUnidad(int codigo, String piso, String numero) throws UnidadException { //Hecho
+	public void liberarUnidad(int codigo, String piso, String numero) throws UnidadException { 
 		Unidad unidad = buscarUnidad(codigo, piso, numero);
 		unidad.liberar();
 	}
 	
-	public void habitarUnidad(int codigo, String piso, String numero) throws UnidadException { //Hecho.
+	public void habitarUnidad(int codigo, String piso, String numero) throws UnidadException { 
 		Unidad unidad = buscarUnidad(codigo, piso, numero);
 		unidad.habitar();;
 	}
 	
-	public void agregarPersona(String documento, String nombre) throws PersonaException { //hecho
+	public void agregarPersona(String documento, String nombre) throws PersonaException { 
 		Persona persona = new Persona(documento, nombre);
 		Persona buscoPersona = null;		
 		try {
@@ -169,13 +169,13 @@ public class Controlador {
 		}
 	}
 	
-	public void eliminarPersona(String documento) throws PersonaException { //hecho.
+	public void eliminarPersona(String documento) throws PersonaException { 
 		Persona persona = buscarPersona(documento);
 		persona.delete();
 	}
 	
 	
-	public List<ReclamoView> reclamosPorEdificio(int codigo){  //hecho.
+	public List<ReclamoView> reclamosPorEdificio(int codigo){  
 		List<ReclamoView> resultado = new ArrayList<ReclamoView>();
 		List<Reclamo> reclamos = ReclamoDAO.getInstancia().getReclamos();
 		
@@ -190,7 +190,7 @@ public class Controlador {
 		return resultado;
 	}
 	
-	public List<ReclamoView> reclamosPorUnidad(int codigo, String piso, String numero) { //hecho.
+	public List<ReclamoView> reclamosPorUnidad(int codigo, String piso, String numero) { 
 		List<ReclamoView> resultado = new ArrayList<ReclamoView>();
 		List<Reclamo> reclamos = ReclamoDAO.getInstancia().getReclamos();
 		
@@ -204,7 +204,7 @@ public class Controlador {
 		return resultado;
 		}
 	
-	public ReclamoView reclamosPorNumero(int numero) { //Hecho
+	public ReclamoView reclamosPorNumero(int numero) { 
 		Reclamo reclamo;
 		ReclamoView resultado = null;
 		try {
@@ -212,13 +212,12 @@ public class Controlador {
 			resultado = reclamo.toView();
 
 		} catch (ReclamoException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return resultado;
 	}
 	
-	public List<ReclamoView> reclamosPorPersona(String documento) { //Hecho
+	public List<ReclamoView> reclamosPorPersona(String documento) { 
 		List<ReclamoView> resultado = new ArrayList<ReclamoView>();
 		List<Reclamo> reclamos = ReclamoDAO.getInstancia().findByDocumento(documento);
 
@@ -230,7 +229,6 @@ public class Controlador {
 	}
  
 	public int agregarReclamo(int codigo, String piso, String numero, String documento, String ubicación, String descripcion) throws EdificioException, UnidadException, PersonaException {
-		//Hecho
 		Edificio edificio = buscarEdificio(codigo);
 		Unidad unidad = buscarUnidad(codigo, piso, numero);
 		Persona persona = buscarPersona(documento);
@@ -239,18 +237,18 @@ public class Controlador {
 		return reclamo.getNumero();
 	}
 	
-	public void agregarImagenAReclamo(int numero, String direccion, String tipo) throws ReclamoException { //Hecho
+	public void agregarImagenAReclamo(int numero, String direccion, String tipo) throws ReclamoException { 
 		Reclamo reclamo = buscarReclamo(numero);
 		reclamo.agregarImagen(direccion, tipo);
 	}
 	
-	public void cambiarEstado(int numero, Estado estado) throws ReclamoException { //hecho
+	public void cambiarEstado(int numero, Estado estado) throws ReclamoException { 
 		Reclamo reclamo = buscarReclamo(numero);
 		reclamo.cambiarEstado(estado);
 		reclamo.update();
 	}
 	
-	private Edificio buscarEdificio(int codigo) throws EdificioException { //hecho
+	private Edificio buscarEdificio(int codigo) throws EdificioException { 
 		Edificio aBuscar = null;
 		try {
 			aBuscar = EdificioDAO.getInstancia().findById(codigo);
@@ -260,7 +258,7 @@ public class Controlador {
 		return aBuscar;	
 
 	}
-	private Unidad buscarUnidad(int codigo, String piso, String numero) throws UnidadException{ //hecho
+	private Unidad buscarUnidad(int codigo, String piso, String numero) throws UnidadException{ 
 		Unidad aBuscar = null;
 		try {
 			aBuscar = UnidadDAO.getInstancia().find(codigo, piso, numero);
@@ -270,7 +268,7 @@ public class Controlador {
 		return aBuscar;				
 	}	
 	
-	private Persona buscarPersona(String documento) throws PersonaException { //hecho
+	private Persona buscarPersona(String documento) throws PersonaException { 
 		Persona aBuscar = null;
 		try {
 			aBuscar = PersonaDAO.getInstancia().findById(documento);
@@ -280,7 +278,7 @@ public class Controlador {
 		return aBuscar;				
 	}
 	
-	private Reclamo buscarReclamo(int numero) throws ReclamoException { //hecho
+	private Reclamo buscarReclamo(int numero) throws ReclamoException { 
 		Reclamo aBuscar = null;
 		try {
 			aBuscar = ReclamoDAO.getInstancia().findById(numero);

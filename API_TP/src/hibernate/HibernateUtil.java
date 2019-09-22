@@ -11,11 +11,7 @@ import entities.PersonaEntity;
 import entities.ReclamoEntity;
 import entities.UnidadEntity;
 
-/*import bean.CajaAhorro;
-import bean.CuentaCorriente;
-import bean.Domicilio;
-import bean.Telefono;
-import bean.Usuario;*/
+
  
 public class HibernateUtil
 {

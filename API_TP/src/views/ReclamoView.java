@@ -2,10 +2,6 @@ package views;
 
 import java.util.List;
 
-import modelo.Edificio;
-import modelo.Imagen;
-import modelo.Persona;
-import modelo.Unidad;
 
 public class ReclamoView {
 
@@ -17,7 +13,7 @@ public class ReclamoView {
 	private UnidadView unidad;
 	private Estado estado;
 	
-	//private List<ImagenView> imagenes; POR AHORA COMENTADO
+	private List<ImagenView> imagenes;
 	
 	
 	public ReclamoView(PersonaView usuario, EdificioView edificio, String ubicación, String descripcion,
@@ -74,10 +70,10 @@ public class ReclamoView {
 		this.estado = estado;
 	}
 	
-	/*public List<ImagenView> getImagenes() {
+	public List<ImagenView> getImagenes() {
 		return imagenes;
 	}
 	public void setImagenes(List<ImagenView> imagenes) {
 		this.imagenes = imagenes;
-	}*/
+	}
 }

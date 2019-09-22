@@ -36,6 +36,6 @@ public class Persona {
 		} catch (PersonaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} //HACER EN EL DAO (AL BORRAR CHEQUEAR SI TIENE UNIDADES ASOCIADAS O NO, ETC)
+		}
 	}	
 }
