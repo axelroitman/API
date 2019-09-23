@@ -61,10 +61,10 @@ public class Test {
 							System.out.println(u.getEdificio().getNombre() + " - " + u.toString());
 						}
 					} catch (EdificioException e1) {
-						System.out.println("Error.");
+						e1.getMessage();
 
 					} catch (UnidadException e1) {
-						System.out.println("Error.");
+						e1.getMessage();
 					}
 				}
 		*/
@@ -79,7 +79,7 @@ public class Test {
 			habilitados= Controlador.getInstancia().habilitadosPorEdificio(1);
 		} catch (EdificioException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
 		}
 		int cant=0;
 		for(PersonaView pers : habilitados) {
@@ -98,7 +98,7 @@ public class Test {
 			duenios = Controlador.getInstancia().dueniosPorEdificio(1);
 		} catch (EdificioException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
 		}
 		for(PersonaView p : duenios) {
 			System.out.println(p.getNombre());
@@ -118,7 +118,7 @@ public class Test {
 
 		} catch (EdificioException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
 		}
 		*/
 		
@@ -130,11 +130,12 @@ public class Test {
 			duenios = Controlador.getInstancia().dueniosPorUnidad(1, "2", "4");
 		} catch (UnidadException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
 		}
 		for(PersonaView p : duenios) {
 			System.out.println(p.getNombre());
-		}/*
+		}
+		*/
 
 		
 		/*
@@ -145,7 +146,7 @@ public class Test {
 			inquilinos = Controlador.getInstancia().inquilinosPorUnidad(1, "2", "4");
 		} catch (UnidadException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
 		}
 		for(PersonaView p : inquilinos) {
 			System.out.println(p.getNombre());
@@ -160,7 +161,7 @@ public class Test {
 			Controlador.getInstancia().transferirUnidad(1, "2", "4", "DNI30829463");
 		} catch (UnidadException | PersonaException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
 		}*/
 		
 		
@@ -172,7 +173,7 @@ public class Test {
 			Controlador.getInstancia().agregarDuenioUnidad(1, "2", "4", "DNI30829463");
 		} catch (UnidadException | PersonaException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
 		}*/
 		
 		
@@ -183,7 +184,7 @@ public class Test {
 		Controlador.getInstancia().alquilarUnidad(1, "10", "5", "DNI30600888");
 		} catch (UnidadException | PersonaException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
 		}
 		 */
 		
@@ -195,7 +196,7 @@ public class Test {
 			System.out.println("OK");
 		} catch (UnidadException | PersonaException e1) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			e1.getMessage();
 		}*/
 		
 		
@@ -207,7 +208,7 @@ public class Test {
 			System.out.println("OK");
 		} catch (UnidadException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
 		}*/
 		
 		
@@ -218,7 +219,7 @@ public class Test {
 			Controlador.getInstancia().habitarUnidad(1, "10", "4");
 		} catch (UnidadException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
 		}*/
 		
 		
@@ -229,7 +230,7 @@ public class Test {
 			Controlador.getInstancia().agregarPersona("DNI30600888", "PEREZ, JUAN");
 		} catch (PersonaException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
 		}*/
 		
 		/*
@@ -239,7 +240,7 @@ public class Test {
 			Controlador.getInstancia().eliminarPersona("CI 13230978");
 		} catch (PersonaException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
 		}*/
 		
 		
@@ -263,7 +264,7 @@ public class Test {
 		/*
 		 * Método reclamosPorNumero
 		 */
-		/*ReclamoView res = Controlador.getInstancia().reclamosPorNumero(3);
+		/*ReclamoView res = Controlador.getInstancia().reclamosPorNumero(1);
 		System.out.println(res.getDescripcion());
 		 */
 		
@@ -285,14 +286,15 @@ public class Test {
 			
 		} catch (EdificioException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
 		} catch (UnidadException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
 		} catch (PersonaException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/		
+			e.getMessage();
+		}		
+		*/
 		
 		/*
 		 * Método agregarImagenAReclamo.
@@ -301,7 +303,7 @@ public class Test {
 		Controlador.getInstancia().agregarImagenAReclamo(1, "escalera2", "jpg");
 		} catch (ReclamoException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
 		}
 		System.out.println("OK - Imagen");
 		 */
@@ -314,97 +316,8 @@ public class Test {
 			Controlador.getInstancia().cambiarEstado(1, Estado.enProceso);
 		} catch (ReclamoException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
 		}*/
-		
-		
-		
-		
-		
-		
-		
-		//DE ACÁ PARA ABAJO, NO TENER EN CUENTA ------------------------------------------------------------------------------------------------------------------
-		
-		
-		
-		
-		
-
-		
-
-		
-		
-		
-		
-		/*try {
-			List<PersonaView> dueniosActuales = Controlador.getInstancia().dueniosPorUnidad(1, "2", "4");
-			for(PersonaView p : dueniosActuales)
-			{
-				System.out.println(p.toString());
-			}
-			try {
-				//Controlador.getInstancia().transferirUnidad(1, "2", "4", "DNI30829463");
-				Controlador.getInstancia().agregarDuenioUnidad(1, "2", "4", "DNI30829463");
-
-				System.out.println("OK.");
-			} catch (PersonaException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} catch (UnidadException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}*/
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		/*Controlador.getInstancia().agregarPersona("DNI78908978", "MIGUEL, LUIS");
-		*/
-		
-		
-		
-		
-		
-		
-	/*	
-		List<PersonaView> duenios;
-		try {
-			//duenios = Controlador.getInstancia().dueniosPorEdificio(1);
-			//duenios = Controlador.getInstancia().dueniosPorUnidad(1, "2", "4");
-			
-			duenios = Controlador.getInstancia().inquilinosPorUnidad(1, "2", "4"); //- PRUEBA DE INQUILINOS.
-			for(PersonaView p : duenios) 
-			{
-				System.out.println(p.getNombre() + " - " + p.getDocumento() + ".");
-			}
-			
-		}/* catch (EdificioException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Error.");
-		}*//* catch (UnidadException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
-		
-		
-		
-		
-		/*
-		for(EdificioView e : edificios)
-			System.out.println(e.toString());
-		*/
-		//List<EdificioView> edificios = Controlador.getInstancia().getEdificios();
-		
-		
-
 		
 	}
 
