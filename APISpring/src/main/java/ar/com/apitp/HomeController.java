@@ -1,5 +1,6 @@
 package ar.com.apitp;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -414,6 +414,27 @@ public class HomeController {
 						
 					}
 
-				}				
+				}
+				
+				//subirImagen
+				@RequestMapping(value = "/subirImagen", method = RequestMethod.GET)
+				public String subirImagen(Locale locale, Model model) {
+					logger.info("Welcome home! The client locale is {}.", locale);
+					
+					
+					return "subirImagen";
+				}
+				
+				//agregarImagen
+				@RequestMapping(value = "/agregarImagen", method = RequestMethod.POST)
+				public String agregarImagen(File file) {
+					file = new File("C:\\Users\\Axel R\\Desktop\\PruebaGuardar\\archivo.jpg");
+					//logger.info("Welcome home! The client locale is {}.", locale);
+					
+					
+					return "Imagen subida";
+				}
+
+				
 				
 }
