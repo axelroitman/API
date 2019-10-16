@@ -1,0 +1,20 @@
+CONEXIÓN AL SERVIDOR FTP DESDE FILEZILLA:
+
+Archivo->Gestor de Sitios-> New Site
+
+
+Servidor: api.axel.dx.am
+Puerto: 21
+Cifrado: Usar solo FTP plano (inseguro)
+Modo de acceso: Normal
+Usuario: 3187270_API
+Contraseña: API20192c
+
+
+---------------------
+
+Para conectar al FTP desde el proyecto web dinámico:
+
+https://blog.dotnetframework.org/2016/06/07/upload-ftp-using-javascript-only/
+ftp.apixml.net
+Token: c3bb06b0-11f6-4b2e-a2b6-2168b3b49d1e

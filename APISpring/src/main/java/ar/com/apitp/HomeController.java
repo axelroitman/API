@@ -1,6 +1,5 @@
 package ar.com.apitp;
 
-import java.io.File;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
