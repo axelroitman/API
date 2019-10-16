@@ -425,16 +425,5 @@ public class HomeController {
 					return "subirImagen";
 				}
 				
-				//agregarImagen
-				@RequestMapping(value = "/agregarImagen", method = RequestMethod.POST)
-				public String agregarImagen(File file) {
-					file = new File("C:\\Users\\Axel R\\Desktop\\PruebaGuardar\\archivo.jpg");
-					//logger.info("Welcome home! The client locale is {}.", locale);
-					
-					
-					return "Imagen subida";
-				}
-
-				
 				
 }
