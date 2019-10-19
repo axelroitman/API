@@ -413,16 +413,6 @@ public class HomeController {
 						
 					}
 
-				}
-				
-				//subirImagen
-				@RequestMapping(value = "/subirImagen", method = RequestMethod.GET)
-				public String subirImagen(Locale locale, Model model) {
-					logger.info("Welcome home! The client locale is {}.", locale);
-					
-					
-					return "subirImagen";
-				}
-				
+				}			
 				
 }
