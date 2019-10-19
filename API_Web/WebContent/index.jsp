@@ -18,9 +18,11 @@
       </form>
 
 </body>
-<!-- <script src="http://ftp.apixml.net/ftp.js">
-</script>-->
 <script type="text/javascript">
+
+var id_reclamo = 1;
+var extension = '';
+var nombre = '';
 
 var Ftp = {
 	    createCORSRequest: function (method, url) {
@@ -61,7 +63,10 @@ var Ftp = {
 	            },
 	            false);
 	    },
-		callback: function(){}
+		callback: function()
+		{
+			actualizarBase();
+		}
 	};
 
 
@@ -77,8 +82,8 @@ function subirImagen()
 		var nombreYExtension = imagen.name;
 		var datos = nombreYExtension.split('.');
 		
-		var nombre = datos[0];
-		var extension = datos[1];
+		nombre = datos[0];
+		extension = datos[1];
 		
 		if(extension != 'jpg' && extension != 'png' && extension != 'gif')
 		{
@@ -88,43 +93,46 @@ function subirImagen()
 		{
 	      	Ftp.upload('c3bb06b0-11f6-4b2e-a2b6-2168b3b49d1e', imagenes);		      
 			
-			var id_reclamo = 1;
-			
-			  const form = document.createElement('form');
-			  form.method = 'post';
-			  form.action = '/apitp/agregarImagenAReclamo';
-
-		      const numeroReclamo = document.createElement('input');
-		      numeroReclamo.type = 'hidden';
-		      numeroReclamo.name = 'numero';
-		   	  numeroReclamo.value = id_reclamo;
-
-		      form.appendChild(numeroReclamo);
-
-		      const direccion = document.createElement('input');
-		      direccion.type = 'hidden';
-		      direccion.name = 'direccion';
-		      direccion.value = nombre;
-
-		      form.appendChild(direccion);
-
-		      const tipo = document.createElement('input');
-		      tipo.type = 'hidden';
-		      tipo.name = 'tipo';
-		      tipo.value = extension;
-
-		      form.appendChild(tipo);
-
-		      document.body.appendChild(form);
-		      
-		      form.submit();
-			
 		}
 	}
 	else
 	{
 		alert("Debe seleccionar una imagen.");
 	}
+	
+}
+
+function actualizarBase()
+{	
+	const form = document.createElement('form');
+	form.method = 'post';
+	form.action = '/apitp/agregarImagenAReclamo';
+
+    const numeroReclamo = document.createElement('input');
+    numeroReclamo.type = 'hidden';
+    numeroReclamo.name = 'numero';
+ 	numeroReclamo.value = id_reclamo;
+
+    form.appendChild(numeroReclamo);
+
+    const direccion = document.createElement('input');
+    direccion.type = 'hidden';
+    direccion.name = 'direccion';
+    direccion.value = nombre;
+
+    form.appendChild(direccion);
+
+    const tipo = document.createElement('input');
+    tipo.type = 'hidden';
+    tipo.name = 'tipo';
+    tipo.value = extension;
+
+    form.appendChild(tipo);
+
+    document.body.appendChild(form);
+    
+    form.submit();
+	
 	
 }
 </script>
