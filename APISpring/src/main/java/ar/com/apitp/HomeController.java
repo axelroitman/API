@@ -56,6 +56,18 @@ public class HomeController {
 		
 		return "home";
 	}
+	
+	@RequestMapping(value = "/getPersonaPorUsuario", method = RequestMethod.GET, produces = {"application/json"})
+	public @ResponseBody<json> String getPersonaPorUsuario(@RequestParam(value="usuario", required=true) String usuario) throws JsonProcessingException {
+		//ResponseBody<json>: Aclara que el String guarda un JSON
+		//ObjectMapper: Es una clase de Jackson que permite convertir una colección a un JSON usando el método writeValueAsString
+			PersonaView persona =  Controlador.getInstancia().getPersonaPorUsuario(usuario);
+			ObjectMapper mapper = new ObjectMapper();
+			return mapper.writeValueAsString(persona);
+
+	}
+
+	
 	@RequestMapping(value = "/getEdificios", method = RequestMethod.GET, produces = {"application/json"})
 	public @ResponseBody<json> String getEdificios() throws JsonProcessingException {
 		List<EdificioView> edificios = Controlador.getInstancia().getEdificios();
@@ -169,7 +181,7 @@ public class HomeController {
 				}
 				
 		//transferirUnidad
-				@RequestMapping(value = "/transferirUnidad", method = RequestMethod.POST)
+				@RequestMapping(value = "/transferirUnidad", method = RequestMethod.PUT)
 				public ResponseEntity<Void> transferirUnidad(@RequestParam(value="codigo", required=true) int codigo, @RequestParam(value="piso", required=true) String piso, @RequestParam(value="numero", required=true) String numero, @RequestParam(value="documento", required=true) String documento) {
 					//ResponseBody<json>: Aclara que el String guarda un JSON
 					//ObjectMapper: Es una clase de Jackson que permite convertir una colección a un JSON usando el método writeValueAsString
@@ -213,7 +225,7 @@ public class HomeController {
 					
 				}
 		//alquilarUnidad
-				@RequestMapping(value = "/alquilarUnidad", method = RequestMethod.POST)
+				@RequestMapping(value = "/alquilarUnidad", method = RequestMethod.PUT)
 				public ResponseEntity<Void> alquilarUnidad(@RequestParam(value="codigo", required=true) int codigo, @RequestParam(value="piso", required=true) String piso, @RequestParam(value="numero", required=true) String numero, @RequestParam(value="documento", required=true) String documento) {
 					//ResponseBody<json>: Aclara que el String guarda un JSON
 					//ObjectMapper: Es una clase de Jackson que permite convertir una colección a un JSON usando el método writeValueAsString
@@ -256,7 +268,7 @@ public class HomeController {
 					
 				}
 		//liberarUnidad
-				@RequestMapping(value = "/liberarUnidad", method = RequestMethod.POST)
+				@RequestMapping(value = "/liberarUnidad", method = RequestMethod.PUT)
 				public ResponseEntity<Void> liberarUnidad(@RequestParam(value="codigo", required=true) int codigo, @RequestParam(value="piso", required=true) String piso, @RequestParam(value="numero", required=true) String numero) {
 					//ResponseBody<json>: Aclara que el String guarda un JSON
 					//ObjectMapper: Es una clase de Jackson que permite convertir una colección a un JSON usando el método writeValueAsString
@@ -273,7 +285,7 @@ public class HomeController {
 					
 				}
 		//habitarUnidad
-				@RequestMapping(value = "/habitarUnidad", method = RequestMethod.POST)
+				@RequestMapping(value = "/habitarUnidad", method = RequestMethod.PUT)
 				public ResponseEntity<Void> habitarUnidad(@RequestParam(value="codigo", required=true) int codigo, @RequestParam(value="piso", required=true) String piso, @RequestParam(value="numero", required=true) String numero) {
 					//ResponseBody<json>: Aclara que el String guarda un JSON
 					//ObjectMapper: Es una clase de Jackson que permite convertir una colección a un JSON usando el método writeValueAsString
@@ -305,7 +317,7 @@ public class HomeController {
 				}
 				
 		//eliminarPersona
-				@RequestMapping(value = "/eliminarPersona", method = RequestMethod.POST)
+				@RequestMapping(value = "/eliminarPersona", method = RequestMethod.DELETE)
 				public ResponseEntity<Void> eliminarPersona(@RequestParam(value="documento", required=true) String documento) {
 					//ResponseBody<json>: Aclara que el String guarda un JSON
 					//ObjectMapper: Es una clase de Jackson que permite convertir una colección a un JSON usando el método writeValueAsString
@@ -369,7 +381,7 @@ public class HomeController {
 					}
 				}
 		//cambiarEstado
-				@RequestMapping(value = "/cambiarEstado", method = RequestMethod.POST)
+				@RequestMapping(value = "/cambiarEstado", method = RequestMethod.PUT)
 				public ResponseEntity <Void> cambiarEstado(@RequestParam(value="numero", required=true) int numero, @RequestParam(value="estado", required=true) int estado) {
 					try {
 						Estado est = null;
@@ -413,6 +425,6 @@ public class HomeController {
 						
 					}
 
-				}			
+				}				
 				
 }

@@ -8,10 +8,59 @@ public class Persona {
 
 	private String documento;
 	private String nombre;
-		
-	public Persona(String documento, String nombre) {
+	private String usuario;
+	private String pass;
+	private boolean administrador;
+	private boolean activo;
+	
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+
+	public boolean isAdministrador() {
+		return administrador;
+	}
+
+	public void setAdministrador(boolean administrador) {
+		this.administrador = administrador;
+	}
+
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
+
+	public void setDocumento(String documento) {
+		this.documento = documento;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	
+	public Persona(String documento, String nombre, String usuario, String pass, boolean activo, boolean administrador) {
 		this.documento = documento;
 		this.nombre = nombre;
+		this.usuario = usuario;
+		this.pass = pass;
+		this.activo = activo;
+		this.administrador = administrador;
 	}
 
 	public String getDocumento() {
@@ -23,7 +72,7 @@ public class Persona {
 	}
 
 	public PersonaView toView() {
-		return new PersonaView(documento, nombre);
+		return new PersonaView(documento, nombre, usuario, pass, activo, administrador);
 	}
 
 	public void save() {

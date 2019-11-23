@@ -48,6 +48,18 @@ public class Controlador {
 			resultado.add(persona.toView());
 		return resultado;
 	}
+	public PersonaView getPersonaPorUsuario(String usuario){ 
+		PersonaView resultado = null;
+		List<Persona> personas = new PersonaDAO().getPersonas();
+		for(Persona persona : personas) 
+		{			
+			if(persona.getUsuario() == usuario) 
+			{
+				resultado = persona.toView();
+			}
+		}
+		return resultado;
+	}
 	
 	public List<PersonaView> getInquilinos(){ 
 		List<Persona> inq = new ArrayList<Persona>();
@@ -151,7 +163,7 @@ public class Controlador {
 	}
 	
 	public void agregarPersona(String documento, String nombre) throws PersonaException { 
-		Persona persona = new Persona(documento, nombre);
+		Persona persona = new Persona(documento, nombre, null, null, false, false);
 		Persona buscoPersona = null;		
 		try {
 			buscoPersona = PersonaDAO.getInstancia().findById(documento);
@@ -228,11 +240,11 @@ public class Controlador {
 		return resultado;
 	}
  
-	public int agregarReclamo(int codigo, String piso, String numero, String documento, String ubicación, String descripcion) throws EdificioException, UnidadException, PersonaException {
+	public int agregarReclamo(int codigo, String piso, String numero, String documento, String ubicacion, String descripcion) throws EdificioException, UnidadException, PersonaException {
 		Edificio edificio = buscarEdificio(codigo);
 		Unidad unidad = buscarUnidad(codigo, piso, numero);
 		Persona persona = buscarPersona(documento);
-		Reclamo reclamo = new Reclamo(persona, edificio, ubicación, descripcion, unidad);
+		Reclamo reclamo = new Reclamo(persona, edificio, ubicacion, descripcion, unidad, null);
 		reclamo.save();
 		return reclamo.getNumero();
 	}
@@ -242,7 +254,7 @@ public class Controlador {
 		reclamo.agregarImagen(direccion, tipo);
 	}
 	
-	public void cambiarEstado(int numero, Estado estado) throws ReclamoException { 
+	public void cambiarEstado(int numero, Estado estado) throws ReclamoException { 	
 		Reclamo reclamo = buscarReclamo(numero);
 		reclamo.cambiarEstado(estado);
 		reclamo.update();

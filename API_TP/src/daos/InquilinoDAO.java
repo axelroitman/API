@@ -144,7 +144,8 @@ public Unidad getUnidadPorInquilinoId(int id) throws PersonaException{
 	} 
 	
 	private Persona PersonatoNegocio(InquilinoEntity entity){
-		return new Persona (entity.getPersona().getDni(), entity.getPersona().getNombre());
+		return new Persona (entity.getPersona().getDni(), entity.getPersona().getNombre(), entity.getPersona().getUsuario(), entity.getPersona().getPass(), entity.getPersona().isActivo(), entity.getPersona().isAdministrador());
+
 	}
 	
 }

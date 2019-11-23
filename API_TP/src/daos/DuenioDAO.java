@@ -133,7 +133,7 @@ public Unidad getUnidadPorDuenioId(int id) throws PersonaException{
 	} 
 	
 	private Persona PersonatoNegocio(DuenioEntity de){
-		return new Persona (de.getPersona().getDni(), de.getPersona().getNombre());
+		return new Persona (de.getPersona().getDni(), de.getPersona().getNombre(), de.getPersona().getUsuario(), de.getPersona().getPass(), de.getPersona().isActivo(), de.getPersona().isAdministrador());
 	}
 
 	public List<Unidad> unidadesPorDuenio(Persona duenio){

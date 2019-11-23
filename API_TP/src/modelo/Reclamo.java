@@ -12,30 +12,41 @@ public class Reclamo {
 	private int numero;
 	private Persona usuario;
 	private Edificio edificio;
-	private String ubicación;
+	private String ubicacion;
 	private String descripcion;
 	private Unidad unidad;
 	private Estado estado;
 	private List<Imagen> imagenes;
+	private String actualizacion;
 	
-	public Reclamo(Persona usuario, Edificio edificio, String ubicación, String descripcion, Unidad unidad) {
+	public Reclamo(Persona usuario, Edificio edificio, String ubicacion, String descripcion, Unidad unidad, String actualizacion) {
 		this.usuario = usuario;
 		this.edificio = edificio;
-		this.ubicación = ubicación;
+		this.ubicacion = ubicacion;
 		this.descripcion = descripcion;
 		this.unidad = unidad;
 		this.estado = Estado.nuevo;
+		this.actualizacion = actualizacion;
 		imagenes = new ArrayList<Imagen>();
 	}
 	
-	public Reclamo(Persona usuario, Edificio edificio, String ubicacion, String descripcion, Unidad unidad, int numero, Estado estado) {
+	public String getActualizacion() {
+		return actualizacion;
+	}
+
+	public void setActualizacion(String actualizacion) {
+		this.actualizacion = actualizacion;
+	}
+
+	public Reclamo(Persona usuario, Edificio edificio, String ubicacion, String descripcion, Unidad unidad, int numero, Estado estado, String actualizacion) {
 		this.usuario = usuario;
 		this.edificio = edificio;
-		this.ubicación = ubicacion;
+		this.ubicacion = ubicacion;
 		this.descripcion = descripcion;
 		this.unidad = unidad;
 		this.estado = estado;
 		this.numero = numero;
+		this.actualizacion = actualizacion;
 		imagenes = new ArrayList<Imagen>();
 	}
 
@@ -62,8 +73,8 @@ public class Reclamo {
 		return edificio;
 	}
 
-	public String getUbicación() {
-		return ubicación;
+	public String getUbicacion() {
+		return ubicacion;
 	}
 
 	public String getDescripcion() {
@@ -96,6 +107,6 @@ public class Reclamo {
 	}
 	
 	public ReclamoView toView(){
-		return new ReclamoView(usuario.toView(), edificio.toView(), ubicación, descripcion, unidad.toView(), estado);
+		return new ReclamoView(usuario.toView(), edificio.toView(), ubicacion, descripcion, unidad.toView(), estado);
 	}
 }

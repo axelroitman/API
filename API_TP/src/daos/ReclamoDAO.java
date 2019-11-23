@@ -62,11 +62,11 @@ public class ReclamoDAO {
 	}
 	
 	ReclamoEntity toEntity(Reclamo reclamo){
-		return new ReclamoEntity(reclamo.getNumero(), PersonaDAO.getInstancia().toEntity(reclamo.getUsuario()), EdificioDAO.getInstancia().toEntity(reclamo.getEdificio()), reclamo.getUbicación(), reclamo.getDescripcion(), UnidadDAO.getInstancia().toEntity(reclamo.getUnidad()), reclamo.getEstado());
+		return new ReclamoEntity(reclamo.getNumero(), PersonaDAO.getInstancia().toEntity(reclamo.getUsuario()), EdificioDAO.getInstancia().toEntity(reclamo.getEdificio()), reclamo.getUbicacion(), reclamo.getDescripcion(), UnidadDAO.getInstancia().toEntity(reclamo.getUnidad()), reclamo.getEstado(), reclamo.getActualizacion());
 	} 
 	
 	Reclamo toNegocio(ReclamoEntity entity){
-		return new Reclamo(PersonaDAO.getInstancia().toNegocio(entity.getUsuario()), EdificioDAO.getInstancia().toNegocio(entity.getEdificio()), entity.getUbicación(), entity.getDescripcion(), UnidadDAO.getInstancia().toNegocio(entity.getUnidad()), entity.getId(), entity.getEstado());
+		return new Reclamo(PersonaDAO.getInstancia().toNegocio(entity.getUsuario()), EdificioDAO.getInstancia().toNegocio(entity.getEdificio()), entity.getUbicacion(), entity.getDescripcion(), UnidadDAO.getInstancia().toNegocio(entity.getUnidad()), entity.getId(), entity.getEstado(), entity.getActualizacion());
 	}
 
 	public List<Reclamo> findByDocumento(String documento) {

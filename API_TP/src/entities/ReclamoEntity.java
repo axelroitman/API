@@ -34,6 +34,7 @@ public class ReclamoEntity {
 	
 	String ubicacion;
 	String descripcion;
+	String actualizacion;
 	
 	@ManyToOne
 	@JoinColumn(name= "identificador")	
@@ -48,7 +49,7 @@ public class ReclamoEntity {
 
 
 	public ReclamoEntity(int id, PersonaEntity usuario, EdificioEntity edificio, String ubicacion, String descripcion,
-			UnidadEntity unidad, Estado estado) {
+			UnidadEntity unidad, Estado estado, String actualizacion) {
 		super();
 		this.id = id;
 		this.usuario = usuario;
@@ -56,8 +57,19 @@ public class ReclamoEntity {
 		this.ubicacion = ubicacion;
 		this.descripcion = descripcion;
 		this.unidad = unidad;
+		this.actualizacion = actualizacion;
 		this.imagenes= new ArrayList<ImagenEntity>();
 		setEstado(estado);
+	}
+
+
+	public String getActualizacion() {
+		return actualizacion;
+	}
+
+
+	public void setActualizacion(String actualizacion) {
+		this.actualizacion = actualizacion;
 	}
 
 
@@ -96,13 +108,13 @@ public class ReclamoEntity {
 	}
 
 
-	public String getUbicación() {
+	public String getUbicacion() {
 		return ubicacion;
 	}
 
 
-	public void setUbicación(String ubicación) {
-		this.ubicacion = ubicación;
+	public void setUbicacion(String ubicacion) {
+		this.ubicacion = ubicacion;
 	}
 
 

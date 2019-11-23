@@ -65,11 +65,11 @@ private static PersonaDAO instancia;
 	}
 	
 	PersonaEntity toEntity(Persona persona){
-		return new PersonaEntity(persona.getDocumento(), persona.getNombre());
+		return new PersonaEntity(persona.getDocumento(), persona.getNombre(), persona.getUsuario(), persona.getPass(), persona.isActivo(), persona.isAdministrador());
 	} 
 	
 	Persona toNegocio(PersonaEntity entity){
-		return new Persona (entity.getDni(), entity.getNombre());
+		return new Persona (entity.getDni(), entity.getNombre(), entity.getUsuario(), entity.getPass(), entity.isActivo(), entity.isAdministrador());
 	}
 
 	public void delete(Persona persona) throws PersonaException {
@@ -97,10 +97,10 @@ private static PersonaDAO instancia;
 			s.delete(aEliminar);
 			s.getTransaction().commit();
 			s.close();
-			System.out.println("La persona ha sido eliminada con éxito."); //CORREGIR EN LA PRÓXIMA ETAPA DEL TP (ADAPTAR A INTERFAZ)
+			System.out.println("La persona ha sido eliminada con ï¿½xito."); //CORREGIR EN LA PRï¿½XIMA ETAPA DEL TP (ADAPTAR A INTERFAZ)
 		}
 		else {
-			System.out.println("No se puede eliminar a la persona porque es un dueño o un inquilino."); //CORREGIR EN LA PRÓXIMA ETAPA DEL TP (ADAPTAR A INTERFAZ)
+			System.out.println("No se puede eliminar a la persona porque es un dueï¿½o o un inquilino."); //CORREGIR EN LA PRï¿½XIMA ETAPA DEL TP (ADAPTAR A INTERFAZ)
 		}
 	}
 }

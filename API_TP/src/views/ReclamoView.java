@@ -8,7 +8,7 @@ public class ReclamoView {
 	private int numero;
 	private PersonaView usuario;
 	private EdificioView edificio;
-	private String ubicación;
+	private String ubicacion;
 	private String descripcion;
 	private UnidadView unidad;
 	private Estado estado;
@@ -16,12 +16,12 @@ public class ReclamoView {
 	private List<ImagenView> imagenes;
 	
 	
-	public ReclamoView(PersonaView usuario, EdificioView edificio, String ubicación, String descripcion,
+	public ReclamoView(PersonaView usuario, EdificioView edificio, String ubicacion, String descripcion,
 			UnidadView unidad, Estado estado) {
 		super();
 		this.usuario = usuario;
 		this.edificio = edificio;
-		this.ubicación = ubicación;
+		this.ubicacion = ubicacion;
 		this.descripcion = descripcion;
 		this.unidad = unidad;
 		this.estado = estado;
@@ -45,11 +45,11 @@ public class ReclamoView {
 	public void setEdificio(EdificioView edificio) {
 		this.edificio = edificio;
 	}
-	public String getUbicación() {
-		return ubicación;
+	public String getUbicacion() {
+		return ubicacion;
 	}
-	public void setUbicación(String ubicación) {
-		this.ubicación = ubicación;
+	public void setUbicacion(String ubicacion) {
+		this.ubicacion = ubicacion;
 	}
 	public String getDescripcion() {
 		return descripcion;
