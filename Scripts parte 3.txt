@@ -1,0 +1,12 @@
+ALTER TABLE dbo.personas
+  ADD usuario VARCHAR(255);
+ALTER TABLE dbo.personas
+  ADD pass VARCHAR(255);
+ALTER TABLE dbo.personas
+  ADD administrador tinyint;
+ALTER TABLE dbo.personas
+  ADD activo tinyint;
+ALTER TABLE dbo.reclamos
+  ADD actualizacion varchar(6000);
+UPDATE dbo.personas SET administrador = 0;
+UPDATE dbo.personas SET activo = 0;
