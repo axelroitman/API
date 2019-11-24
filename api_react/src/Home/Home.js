@@ -33,6 +33,7 @@ export default class Login extends Component {
 			else
 			{	
 				alert("Respuesta exitosa *Debería iniciar sesión*");
+				window.location = "/personas"
 				console.log(json);
 			}
 		 this.setState({
