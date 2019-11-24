@@ -43,17 +43,17 @@ public class Controlador {
 	}
 	public List<PersonaView> getPersonas(){ 
 		List<PersonaView> resultado = new ArrayList<PersonaView>();
-		List<Persona> personas = new PersonaDAO().getPersonas();
+		List<Persona> personas = PersonaDAO.getInstancia().getPersonas();
 		for(Persona persona : personas)
 			resultado.add(persona.toView());
 		return resultado;
 	}
-	public PersonaView getPersonaPorUsuario(String usuario){ 
+	public PersonaView getPersonaPorUsuario(String usuario, String password){ 
 		PersonaView resultado = null;
-		List<Persona> personas = new PersonaDAO().getPersonas();
+		List<Persona> personas = PersonaDAO.getInstancia().getPersonas();
 		for(Persona persona : personas) 
 		{			
-			if(persona.getUsuario() == usuario) 
+			if(usuario.equals(persona.getUsuario()) && password.equals(persona.getPass())) 
 			{
 				resultado = persona.toView();
 			}
@@ -162,8 +162,8 @@ public class Controlador {
 		unidad.habitar();;
 	}
 	
-	public void agregarPersona(String documento, String nombre) throws PersonaException { 
-		Persona persona = new Persona(documento, nombre, null, null, false, false);
+	public void agregarPersona(String documento, String nombre, String usuario, String password) throws PersonaException { 
+		Persona persona = new Persona(documento, nombre, usuario, password, true, false);
 		Persona buscoPersona = null;		
 		try {
 			buscoPersona = PersonaDAO.getInstancia().findById(documento);
@@ -173,7 +173,22 @@ public class Controlador {
 		
 		if(buscoPersona == null)
 		{	
-			persona.save();
+			try {
+				System.out.println(usuario);
+				buscoPersona = PersonaDAO.getInstancia().findByUsuario(usuario);
+			} catch (PersonaException e) {
+				e.printStackTrace();
+			}
+			
+			if(buscoPersona == null)
+			{	
+				persona.save();
+			}
+			else
+			{
+				throw new PersonaException("Nombre de usuario existente.");
+			}
+
 		}
 		else
 		{

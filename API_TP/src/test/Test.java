@@ -18,6 +18,7 @@ public class Test {
 
 	public static void main(String[] args) {
 		
+		
 		/*
 		 * Método getEdificios.
 		 */
@@ -226,18 +227,18 @@ public class Test {
 		/*
 		 * Método agregarPersona.
 		 */
-			/*try {
-			Controlador.getInstancia().agregarPersona("DNI30600888", "PEREZ, JUAN");
+		/*try {
+			Controlador.getInstancia().agregarPersona("DNI30600123", "PEREZ, JUAN", "jperez", "1234");
 		} catch (PersonaException e) {
 			// TODO Auto-generated catch block
 			e.getMessage();
-		}*/
-		
+		}
+		*/
 		/*
 		 * Método eliminarPersona.
 		 */
 			/*try {
-			Controlador.getInstancia().eliminarPersona("CI 13230978");
+			Controlador.getInstancia().eliminarPersona("DNI30600123");
 		} catch (PersonaException e) {
 			// TODO Auto-generated catch block
 			e.getMessage();

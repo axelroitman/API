@@ -58,10 +58,10 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/getPersonaPorUsuario", method = RequestMethod.GET, produces = {"application/json"})
-	public @ResponseBody<json> String getPersonaPorUsuario(@RequestParam(value="usuario", required=true) String usuario) throws JsonProcessingException {
+	public @ResponseBody<json> String getPersonaPorUsuario(@RequestParam(value="usuario", required=true) String usuario, @RequestParam(value="password", required=true) String password) throws JsonProcessingException {
 		//ResponseBody<json>: Aclara que el String guarda un JSON
 		//ObjectMapper: Es una clase de Jackson que permite convertir una colección a un JSON usando el método writeValueAsString
-			PersonaView persona =  Controlador.getInstancia().getPersonaPorUsuario(usuario);
+			PersonaView persona =  Controlador.getInstancia().getPersonaPorUsuario(usuario, password);
 			ObjectMapper mapper = new ObjectMapper();
 			return mapper.writeValueAsString(persona);
 
@@ -301,15 +301,15 @@ public class HomeController {
 				}
 		//agregarPersona
 				@RequestMapping(value = "/agregarPersona", method = RequestMethod.POST)
-				public ResponseEntity<Void> agregarPersona(@RequestParam(value="documento", required=true) String documento, @RequestParam(value="nombre", required=true) String nombre) {
+				public ResponseEntity<Void> agregarPersona(@RequestParam(value="documento", required=true) String documento, @RequestParam(value="nombre", required=true) String nombre, @RequestParam(value="apellido", required=true) String apellido, @RequestParam(value="usuario", required=true) String usuario, @RequestParam(value="password", required=true) String password) {
 					//ResponseBody<json>: Aclara que el String guarda un JSON
 					//ObjectMapper: Es una clase de Jackson que permite convertir una colección a un JSON usando el método writeValueAsString
 					try {
-						Controlador.getInstancia().agregarPersona(documento, nombre);
+						
+						nombre = apellido + ", " + nombre;
+						Controlador.getInstancia().agregarPersona(documento, nombre, usuario, password);
 						return new ResponseEntity<Void>(HttpStatus.CREATED);												
 					} catch (PersonaException e) {
-						// TODO Auto-generated catch block
-						//e.getMessage();
 						return new ResponseEntity<Void>(HttpStatus.CONFLICT);												
 						
 					}

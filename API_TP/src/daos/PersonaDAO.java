@@ -41,11 +41,29 @@ private static PersonaDAO instancia;
 				.setString(0, dni)
 				.uniqueResult();
 		if(persona == null)
-			throw new PersonaException("No existe la persona " + dni);
-			
+		{	
+			//throw new PersonaException("No existe la persona " + dni);
+			return null;
+		}	
 		return toNegocio(persona);
 	}
 
+	public Persona findByUsuario(String usuario) throws PersonaException{
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		s.beginTransaction();
+		PersonaEntity persona = (PersonaEntity) s.createQuery("from PersonaEntity p where p.usuario = ?")
+				.setString(0, usuario)
+				.uniqueResult();
+		
+		if(persona == null)
+		{	
+			//throw new PersonaException("No existe el usuario " + usuario);
+			return null;
+		}	
+		return toNegocio(persona);
+	}
+
+	
 	public void save(Persona persona){
 		PersonaEntity aGrabar = toEntity(persona);
 		Session s = HibernateUtil.getSessionFactory().openSession();
