@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Personas from '../Personas/Personas';
 import { cpus } from 'os';
+import { bool } from 'prop-types';
 
 export default class Login extends Component {
 	constructor(props) {
@@ -32,9 +33,20 @@ export default class Login extends Component {
 			}	
 			else
 			{	
-				alert("Respuesta exitosa *Debería iniciar sesión*");
-				window.location = "/personas"
-				console.log(json);
+				if(json.activo == false)
+				{
+					alert("Usuario inexistente");
+				}
+				else
+				{
+					console.log(json);
+					localStorage.setItem("usuario", json.usuario);
+					localStorage.setItem("administrador", json.administrador);
+					localStorage.setItem("documento", json.documento);
+					alert("Inicia sesión.");
+				
+				}
+				
 			}
 		 this.setState({
 		  persona: json,
@@ -44,65 +56,58 @@ export default class Login extends Component {
 		alert("Error en API" + error);
 	  });
 	  
-	  console.log(this.state);
 	  event.preventDefault();
 	}
   
 	render() {
-	  return (
-		<div>
-		  <form onSubmit={this.handleSubmit}>
-			<div className="row">
-				<div className="col-md-2">
-					<label>Usuario</label>
+
+	  if(localStorage.getItem("usuario"))
+	  {
+
+		if(localStorage.getItem("administrador") == "true")
+		{
+
+			return (
+				window.location = '/personas'
+				
+			);
+
+		}
+		else
+		{	
+			return (
+				window.location = '/reclamos'			
+			);
+
+		}
+	  }
+	  else
+	  {
+		return (
+			<div>
+			  <form onSubmit={this.handleSubmit}>
+				<div className="row">
+					<div className="col-md-2">
+						<label>Usuario</label>
+					</div>
+					<div className="col-md-10">
+						<input type="text" name="usuario" placeholder="Usuario" value={this.state.usuario} onChange={this.handleChange} required />
+					</div>
+					<div className="col-md-2">
+						<label>Contraseña</label>
+					</div>
+					<div className="col-md-10">
+						<input type="password" name="password" placeholder="Contraseña" value={this.state.password} onChange={this.handleChange} required />
+					</div>
 				</div>
-				<div className="col-md-10">
-					<input type="text" name="usuario" placeholder="Usuario" value={this.state.usuario} onChange={this.handleChange} required />
-				</div>
-				<div className="col-md-2">
-					<label>Contraseña</label>
-				</div>
-				<div className="col-md-10">
-					<input type="password" name="password" placeholder="Contraseña" value={this.state.password} onChange={this.handleChange} required />
-				</div>
+	  
+	  
+				<button type="submit">Login</button>
+			  </form>
 			</div>
-  
-  
-			<button type="submit">Login</button>
-		  </form>
-		</div>
-	  );
+		  );
+	  }
+
+	  
 	}
   }
-  
-function chequear()
-{
-	var usuario = document.getElementById('usuario');
-	var password = document.getElementById('password');
-	var persona = null;
-	var res = null;
-	console.log(usuario.value);
-	console.log(password.value);
-	fetch('http://localhost:8080/apitp/getPersonaPorUsuario?usuario=' + usuario.value)
-	.then((res) => res.json()).then((json) => {
-	   this.setState({
-		persona: json,
-	  });
-
-	}).catch((error) =>{
-	  alert("Error en API" + error);
-	});
-
-	console.log(persona);
-	console.log(res);
-	/*if(persona.pass != password.value)
-	{
-		console.log("Usuario y/o contraseña incorrectos");
-	}
-	else
-	{
-		console.log("OK.");
-	}*/
-
-    
-}

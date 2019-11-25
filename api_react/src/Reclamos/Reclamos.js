@@ -5,19 +5,21 @@ import React, {Component} from 'react';
     constructor(props) {
        super(props);
        this.state  = {
-        personas: [],
-           isLoaded:false
+         reclamos: [],
+           isLoaded:false,
+         documento:""
        }
     }
 
     componentDidMount() {
-        fetch('http://localhost:8080/apitp/getReclamosPorPersona')
+      this.documento = localStorage.getItem("documento");
+
+        fetch('http://localhost:8080/apitp/getReclamosPorPersona?documento=' + this.documento)
         .then((res) => res.json()).then((json) => {
            this.setState({
             isLoaded: true,
-            personas: json,
+            reclamos: json
           });
-  
         }).catch((error) =>{
           alert("Error en API" + error);
         });
@@ -29,7 +31,7 @@ import React, {Component} from 'react';
 
   render() {
 
-    var  {isLoaded, personas} =this.state;
+    var  {isLoaded, reclamos} =this.state;
 
     if(!isLoaded) {
         return <div>Loading...</div>
@@ -40,8 +42,8 @@ import React, {Component} from 'react';
       <div>
       <ul className="listReclamos">
                {
-                  personas.map(item => (
-                     <li key={item.id} onClick={this.handlerClickItem.bind(this,item.nombre)}> {item.nombre}</li>
+                  reclamos.map(item => (
+                     <li key={item.id} onClick={this.handlerClickItem.bind(this,item.numero)}> #{item.numero} - {item.edificio.nombre}, {item.unidad.piso}° {item.unidad.numero}</li>
                   ))
                }
             </ul>
@@ -50,4 +52,4 @@ import React, {Component} from 'react';
    }
   }
 }
-export default Personas;
+export default Reclamos;

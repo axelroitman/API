@@ -6,8 +6,8 @@ import Footer from './Footer'
 import Home from './Home/Home'
 import Registro from './Home/Registro'
 
-import Movies from './Movies/Movies'
-import Movie from './Movies/Movie'
+import Reclamos from './Reclamos/Reclamos'
+import Reclamo from './Reclamos/Reclamo'
 import Personas from './Personas/Personas'
 import Persona from './Personas/Persona'
 
@@ -24,8 +24,9 @@ function App() {
 				<Route  path="/registro" component={Registro} />
 				<Route  path="/personas" component={Personas} />
 				<Route  path="/persona/:id" component={Persona} />
-				<Route path="/movies" component={Movies} />
-				<Route path="/movie/:id" component={Movie} />
+				<Route  path="/reclamos" component={Reclamos} />
+				<Route  path="/reclamo/:id" component={Reclamo} />
+
 		</Router>
        <Footer />
     </div>
