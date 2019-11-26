@@ -66,6 +66,14 @@ public class HomeController {
 			return mapper.writeValueAsString(persona);
 
 	}
+	
+	@RequestMapping(value = "/getPersonaPorDocumento", method = RequestMethod.GET, produces = {"application/json"})
+	public @ResponseBody<json> String getPersonaPorDocumento(@RequestParam(value="documento", required=true) String documento) throws JsonProcessingException {
+			PersonaView persona =  Controlador.getInstancia().getPersonaPorDocumento(documento);
+			ObjectMapper mapper = new ObjectMapper();
+			return mapper.writeValueAsString(persona);
+
+	}
 
 	
 	@RequestMapping(value = "/getEdificios", method = RequestMethod.GET, produces = {"application/json"})

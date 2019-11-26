@@ -61,6 +61,19 @@ public class Controlador {
 		return resultado;
 	}
 	
+	public PersonaView getPersonaPorDocumento(String documento){ 
+		PersonaView resultado = null;
+		List<Persona> personas = PersonaDAO.getInstancia().getPersonas();
+		for(Persona persona : personas) 
+		{			
+			if(documento.equals(persona.getDocumento())) 
+			{
+				resultado = persona.toView();
+			}
+		}
+		return resultado;
+	}
+	
 	public List<PersonaView> getInquilinos(){ 
 		List<Persona> inq = new ArrayList<Persona>();
 		List<PersonaView> res = new ArrayList<PersonaView>();

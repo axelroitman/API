@@ -42,7 +42,7 @@ import React, {Component} from 'react';
       <ul className="listPersonas">
                {
                   personas.map(item => (
-                     <li key={item.id} onClick={this.handlerClickItem.bind(this,item.nombre)}> {item.nombre}</li>
+                     <li key={item.id} onClick={this.handlerClickItem.bind(this,item.documento)}> {item.nombre}</li>
                   ))
                }
             </ul>

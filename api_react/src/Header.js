@@ -15,7 +15,7 @@ class Header extends React.Component {
 
     if(localStorage.getItem("usuario"))
     {
-      if(localStorage.getItem("administrador") == "true")
+      if(localStorage.getItem("administrador") === "true")
       {
         return (
           <div className="topBlue">

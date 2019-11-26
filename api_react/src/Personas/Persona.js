@@ -3,13 +3,46 @@ import './Personas.css';
 import { Link } from 'react-router-dom'
 
 class Persona extends Component {
+   constructor(props) {
+      super(props);
+      this.state  = {
+        persona: {},
+        isLoaded:false
+      }
+   }
+
+   componentDidMount() {
+       fetch('http://localhost:8080/apitp/getPersonaPorDocumento?documento=' + this.props.match.params.id)
+       .then((res) => res.json()).then((json) => {
+ 
+          this.setState({
+           isLoaded: true,
+           persona: json
+         });
+       }).catch((error) =>{
+         alert("Error en API" + error);
+       });
+   }
+
+
   render() {
-     return (
-        <div className="personas"><h2 className="selectedPersona">Detalle de la persona: "{this.props.match.params.id}"</h2>  
-        <p><b><u>Ejercicio:</u></b><br></br> Implementar la llamada a la API con  el ID de la Movie y mostrar el detalle cuando se monta el componente.</p>
-          <Link  to="/personas">Volver</Link>
-       </div>
-    );
+      var  {isLoaded, persona} = this.state;
+
+      if(!isLoaded) {
+         return <div>Loading...</div>
+      }
+      else
+      {
+         
+        return (
+<div className="personas"><h2 className="selectedPersona">Detalle de la persona: "{persona.nombre}"</h2>
+            <p>Documento: {persona.documento}</p>
+            <p>Usuario: {persona.usuario}</p>
+                        
+            <Link  to="/personas">Volver</Link>
+            </div>
+         );
+      }
    }
 }
 export default Persona;

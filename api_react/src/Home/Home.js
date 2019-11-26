@@ -27,13 +27,13 @@ export default class Login extends Component {
 	  const { usuario, password } = this.state;
 	  fetch('http://localhost:8080/apitp/getPersonaPorUsuario?usuario=' + usuario + "&password=" + password)
 	  .then((res) => res.json()).then((json) => {
-			if(json == null)
+			if(json === null)
 			{
 				alert("Usuario y/o contraseña incorrectos.");
 			}	
 			else
 			{	
-				if(json.activo == false)
+				if(json.activo === false)
 				{
 					alert("Usuario inexistente");
 				}
@@ -64,7 +64,7 @@ export default class Login extends Component {
 	  if(localStorage.getItem("usuario"))
 	  {
 
-		if(localStorage.getItem("administrador") == "true")
+		if(localStorage.getItem("administrador") === "true")
 		{
 
 			return (

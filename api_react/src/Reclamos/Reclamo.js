@@ -12,7 +12,6 @@ class Reclamo extends Component {
    }
 
    componentDidMount() {
-
        fetch('http://localhost:8080/apitp/getReclamosPorNumero?numero=' + this.props.match.params.id)
        .then((res) => res.json()).then((json) => {
  
@@ -36,7 +35,7 @@ class Reclamo extends Component {
       {
          var ubicacion = "";
          
-         if(reclamo.ubicacion == null)
+         if(reclamo.ubicacion === null)
          {
             ubicacion = ubicacion.unidad.piso + "° " + ubicacion.unidad.numero;   
          }

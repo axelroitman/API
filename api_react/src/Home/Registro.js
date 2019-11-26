@@ -29,7 +29,7 @@ export default class Registro extends Component {
   /*var url = 'http://localhost:8080/apitp/agregarPersona';
     var data = {documento: documento, nombre: apellido + ', ' + nombre, usuario: usuario, password: password};
     */
-    if(password == password_confirmation){
+    if(password === password_confirmation){
      /* fetch(url, {
         method: 'POST', // or 'PUT'
         body: JSON.stringify(data), // data can be `string` or {object}!
