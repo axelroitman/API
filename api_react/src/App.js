@@ -10,6 +10,7 @@ import Reclamos from './Reclamos/Reclamos'
 import Reclamo from './Reclamos/Reclamo'
 import Personas from './Personas/Personas'
 import Persona from './Personas/Persona'
+import Edificios from './Edificios/Edificios'
 
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 
@@ -26,6 +27,7 @@ function App() {
 				<Route  path="/persona/:id" component={Persona} />
 				<Route  path="/reclamos" component={Reclamos} />
 				<Route  path="/reclamo/:id" component={Reclamo} />
+				<Route  path="/edificios" component={Edificios} />
 
 		</Router>
        <Footer />

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
- class Edificio extends Component {
+ class Edificios extends Component {
 
     constructor(props) {
        super(props);
@@ -42,7 +42,7 @@ import React, {Component} from 'react';
       <ul className="listEdificios">
                {
                   edificios.map(item => (
-                     <li key={item.id} onClick={this.handlerClickItem.bind(this,item.codigo)}>Nombre:  {item.nombre}</li>
+                     <li key={item.id} onClick={this.handlerClickItem.bind(this,item.codigo)}>{item.nombre}</li>
                   ))
                }
             </ul>

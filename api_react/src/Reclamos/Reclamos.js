@@ -38,17 +38,25 @@ import React, {Component} from 'react';
     }
    else
    {
-    return (
-      <div>
-      <ul className="listReclamos">
-               {
-                  reclamos.map(item => (
-                     <li key={item.id} onClick={this.handlerClickItem.bind(this,item.numero)}> #{item.numero} - {item.edificio.nombre}, {item.unidad.piso}° {item.unidad.numero}</li>
-                  ))
-               }
-            </ul>
-      </div>
-     );
+     if (reclamos.length == 0)
+     {
+        return(
+          <p>No hay reclamos para mostrar.</p>
+        );
+     }
+     else{
+      return (
+        <div>
+        <ul className="listReclamos">
+                 {
+                    reclamos.map(item => (
+                       <li key={item.id} onClick={this.handlerClickItem.bind(this,item.numero)}> #{item.numero} - {item.edificio.nombre}, {item.unidad.piso}° {item.unidad.numero}</li>
+                    ))
+                 }
+              </ul>
+        </div>
+       );
+     }
    }
   }
 }
