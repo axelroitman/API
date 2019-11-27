@@ -70,7 +70,7 @@ public class HomeController {
 				boolean aparecio = false;
 				for(PersonaView p : hab)
 				{
-					if(p.getDocumento() == documento && aparecio == false) 
+					if(p.getDocumento().equals(documento) && aparecio == false) 
 					{
 						aparecio = true;
 						listado.add(ed);

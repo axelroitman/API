@@ -24,6 +24,11 @@ class ReclamoForm extends Component {
         alert("Error en API" + error);
       });
  }
+   handleChange = (event) => {
+      console.log(event);
+      //Busco las unidades y las muestro.
+      //this.setState({ value: event.target.value });
+   };
 
 
   render() {
@@ -36,7 +41,9 @@ class ReclamoForm extends Component {
       {
 
          return (
-            <select id="listaEdificios">
+            <select id="listaEdificios" onChange={this.handleChange}>
+               <option value="-1">Seleccione un edificio</option>
+
                {
                   edificios.map(item => (
                      <option value={item.codigo}>{item.nombre}</option>
@@ -46,29 +53,7 @@ class ReclamoForm extends Component {
             </select>
 
          );
-         /*var ubicacion = "";
-         
-         if(reclamo.ubicacion === null)
-         {
-            ubicacion = ubicacion.unidad.piso + "° " + ubicacion.unidad.numero;   
-         }
-         else
-         {
-            ubicacion = reclamo.ubicacion;   
 
-         }
-         return (
-            <div className="reclamos"><h2 className="selectedReclamo">Reclamo #{this.props.match.params.id}</h2>  
-            <p>Edificio: {reclamo.edificio.nombre}</p>
-            <p>Ubicacion: {ubicacion}</p>
-            <p>Descripcion: {reclamo.descripcion}</p>
-            <p>Estado: {reclamo.estado}</p>
-            <p>Imagenes: <strong>*IMAGENES*</strong></p>
-
-            
-            <Link  to="/reclamos">Volver</Link>
-            </div>
-         );*/
       }
    }
 }
