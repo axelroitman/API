@@ -8,6 +8,7 @@ import Registro from './Home/Registro'
 
 import Reclamos from './Reclamos/Reclamos'
 import Reclamo from './Reclamos/Reclamo'
+import ReclamoForm from './Reclamos/ReclamoForm'
 import Personas from './Personas/Personas'
 import Persona from './Personas/Persona'
 import Edificios from './Edificios/Edificios'
@@ -27,6 +28,7 @@ function App() {
 				<Route  path="/persona/:id" component={Persona} />
 				<Route  path="/reclamos" component={Reclamos} />
 				<Route  path="/reclamo/:id" component={Reclamo} />
+				<Route  path="/nuevo-reclamo" component={ReclamoForm} />
 				<Route  path="/edificios" component={Edificios} />
 
 		</Router>

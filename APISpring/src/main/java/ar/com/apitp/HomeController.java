@@ -1,6 +1,7 @@
 package ar.com.apitp;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -56,7 +57,36 @@ public class HomeController {
 		
 		return "home";
 	}
-	
+	//reclamosPorPersona
+	@RequestMapping(value = "/getEdificiosParaReclamosUsuario", method = RequestMethod.GET, produces = {"application/json"})
+	public @ResponseBody<json> String getEdificiosParaReclamosUsuario(@RequestParam(value="documento", required=true) String documento) throws JsonProcessingException {
+		List<EdificioView> edificios = Controlador.getInstancia().getEdificios();
+		List<EdificioView> listado = new ArrayList<EdificioView>();
+		for(EdificioView ed : edificios)
+		{
+			List<PersonaView> hab;
+			try {
+				hab = Controlador.getInstancia().habilitadosPorEdificio(ed.getCodigo());
+				boolean aparecio = false;
+				for(PersonaView p : hab)
+				{
+					if(p.getDocumento() == documento && aparecio == false) 
+					{
+						aparecio = true;
+						listado.add(ed);
+					}
+				}
+
+			} catch (EdificioException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		ObjectMapper mapper = new ObjectMapper();
+		return mapper.writeValueAsString(listado);
+	}
+
+
 	@RequestMapping(value = "/getPersonaPorUsuario", method = RequestMethod.GET, produces = {"application/json"})
 	public @ResponseBody<json> String getPersonaPorUsuario(@RequestParam(value="usuario", required=true) String usuario, @RequestParam(value="password", required=true) String password) throws JsonProcessingException {
 		//ResponseBody<json>: Aclara que el String guarda un JSON
