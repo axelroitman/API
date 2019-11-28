@@ -39,9 +39,10 @@ export default class Login extends Component {
 				}
 				else
 				{
-					sessionStorage.setItem("usuario", json.usuario);
-					sessionStorage.setItem("administrador", json.administrador);
-					sessionStorage.setItem("documento", json.documento);
+					console.log(json);
+					localStorage.setItem("usuario", json.usuario);
+					localStorage.setItem("administrador", json.administrador);
+					localStorage.setItem("documento", json.documento);
 					alert("Inicia sesión.");
 				
 				}
@@ -60,14 +61,14 @@ export default class Login extends Component {
   
 	render() {
 
-	  if(sessionStorage.getItem("usuario"))
+	  if(localStorage.getItem("usuario"))
 	  {
 
-		if(sessionStorage.getItem("administrador") === "true")
+		if(localStorage.getItem("administrador") === "true")
 		{
 
 			return (
-				window.location = '/personas'
+				window.location = '/homeAdmin'
 				
 			);
 
