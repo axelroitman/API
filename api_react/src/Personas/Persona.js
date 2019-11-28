@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './Personas.css';
+import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 
 class Persona extends Component {
@@ -38,8 +39,8 @@ class Persona extends Component {
 <div className="personas"><h2 className="selectedPersona">Detalle de la persona: "{persona.nombre}"</h2>
             <p>Documento: {persona.documento}</p>
             <p>Usuario: {persona.usuario}</p>
-                        
-            <Link  to="/personas">Volver</Link>
+            <button onClick={this.props.history.goBack}>Volver</button>
+
             </div>
          );
       }
