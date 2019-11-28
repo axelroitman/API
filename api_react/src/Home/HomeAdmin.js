@@ -18,6 +18,9 @@ export default class InicioAdmin extends Component {
               <Link to="/recPorEd"><h3>Ver reclamos por edificio</h3></Link>
             </li>  
             <li  style={{ listStyleType: "none" }}>
+              <Link to="/recPorUn"><h3>Ver reclamos por unidad</h3></Link>
+            </li>  
+            <li  style={{ listStyleType: "none" }}>
               <Link to="/verReclamos"><h3>Todos los reclamos</h3></Link>
             </li>    
             <li  style={{ listStyleType: "none" }}>
