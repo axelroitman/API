@@ -44,7 +44,24 @@ class Reclamo extends Component {
             ubicacion = reclamo.ubicacion;   
 
          }
+         if(sessionStorage.getItem("administrador") === "true"){
+            return (
+            
+               <div className="reclamos"><h2 className="selectedReclamo">Reclamo #{this.props.match.params.id}</h2>  
+               <p>Usuario: {reclamo.usuario.nombre}</p>
+               <p>Edificio: {reclamo.edificio.nombre}</p>
+               <p>Descripcion: {reclamo.descripcion}</p>
+               <p>Estado: {reclamo.estado}</p>
+               <p>Imagenes: <strong>*IMAGENES*</strong></p>
+   
+               
+               <button onClick={this.props.history.goBack}>Volver</button>
+               </div>
+            );
+         }
+         else{
          return (
+            
             <div className="reclamos"><h2 className="selectedReclamo">Reclamo #{this.props.match.params.id}</h2>  
             <p>Edificio: {reclamo.edificio.nombre}</p>
             <p>Descripcion: {reclamo.descripcion}</p>
@@ -54,7 +71,8 @@ class Reclamo extends Component {
             
             <button onClick={this.props.history.goBack}>Volver</button>
             </div>
-         );
+            );
+         }
       }
    }
 }

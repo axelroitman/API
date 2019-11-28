@@ -31,6 +31,14 @@ public class Test {
 		*/
 		
 		/*
+		 * Método getAllReclamos
+		 */
+		List<ReclamoView> reclamos = Controlador.getInstancia().getAllReclamos();
+		for(ReclamoView r : reclamos)
+		{
+			System.out.println(r.getNumero() + " - " + r.getDescripcion());		
+		}		
+		/*
 		 * Método getPersonas.
 		 */
 		/*List<PersonaView> personas = Controlador.getInstancia().getPersonas();

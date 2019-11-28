@@ -1,20 +1,18 @@
 import React, {Component} from 'react';
 
- class Reclamos extends Component {
+ class TodosLosReclamos extends Component {
 
     constructor(props) {
        super(props);
        this.state  = {
          reclamos: [],
            isLoaded:false,
-         documento:""
        }
     }
 
     componentDidMount() {
-      this.documento = sessionStorage.getItem("documento");
 
-        fetch('http://localhost:8080/apitp/getReclamosPorPersona?documento=' + this.documento)
+        fetch('http://localhost:8080/apitp/getAllReclamos')
         .then((res) => res.json()).then((json) => {
            this.setState({
             isLoaded: true,
@@ -51,7 +49,7 @@ import React, {Component} from 'react';
                  {
                     reclamos.map(item => {
                       return item.unidad != null ?
-                       <li key={item.id} onClick={this.handlerClickItem.bind(this,item.numero)}> nro. {item.numero} - {item.edificio.nombre}, {item.unidad.piso}° {item.unidad.numero}</li>
+                       <li key={item.id} onClick={this.handlerClickItem.bind(this,item.numero)}>Usuario: {item.usuario.nombre}, nro. {item.numero} - {item.edificio.nombre}, {item.unidad.piso}° {item.unidad.numero}</li>
                        :
                        <li key={item.id} onClick={this.handlerClickItem.bind(this,item.numero)}> #{item.numero} - {item.ubicacion}</li>
 
@@ -64,4 +62,4 @@ import React, {Component} from 'react';
    }
   }
 }
-export default Reclamos;
+export default TodosLosReclamos;

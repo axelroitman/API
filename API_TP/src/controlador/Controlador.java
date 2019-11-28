@@ -244,6 +244,15 @@ public class Controlador {
 		return resultado;
 	}
 	
+	public List<ReclamoView> getAllReclamos(){
+		List<ReclamoView> resultado = new ArrayList<ReclamoView>();
+		List<Reclamo> reclamos = ReclamoDAO.getInstancia().getReclamos();
+		for(Reclamo r: reclamos) {
+			resultado.add(r.toView());
+		}
+		return resultado;
+	}
+	
 	public List<ReclamoView> reclamosPorUnidad(int codigo, String piso, String numero) { 
 		List<ReclamoView> resultado = new ArrayList<ReclamoView>();
 		List<Reclamo> reclamos = ReclamoDAO.getInstancia().getReclamos();

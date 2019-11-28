@@ -116,6 +116,13 @@ public class HomeController {
 		return mapper.writeValueAsString(edificios);
 	}
 	
+	@RequestMapping(value = "/getAllReclamos", method = RequestMethod.GET, produces = {"application/json"})
+	public @ResponseBody<json> String getAllReclamos() throws JsonProcessingException {
+		List<ReclamoView> reclamos = Controlador.getInstancia().getAllReclamos();
+		ObjectMapper mapper = new ObjectMapper();
+		return mapper.writeValueAsString(reclamos);
+	}
+	
 	@RequestMapping(value = "/getPersonas", method = RequestMethod.GET, produces = {"application/json"})
 	public @ResponseBody<json> String getPersonas() throws JsonProcessingException {
 		List<PersonaView> personas = Controlador.getInstancia().getPersonas();
