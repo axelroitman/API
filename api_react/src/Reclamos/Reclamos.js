@@ -12,7 +12,7 @@ import React, {Component} from 'react';
     }
 
     componentDidMount() {
-      this.documento = localStorage.getItem("documento");
+      this.documento = sessionStorage.getItem("documento");
 
         fetch('http://localhost:8080/apitp/getReclamosPorPersona?documento=' + this.documento)
         .then((res) => res.json()).then((json) => {
