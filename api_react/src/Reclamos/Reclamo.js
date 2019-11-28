@@ -35,9 +35,9 @@ class Reclamo extends Component {
       {
          var ubicacion = "";
          
-         if(reclamo.ubicacion === null)
+         if(reclamo.ubicacion == null)
          {
-            ubicacion = ubicacion.unidad.piso + "° " + ubicacion.unidad.numero;   
+            ubicacion = reclamo.unidad.piso + "° " + reclamo.unidad.numero;   
          }
          else
          {
@@ -47,7 +47,6 @@ class Reclamo extends Component {
          return (
             <div className="reclamos"><h2 className="selectedReclamo">Reclamo #{this.props.match.params.id}</h2>  
             <p>Edificio: {reclamo.edificio.nombre}</p>
-            <p>Ubicacion: {ubicacion}</p>
             <p>Descripcion: {reclamo.descripcion}</p>
             <p>Estado: {reclamo.estado}</p>
             <p>Imagenes: <strong>*IMAGENES*</strong></p>

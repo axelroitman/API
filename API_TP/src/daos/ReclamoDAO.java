@@ -66,7 +66,15 @@ public class ReclamoDAO {
 	} 
 	
 	Reclamo toNegocio(ReclamoEntity entity){
-		return new Reclamo(PersonaDAO.getInstancia().toNegocio(entity.getUsuario()), EdificioDAO.getInstancia().toNegocio(entity.getEdificio()), entity.getUbicacion(), entity.getDescripcion(), UnidadDAO.getInstancia().toNegocio(entity.getUnidad()), entity.getId(), entity.getEstado(), entity.getActualizacion());
+		if(entity.getUnidad() == null) 
+		{
+			return new Reclamo(PersonaDAO.getInstancia().toNegocio(entity.getUsuario()), EdificioDAO.getInstancia().toNegocio(entity.getEdificio()), entity.getUbicacion(), entity.getDescripcion(), null, entity.getId(), entity.getEstado(), entity.getActualizacion());
+
+		}
+		else 
+		{
+			return new Reclamo(PersonaDAO.getInstancia().toNegocio(entity.getUsuario()), EdificioDAO.getInstancia().toNegocio(entity.getEdificio()), entity.getUbicacion(), entity.getDescripcion(), UnidadDAO.getInstancia().toNegocio(entity.getUnidad()), entity.getId(), entity.getEstado(), entity.getActualizacion());
+		}
 	}
 
 	public List<Reclamo> findByDocumento(String documento) {

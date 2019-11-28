@@ -107,6 +107,13 @@ public class Reclamo {
 	}
 	
 	public ReclamoView toView(){
-		return new ReclamoView(usuario.toView(), edificio.toView(), ubicacion, descripcion, unidad.toView(), estado, numero);
+		if(unidad == null) 
+		{
+			return new ReclamoView(usuario.toView(), edificio.toView(), ubicacion, descripcion, null, estado, numero);				
+		}
+		else 
+		{
+			return new ReclamoView(usuario.toView(), edificio.toView(), ubicacion, descripcion, unidad.toView(), estado, numero);			
+		}
 	}
 }

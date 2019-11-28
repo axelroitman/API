@@ -49,9 +49,14 @@ import React, {Component} from 'react';
         <div>
         <ul className="listReclamos">
                  {
-                    reclamos.map(item => (
+                   
+                    reclamos.map(item => {
+                      return item.unidad != null ?
                        <li key={item.id} onClick={this.handlerClickItem.bind(this,item.numero)}> #{item.numero} - {item.edificio.nombre}, {item.unidad.piso}° {item.unidad.numero}</li>
-                    ))
+                       :
+                       <li key={item.id} onClick={this.handlerClickItem.bind(this,item.numero)}> #{item.numero} - {item.ubicacion}</li>
+
+                    })
                  }
               </ul>
         </div>
