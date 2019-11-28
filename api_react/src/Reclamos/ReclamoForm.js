@@ -45,6 +45,16 @@ class ReclamoForm extends Component {
       var valorSel = event.target.value;
       if(event.target.id == "listaEdificios")
       {
+         if(valorSel == -1)
+         {
+            document.getElementById("espacioComun").style.display = "none";
+         }
+         else
+         {
+            document.getElementById("espacioComun").style.display = "block";
+
+         }
+
          var unidadesMostrar = [];
          this.state.unidades.forEach(function(unidad){
             if(unidad.edificio.codigo == valorSel)
@@ -58,7 +68,14 @@ class ReclamoForm extends Component {
       }
       else if(event.target.id == "listaUnidades")
       {
-
+         if(valorSel == 0)
+         {
+            document.getElementById("ubicacion").style.display = "inline";           
+         }
+         else
+         {
+            document.getElementById("ubicacion").style.display = "none";          
+         }
       }
       
 
@@ -87,9 +104,9 @@ class ReclamoForm extends Component {
                      ))
                   }
                </select>
-               <select id="listaUnidades">
+               <select id="listaUnidades" onChange={this.handleChange}>
                   <option value="-1">Seleccione una unidad</option>
-                  <option value="0">Espacio común</option>
+                  <option value="0" id="espacioComun" style={{display:'none'}}>Espacio común</option> 
                   {
                      unidadesListadas.map(item => (
                      <option value={item.identificador}> {item.piso}° {item.numero}</option>
@@ -97,6 +114,8 @@ class ReclamoForm extends Component {
                      ))
                   } 
                </select>
+               <input style={{display: 'none'}} type="text" id="ubicacion" name="ubicacion" placeholder="Ubicacion"/>
+
             </form>
          );
 
