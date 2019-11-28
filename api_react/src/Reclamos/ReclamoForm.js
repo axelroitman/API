@@ -8,6 +8,7 @@ class ReclamoForm extends Component {
       this.state  = {
         reclamo: {},
         edificios: [],
+        unidadesListadas: [],
         isLoaded:false
       }
    }
@@ -36,20 +37,38 @@ class ReclamoForm extends Component {
             unidades: json,
             edificios: listadoEdificios
             });
-            console.log(json);
       }).catch((error) =>{
         alert("Error en API" + error);
       });
  }
    handleChange = (event) => {
-      console.log(event);
+      var valorSel = event.target.value;
+      if(event.target.id == "listaEdificios")
+      {
+         var unidadesMostrar = [];
+         this.state.unidades.forEach(function(unidad){
+            if(unidad.edificio.codigo == valorSel)
+            {
+               unidadesMostrar.push(unidad);
+            }
+         });
+         this.setState({
+            unidadesListadas: unidadesMostrar
+            });   
+      }
+      else if(event.target.id == "listaUnidades")
+      {
+
+      }
+      
+
       //Busco las unidades y las muestro.
       //this.setState({ value: event.target.value });
    };
 
 
   render() {
-      var  {isLoaded, reclamo, edificios} =this.state;
+      var  {isLoaded, edificios, unidadesListadas} =this.state;
 
       if(!isLoaded) {
          return <div>Loading...</div>
@@ -57,17 +76,28 @@ class ReclamoForm extends Component {
       else
       {
          return (
-            <select id="listaEdificios" onChange={this.handleChange}>
-               <option value="-1">Seleccione un edificio</option>
+            <form>
+               <select id="listaEdificios" onChange={this.handleChange}>
+                  <option value="-1">Seleccione un edificio</option>
 
-               {
-                  edificios.map(item => (
-                     <option value={item.codigo}>{item.nombre}</option>
+                  {
+                     edificios.map(item => (
+                        <option value={item.codigo}>{item.nombre}</option>
 
-                  ))
-               }
-            </select>
+                     ))
+                  }
+               </select>
+               <select id="listaUnidades">
+                  <option value="-1">Seleccione una unidad</option>
+                  <option value="0">Espacio común</option>
+                  {
+                     unidadesListadas.map(item => (
+                     <option value={item.identificador}> {item.piso}° {item.numero}</option>
 
+                     ))
+                  } 
+               </select>
+            </form>
          );
 
       }
