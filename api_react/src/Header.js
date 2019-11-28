@@ -4,18 +4,18 @@ import { Link } from 'react-router-dom'
 class Header extends React.Component {
 
   handlerClickItem() {
-    localStorage.removeItem("usuario");
-    localStorage.removeItem("administrador");
-    localStorage.removeItem("documento");
+    sessionStorage.removeItem("usuario");
+    sessionStorage.removeItem("administrador");
+    sessionStorage.removeItem("documento");
 
     window.location = '/';  
  }
 
   render() {
 
-    if(localStorage.getItem("usuario"))
+    if(sessionStorage.getItem("usuario"))
     {
-      if(localStorage.getItem("administrador") === "true")
+      if(sessionStorage.getItem("administrador") === "true")
       {
         return (
           <div className="topBlue">

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import daos.DuenioDAO;
 import daos.EdificioDAO;
 import daos.InquilinoDAO;
 import daos.PersonaDAO;
@@ -32,6 +33,19 @@ public class Controlador {
 		if(instancia == null)
 			instancia = new Controlador();
 		return instancia;
+	}
+	
+	public List<UnidadView> getUnidadesParaReclamosUsuario(String documento)
+	{
+		List<UnidadView> resultado = new ArrayList<UnidadView>();
+		List<Unidad> unidadesInquilino = InquilinoDAO.getInstancia().unidadesPorInquilino(documento);
+		List<Unidad> unidadesPorDuenio = DuenioDAO.getInstancia().unidadesPorDuenio(documento);
+		for(Unidad u : unidadesInquilino)
+			resultado.add(u.toView());
+		for(Unidad u : unidadesPorDuenio)
+			resultado.add(u.toView());
+			
+		return resultado;
 	}
 	
 	public List<EdificioView> getEdificios(){

@@ -60,7 +60,7 @@ public class HomeController {
 	//reclamosPorPersona
 	@RequestMapping(value = "/getEdificiosParaReclamosUsuario", method = RequestMethod.GET, produces = {"application/json"})
 	public @ResponseBody<json> String getEdificiosParaReclamosUsuario(@RequestParam(value="documento", required=true) String documento) throws JsonProcessingException {
-		List<EdificioView> edificios = Controlador.getInstancia().getEdificios();
+		/*List<EdificioView> edificios = Controlador.getInstancia().getEdificios();
 		List<EdificioView> listado = new ArrayList<EdificioView>();
 		for(EdificioView ed : edificios)
 		{
@@ -81,7 +81,10 @@ public class HomeController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+		}*/
+		List<UnidadView> listado = new ArrayList<UnidadView>();
+		listado = Controlador.getInstancia().getUnidadesParaReclamosUsuario(documento);
+		
 		ObjectMapper mapper = new ObjectMapper();
 		return mapper.writeValueAsString(listado);
 	}

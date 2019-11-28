@@ -13,11 +13,28 @@ class ReclamoForm extends Component {
    }
   // getEdificiosParaReclamosUsuario
    componentDidMount() {
-      fetch('http://localhost:8080/apitp/getEdificiosParaReclamosUsuario?documento=' + localStorage.getItem("documento"))
+      fetch('http://localhost:8080/apitp/getEdificiosParaReclamosUsuario?documento=' + sessionStorage.getItem("documento"))
       .then((res) => res.json()).then((json) => {
+         var listadoEdificios = [];
+         json.forEach(function(unidad){
+            var aparecio = false;
+            listadoEdificios.forEach(function(edificio){
+               if(edificio.nombre == unidad.edificio.nombre)
+               {
+                  aparecio = true;
+               }
+            });
+
+            if(aparecio == false)
+            {
+               listadoEdificios.push(unidad.edificio);
+            }
+         });
+
          this.setState({
             isLoaded: true,
-            edificios: json
+            unidades: json,
+            edificios: listadoEdificios
             });
             console.log(json);
       }).catch((error) =>{
@@ -39,7 +56,6 @@ class ReclamoForm extends Component {
       }
       else
       {
-
          return (
             <select id="listaEdificios" onChange={this.handleChange}>
                <option value="-1">Seleccione un edificio</option>

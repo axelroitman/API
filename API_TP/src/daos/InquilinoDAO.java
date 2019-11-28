@@ -97,8 +97,25 @@ public Unidad getUnidadPorInquilinoId(int id) throws PersonaException{
 		return inquilinos;
 	}
 	
-	public List<Unidad> unidadesPorInquilino(Persona inquilino){
-		List<Unidad> resultado = new ArrayList<Unidad>();
+	public List<Unidad> unidadesPorInquilino(String documento){
+		List<Unidad> rdo = new ArrayList<Unidad>();
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		s.beginTransaction();
+		List<InquilinoEntity> inquilinosEntity = s.createQuery("from InquilinoEntity i where i.persona.documento = ?")
+				.setString(0, documento).list();
+
+		for(InquilinoEntity i : inquilinosEntity) 
+		{
+			UnidadEntity ue = (UnidadEntity) s.createQuery("from UnidadEntity u where u.id = ?").setInteger(0, i.getUnidad().getId()).uniqueResult();
+			rdo.add(UnidadDAO.getInstancia().toNegocio(ue));
+		}
+		s.getTransaction().commit();		
+		s.close();
+		
+		return rdo;
+
+		
+		/*List<Unidad> resultado = new ArrayList<Unidad>();
 		List<Unidad> un = UnidadDAO.getInstancia().getUnidades();
 		for(Unidad unidad : un) {
 			List<Persona> inq = unidad.getInquilinos();
@@ -106,7 +123,7 @@ public Unidad getUnidadPorInquilinoId(int id) throws PersonaException{
 				resultado.add(unidad);
 			}
 		}
-		return resultado;
+		return resultado;*/
 	}
 
 	public void save(Unidad unidad, Persona inquilino){

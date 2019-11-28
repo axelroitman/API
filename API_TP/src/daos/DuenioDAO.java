@@ -136,8 +136,26 @@ public Unidad getUnidadPorDuenioId(int id) throws PersonaException{
 		return new Persona (de.getPersona().getDni(), de.getPersona().getNombre(), de.getPersona().getUsuario(), de.getPersona().getPass(), de.getPersona().isActivo(), de.getPersona().isAdministrador());
 	}
 
-	public List<Unidad> unidadesPorDuenio(Persona duenio){
-		List<Unidad> resultado = new ArrayList<Unidad>();
+	public List<Unidad> unidadesPorDuenio(String documento){
+		
+		List<Unidad> rdo = new ArrayList<Unidad>();
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		s.beginTransaction();
+		List<DuenioEntity> dueniosEntity = s.createQuery("from DuenioEntity i where i.persona.documento = ?")
+				.setString(0, documento).list();
+
+		for(DuenioEntity d : dueniosEntity) 
+		{
+			UnidadEntity ue = (UnidadEntity) s.createQuery("from UnidadEntity u where u.id = ?").setInteger(0, d.getUnidad().getId()).uniqueResult();
+			rdo.add(UnidadDAO.getInstancia().toNegocio(ue));
+		}
+		s.getTransaction().commit();		
+		s.close();
+		
+		return rdo;
+
+		
+		/*List<Unidad> resultado = new ArrayList<Unidad>();
 		List<Unidad> un = UnidadDAO.getInstancia().getUnidades();
 		for(Unidad unidad : un) {
 			List<Persona> due = unidad.getDuenios();
@@ -145,7 +163,7 @@ public Unidad getUnidadPorDuenioId(int id) throws PersonaException{
 				resultado.add(unidad);
 			}
 		}
-		return resultado;
+		return resultado;*/
 	}
 	
 }
