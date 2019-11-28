@@ -52,7 +52,7 @@ class Reclamo extends Component {
             <p>Imagenes: <strong>*IMAGENES*</strong></p>
 
             
-            <Link  to="/reclamos">Volver</Link>
+            <button onClick={this.props.history.goBack}>Volver</button>
             </div>
          );
       }
