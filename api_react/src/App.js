@@ -15,6 +15,8 @@ import Personas from './Personas/Personas'
 import Persona from './Personas/Persona'
 import Edificios from './Edificios/Edificios'
 import Habitantes from './Edificios/Habitantes'
+import Habilitados from './Edificios/Habilitados';
+
 import ReclamosPorEdificio from './Edificios/ReclamosPorEdificio'
 
 
@@ -40,6 +42,7 @@ function App() {
 				<Route  path="/recPorEd" component={ReclamosPorEdificio} />
 				<Route  path="/verReclamos" component={TodosLosReclamos} />
 				<Route  path="/agregarDueño" component={AgregarDueño} />
+				<Route  path="/habilitadosPorEdificio" component={Habilitados} />
 
 				<Route  path="/reclamo/:id" component={Reclamo} />
 				<Route  path="/nuevo-reclamo" component={ReclamoForm} />
