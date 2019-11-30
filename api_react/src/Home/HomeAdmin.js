@@ -53,6 +53,9 @@ export default class InicioAdmin extends Component {
             <li  style={{ listStyleType: "none" }}>
               <Link to="/alquilarUnidad"><h3>Alquilar unidad</h3></Link>
             </li>
+            <li  style={{ listStyleType: "none" }}>
+              <Link to="/liberarUnidad"><h3>Liberar unidad</h3></Link>
+            </li>
 
           </ul> 
         ) 
