@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class Liberar extends Component {
+class Habitar extends Component {
    constructor(props) {
       super(props);
       this.state  = {
@@ -70,17 +70,17 @@ handleSubmit = (event) => {
                });
       
             }
-               fetch('http://localhost:8080/apitp/liberarUnidad?codigo=' + edificio + '&piso=' + piso + '&numero=' + numero, {
+               fetch('http://localhost:8080/apitp/habitarUnidad?codigo=' + edificio + '&piso=' + piso + '&numero=' + numero, {
                   method: 'PUT'
                 }).then(response => {
                   if (response.status === 200) 
                   {
-                    alert("Unidad liberada exitosamente.");
+                    alert("Unidad habitada exitosamente.");
                     window.location = '/';
                   }
                   else if (response.status === 409)
                   {
-                      alert("Error al liberar la unidad.");
+                      alert("Error al habitar la unidad.");
                   }
                   else
                   {
@@ -129,4 +129,4 @@ handleSubmit = (event) => {
 
    }
 }
-export default Liberar;
+export default Habitar;

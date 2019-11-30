@@ -33,6 +33,8 @@ import UnidadesPorDueño from './Unidades/UnidadesPorDueño';
 import Alquilar from './Unidades/Alquilar';
 import ReclamosPorUnidad from './Reclamos/ReclamosPorUnidad';
 import Liberar from './Unidades/Liberar';
+import DueñosPorUnidad from './Unidades/DueñosPorUnidad';
+import Habitar from './Unidades/Habitar';
 
 function App() {
 
@@ -56,6 +58,7 @@ function App() {
 				<Route  path="/agregarInquilino" component={AgregarInquilino} />
 				<Route  path="/dueñosPorEdificio" component={DueñosEdificio} />
 				<Route  path="/inquilinosPorUnidad" component={InquilinosPorUnidad} />
+				<Route  path="/dueñosPorUnidad" component={DueñosPorUnidad} />
 				<Route  path="/transferir" component={Transferir} />
 
 
@@ -67,6 +70,7 @@ function App() {
 				<Route  path="/alquilarUnidad" component={Alquilar} />
 				<Route  path="/recPorUn" component={ReclamosPorUnidad} />
 				<Route  path="/liberarUnidad" component={Liberar} />
+				<Route  path="/habitarUnidad" component={Habitar} />
 
 
 		</Router>

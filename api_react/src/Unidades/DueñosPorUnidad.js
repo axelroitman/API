@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom'
 
-class InquilinosPorUnidad extends Component {
+class DueñosPorUnidad extends Component {
    constructor(props) {
       super(props);
       this.state  = {
         edificios: [],
         unidades: [],
-        inquilinos: [],
+        dueños: [],
         cargar: false,
         isLoaded:false
       }
@@ -74,10 +74,10 @@ handleSubmit = (event) => {
                      numero = un.numero;
                   }
                });
-            fetch('http://localhost:8080/apitp/getInquilinosPorUnidad?codigo=' + edificio + '&piso=' + piso + '&numero=' + numero)
+            fetch('http://localhost:8080/apitp/getDueniosPorUnidad?codigo=' + edificio + '&piso=' + piso + '&numero=' + numero)
             .then((res) => res.json()).then((json) => {
                this.setState({
-               inquilinos: json,
+               dueños: json,
 
                cargar: true
             });
@@ -96,7 +96,7 @@ handleSubmit = (event) => {
    }
 
   render() {
-      var  {isLoaded, edificios, unidades: unidadesListadas, inquilinos, cargar} = this.state;
+      var  {isLoaded, edificios, unidades: unidadesListadas, dueños, cargar} = this.state;
 
       if(!isLoaded) {
          return <div>Cargando...</div>
@@ -106,7 +106,7 @@ handleSubmit = (event) => {
          if(cargar === false){
          return (
             <form onSubmit={this.handleSubmit}>
-               <h1>Inquilinos Por Unidad</h1>
+                <h1>Dueños Por Unidad</h1>
                <select id="listaEdificios" onChange={this.handleChange}>
                   <option value="-1">Seleccione un edificio</option>
 
@@ -137,25 +137,28 @@ handleSubmit = (event) => {
         }
        else
        {
-         if (inquilinos.length === 0)
+         if (dueños.length === 0)
          {
             return(
-               <div>
-               <h1>Inquilinos Por Unidad</h1>
-              <p>No hay inquilinos en esta unidad.</p>
-              </div>
+                <div>
+              <h1>Dueños Por Unidad</h1>
+              <p>Esta unidad no tiene dueños.</p>
+                </div>
             );
          }
          else{
             return(
-               <ul className="listaInquilinos">
+                <div>
+                <h1>Dueños Por Unidad</h1>
+               <ul className="listaDueños">
                   {
-                  inquilinos.map(item => (
+                  dueños.map(item => (
                      <li key={item.id} onClick={this.handlerClickItem.bind(this,item.documento)}> {item.nombre}</li>
                   ))
                   }
 
                </ul>
+               </div>
             );
          }
       }
@@ -163,4 +166,4 @@ handleSubmit = (event) => {
 }
 }
 }
-export default InquilinosPorUnidad;
+export default DueñosPorUnidad;

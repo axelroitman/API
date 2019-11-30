@@ -42,6 +42,9 @@ export default class InicioAdmin extends Component {
               <Link to="/inquilinosPorUnidad"><h3>Ver inquilinos por unidad</h3></Link>
             </li>
             <li  style={{ listStyleType: "none" }}>
+              <Link to="/dueñosPorUnidad"><h3>Ver dueños por unidad</h3></Link>
+            </li>
+            <li  style={{ listStyleType: "none" }}>
               <Link to="/transferir"><h3>Transferir unidad</h3></Link>
             </li>
             <li  style={{ listStyleType: "none" }}>
@@ -55,6 +58,9 @@ export default class InicioAdmin extends Component {
             </li>
             <li  style={{ listStyleType: "none" }}>
               <Link to="/liberarUnidad"><h3>Liberar unidad</h3></Link>
+            </li>
+            <li  style={{ listStyleType: "none" }}>
+              <Link to="/habitarUnidad"><h3>Habitar unidad</h3></Link>
             </li>
 
           </ul> 
