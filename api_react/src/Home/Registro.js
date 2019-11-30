@@ -63,20 +63,7 @@ export default class Registro extends Component {
     {
       alert("Las contraseñas no coinciden");
     }
-    
-    /*axios
-      .post(
-        "http://localhost:3001/registrations",
-        {
-          user: {
-            email: email,
-            password: password,
-            password_confirmation: password_confirmation
-          }
-        },
-        { withCredentials: true }
-      )
-      */
+ 
   }
 
   render() {

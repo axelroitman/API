@@ -83,6 +83,88 @@ class ReclamoForm extends Component {
       //this.setState({ value: event.target.value });
    };
 
+   handleSubmit = (event) => {
+
+      event.preventDefault();
+
+      var edificio = document.getElementById("listaEdificios").value;
+      var ubicacion = null;
+      var piso = null;
+      var numero = null;
+
+      if(edificio != -1)
+      {
+         var unidad = document.getElementById("listaUnidades").value;
+         if(unidad == 0)
+         {
+            ubicacion = document.getElementById("ubicacion").value;
+            unidad = null;
+            if(ubicacion == '')
+            {
+               alert("Debe escribir una ubicación");
+            }
+         }
+
+         if(unidad == -1)
+         {
+            alert("Debe seleccionar una unidad");
+         }
+         else
+         {
+            if(unidad != 0)
+            {
+               this.state.unidades.forEach(function(un){
+                  if(un.piso + "° " + un.numero == unidad)
+                  {
+                     piso = un.piso;
+                     numero = un.numero;
+                  }
+               });
+      
+            }
+
+            var descripcion = document.getElementById("descripcion").value;
+            if(descripcion == '')
+            {
+               alert("Debe escribir una descripcion de su problema");
+            }
+            else
+            {
+               //FETCH
+               fetch('http://localhost:8080/apitp/agregarReclamo?codigo=' + edificio + '&piso=' + piso + '&numero=' + numero + '&documento=' + sessionStorage.getItem("documento") + '&ubicacion=' + ubicacion + '&descripcion=' + descripcion, {
+                  method: 'POST' // or 'PUT'
+                }).then(response => {
+                  console.log(response);
+                  if (response.status === 201) 
+                  {
+                    alert("Reclamo creado.");
+                    window.location = '/';
+                  }
+                  else if (response.status === 409)
+                  {
+                      alert("Error al crear el reclamo.");
+                  }
+                  else
+                  {
+                     alert("Respuesta misteriosa.");
+                     console.log(response);
+                  }
+
+                })
+                .catch(error => {
+                  alert("ERROR");
+                  console.log("Error.", error);
+                });
+          
+            }
+         }
+      }
+      else
+      {
+         alert("Debe seleccionar un edificio");
+      }
+     
+   }
 
   render() {
       var  {isLoaded, edificios, unidadesListadas} =this.state;
@@ -93,7 +175,7 @@ class ReclamoForm extends Component {
       else
       {
          return (
-            <form>
+            <form id="frm-reclamo" onSubmit={this.handleSubmit}>
                <select id="listaEdificios" onChange={this.handleChange}>
                   <option value="-1">Seleccione un edificio</option>
 
@@ -115,6 +197,8 @@ class ReclamoForm extends Component {
                   } 
                </select>
                <input style={{display: 'none'}} type="text" id="ubicacion" name="ubicacion" placeholder="Ubicacion"/>
+               <textarea name="descripcion" id="descripcion" rows="10" cols="50" placeholder="Descripcion"></textarea>
+               <button type="submit">Crear reclamo</button>
 
             </form>
          );

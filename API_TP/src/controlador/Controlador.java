@@ -293,7 +293,11 @@ public class Controlador {
 
 	public int agregarReclamo(int codigo, String piso, String numero, String documento, String ubicacion, String descripcion) throws EdificioException, UnidadException, PersonaException {
 		Edificio edificio = buscarEdificio(codigo);
-		Unidad unidad = buscarUnidad(codigo, piso, numero);
+		Unidad unidad = null;
+		if(piso != null && numero != null)
+		{
+			unidad = buscarUnidad(codigo, piso, numero);
+		}
 		Persona persona = buscarPersona(documento);
 		Reclamo reclamo = new Reclamo(persona, edificio, ubicacion, descripcion, unidad, null);
 		reclamo.save();

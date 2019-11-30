@@ -6,7 +6,7 @@ import React, {Component} from 'react';
        super(props);
        this.state  = {
          reclamos: [],
-           isLoaded:false,
+         isLoaded:false,
          documento:""
        }
     }
@@ -51,9 +51,9 @@ import React, {Component} from 'react';
                  {
                     reclamos.map(item => {
                       return item.unidad != null ?
-                       <li key={item.id} onClick={this.handlerClickItem.bind(this,item.numero)}> nro. {item.numero} - {item.edificio.nombre}, {item.unidad.piso}° {item.unidad.numero}</li>
+                       <li key={item.id} onClick={this.handlerClickItem.bind(this,item.numero)}> #{item.numero} - {item.edificio.nombre}, {item.unidad.piso}° {item.unidad.numero}</li>
                        :
-                       <li key={item.id} onClick={this.handlerClickItem.bind(this,item.numero)}> #{item.numero} - {item.ubicacion}</li>
+                       <li key={item.id} onClick={this.handlerClickItem.bind(this,item.numero)}> #{item.numero} - {item.edificio.nombre}, {item.ubicacion}</li>
 
                     })
                  }

@@ -62,7 +62,16 @@ public class ReclamoDAO {
 	}
 	
 	ReclamoEntity toEntity(Reclamo reclamo){
-		return new ReclamoEntity(reclamo.getNumero(), PersonaDAO.getInstancia().toEntity(reclamo.getUsuario()), EdificioDAO.getInstancia().toEntity(reclamo.getEdificio()), reclamo.getUbicacion(), reclamo.getDescripcion(), UnidadDAO.getInstancia().toEntity(reclamo.getUnidad()), reclamo.getEstado(), reclamo.getActualizacion());
+		if(reclamo.getUnidad() == null) 
+		{
+			return new ReclamoEntity(reclamo.getNumero(), PersonaDAO.getInstancia().toEntity(reclamo.getUsuario()), EdificioDAO.getInstancia().toEntity(reclamo.getEdificio()), reclamo.getUbicacion(), reclamo.getDescripcion(), reclamo.getEstado(), reclamo.getActualizacion());
+
+		}
+		else 
+		{
+			return new ReclamoEntity(reclamo.getNumero(), PersonaDAO.getInstancia().toEntity(reclamo.getUsuario()), EdificioDAO.getInstancia().toEntity(reclamo.getEdificio()), reclamo.getDescripcion(), UnidadDAO.getInstancia().toEntity(reclamo.getUnidad()), reclamo.getEstado(), reclamo.getActualizacion());
+		}
+
 	} 
 	
 	Reclamo toNegocio(ReclamoEntity entity){

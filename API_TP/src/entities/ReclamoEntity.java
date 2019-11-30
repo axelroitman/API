@@ -62,6 +62,31 @@ public class ReclamoEntity {
 		setEstado(estado);
 	}
 
+	public ReclamoEntity(int id, PersonaEntity usuario, EdificioEntity edificio, String ubicacion, String descripcion,
+			Estado estado, String actualizacion) {
+		super();
+		this.id = id;
+		this.usuario = usuario;
+		this.edificio = edificio;
+		this.ubicacion = ubicacion;
+		this.descripcion = descripcion;
+		this.actualizacion = actualizacion;
+		this.imagenes= new ArrayList<ImagenEntity>();
+		setEstado(estado);
+	}
+
+	public ReclamoEntity(int id, PersonaEntity usuario, EdificioEntity edificio, String descripcion,
+			UnidadEntity unidad, Estado estado, String actualizacion) {
+		super();
+		this.id = id;
+		this.usuario = usuario;
+		this.edificio = edificio;
+		this.descripcion = descripcion;
+		this.unidad = unidad;
+		this.actualizacion = actualizacion;
+		this.imagenes= new ArrayList<ImagenEntity>();
+		setEstado(estado);
+	}
 
 	public String getActualizacion() {
 		return actualizacion;
