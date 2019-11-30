@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 
-class Habilitados extends Component {
+class ReclamosPorPersona extends Component {
     constructor(props) {
       super(props);
       this.state = {
-          codigo: "",
-          habilitados: [],
-          edificios: [],
+          documento: "",
+          reclamos: [],
+          personas: [],
           isLoaded: false,
           cargado: false
         };
@@ -16,10 +16,10 @@ class Habilitados extends Component {
     }
   
     componentDidMount() {
-      fetch('http://localhost:8080/apitp/getEdificios')
+      fetch('http://localhost:8080/apitp/getPersonas')
       .then((res) => res.json()).then((json) => {
          this.setState({
-          edificios: json
+          personas: json
         });
       }).catch((error) =>{
         alert("Error en API" + error);
@@ -29,20 +29,18 @@ class Habilitados extends Component {
     
     handleChange(event) {
       var valorSel = event.target.value;
-      this.setState({codigo: valorSel})
-        
+      this.setState({documento: valorSel})
     }
   
     
     handleSubmit(event) {
       this.setState({cargado: true})
-      const {codigo} = this.state;
-      console.log(codigo)
-      fetch('http://localhost:8080/apitp/getHabilitadosPorEdificio?codigo=' + codigo)
+      const {documento} = this.state;
+      fetch('http://localhost:8080/apitp/getReclamosPorPersona?documento=' + documento)
         .then((res) => res.json()).then((json) => {
            this.setState({
             isLoaded: true,
-            habilitados: json,
+            reclamos: json,
           });
   
         }).catch((error) =>{
@@ -54,33 +52,37 @@ class Habilitados extends Component {
     }
    
     handlerClickItem(id) {
-      this.props.history.push('/persona/' + id)
+      this.props.history.push('/reclamo/' + id)
    }
   
     render() {
       
-      var  {isLoaded, habilitados, edificios} = this.state;
-      console.log(habilitados)
+      var  {isLoaded, reclamos, personas} = this.state;
+      console.log(reclamos)
 
      if (this.state.cargado)
      {
       if(!isLoaded) {
         return <div>Cargando...</div>
     }
-    else if (habilitados.length == 0)
+    else if (reclamos.length == 0)
      {
         return(
-          <p>No hay personas habilitadas en el edificio seleccionado.</p>
+          <p>La persona seleccionada no tiene ningún reclamo.</p>
         );
      }
     else{
       return (
           <div>
-              <ul className="listHabilitados">
+              <ul className="listReclamos">
              {
-                habilitados.map(item => (
-                   <li key={item.id} onClick={this.handlerClickItem.bind(this,item.documento)}> {item.nombre}</li>
-                ))
+               reclamos.map(item => {
+                return item.unidad != null ?
+                 <li key={item.id} onClick={this.handlerClickItem.bind(this,item.numero)}> #{item.numero} - {item.edificio.nombre}, {item.unidad.piso}° {item.unidad.numero}</li>
+                 :
+                 <li key={item.id} onClick={this.handlerClickItem.bind(this,item.numero)}> #{item.numero} - {item.edificio.nombre}, {item.ubicacion}</li>
+
+              })
              }
               </ul>
 
@@ -93,12 +95,12 @@ class Habilitados extends Component {
 
 
         <form onSubmit={this.handleSubmit}>
-          <select id="listaEdificios" onChange={this.handleChange}>
-                  <option value="-1">Seleccione un edificio</option>
+          <select id="listaPersonas" onChange={this.handleChange}>
+                  <option value="-1">Seleccione a una persona</option>
 
                   {
-                     edificios.map(item => (
-                        <option value={item.codigo}>{item.nombre}</option>
+                     personas.map(item => (
+                        <option value={item.documento}>{item.nombre}</option>
 
                      ))
                   }
@@ -109,4 +111,4 @@ class Habilitados extends Component {
     }
   }
 }
-  export default Habilitados;
+  export default ReclamosPorPersona;
