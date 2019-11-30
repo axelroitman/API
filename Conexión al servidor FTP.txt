@@ -17,4 +17,4 @@ Para conectar al FTP desde el proyecto web dinámico:
 
 https://blog.dotnetframework.org/2016/06/07/upload-ftp-using-javascript-only/
 ftp.apixml.net
-Token: c3bb06b0-11f6-4b2e-a2b6-2168b3b49d1e
+Token: fae789eb-544f-451d-8601-361249ff8f0a

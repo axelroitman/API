@@ -50,7 +50,7 @@ class Reclamo extends Component {
          }
 
          reclamo.imagenes.forEach(function(img){
-            imagenesLinks.push("https://grupo6api.000webhostapp.com/" + img.direccion + "." + img.tipo);
+            imagenesLinks.push("https://grupo6api.000webhostapp.com/" + reclamo.numero + "_" + img.direccion + "." + img.tipo);
          });
 
          if(imagenesLinks.length == 0)
