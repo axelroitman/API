@@ -176,6 +176,7 @@ class ReclamoForm extends Component {
       {
          return (
             <form id="frm-reclamo" onSubmit={this.handleSubmit}>
+               <h1>Crear Reclamo</h1>
                <select id="listaEdificios" onChange={this.handleChange}>
                   <option value="-1">Seleccione un edificio</option>
 

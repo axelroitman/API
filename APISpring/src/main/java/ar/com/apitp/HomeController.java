@@ -137,6 +137,19 @@ public class HomeController {
 		return mapper.writeValueAsString(inquilinos);
 	}
 	
+	@RequestMapping(value= "/getUnidadesPorInquilino", method = RequestMethod.GET, produces= {"application/json"})
+	public @ResponseBody<json> String getUnidadesPorInquilino(@RequestParam(value="documento", required=true) String documento) throws JsonProcessingException {
+		List<UnidadView> unidades = Controlador.getInstancia().getUnidadesPorInquilino(documento);
+		ObjectMapper mapper = new ObjectMapper();
+		return mapper.writeValueAsString(unidades);
+	}
+	@RequestMapping(value= "/getUnidadesPorDuenio", method = RequestMethod.GET, produces= {"application/json"})
+	public @ResponseBody<json> String getUnidadesPorDuenio(@RequestParam(value="documento", required=true) String documento) throws JsonProcessingException {
+		List<UnidadView> unidades = Controlador.getInstancia().getUnidadesPorDuenio(documento);
+		ObjectMapper mapper = new ObjectMapper();
+		return mapper.writeValueAsString(unidades);
+	}
+	
 	//getUnidadesPorEdificio
 	@RequestMapping(value = "/getUnidadesPorEdificio", method = RequestMethod.GET, produces = {"application/json"})
 	public @ResponseBody<json> String getUnidadesPorEdificio(@RequestParam(value="codigo", required=true) int codigo) throws JsonProcessingException {

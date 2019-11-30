@@ -47,6 +47,7 @@ import React, {Component} from 'react';
      else{
       return (
         <div>
+          <h1>Mis Reclamos</h1>
         <ul className="listReclamos">
                  {
                     reclamos.map(item => {

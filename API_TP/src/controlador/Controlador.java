@@ -48,6 +48,22 @@ public class Controlador {
 		return resultado;
 	}
 	
+	public List<UnidadView> getUnidadesPorInquilino(String documento){
+		List<UnidadView> resultado = new ArrayList<UnidadView>();
+		List<Unidad> unidadesInquilino = InquilinoDAO.getInstancia().unidadesPorInquilino(documento);
+		for(Unidad u : unidadesInquilino)
+			resultado.add(u.toView());
+		return resultado;
+	}
+	
+	public List<UnidadView> getUnidadesPorDuenio(String documento){
+		List<UnidadView> resultado = new ArrayList<UnidadView>();
+		List<Unidad> unidadesInquilino = DuenioDAO.getInstancia().unidadesPorDuenio(documento);
+		for(Unidad u : unidadesInquilino)
+			resultado.add(u.toView());
+		return resultado;
+	}
+	
 	public List<EdificioView> getEdificios(){
 		List<EdificioView> resultado = new ArrayList<EdificioView>();
 		List<Edificio> edificios = EdificioDAO.getInstancia().getEdificios();
