@@ -50,14 +50,14 @@ class Reclamo extends Component {
          }
 
          reclamo.imagenes.forEach(function(img){
-            imagenesLinks.push("https://grupo6api.000webhostapp.com/" + reclamo.numero + "_" + img.direccion + "." + img.tipo);
+            
+            imagenesLinks.push({imagen : "https://grupo6api.000webhostapp.com/" + reclamo.numero + "_" + img.direccion + "." + img.tipo, alernativa: "https://grupo6api.000webhostapp.com/FtpTrial-" + reclamo.numero + "_" + img.direccion + "." + img.tipo});
          });
 
          if(imagenesLinks.length == 0)
          {
             sinImagenes = "Sin imágenes";
          }
-
 
          if(sessionStorage.getItem("administrador") === "true"){
             return (
@@ -69,12 +69,13 @@ class Reclamo extends Component {
                <p>Descripcion: {reclamo.descripcion}</p>
                <p>Imagenes: {sinImagenes}</p>
                <div>
-                  {
-                     imagenesLinks.map(item => (
-                        <img src={item} />   
-                     ))
-                  
-                  }
+               {
+                  imagenesLinks.map(item => (
+                     <img style={{width: 100}} src={item.imagen} ref={img => this.img = img} onError={
+                        () => this.img.src = item.alernativa
+                     }/>
+                  ))
+               }
                </div>
                <button onClick={this.props.history.goBack}>Volver</button>
                </div>
@@ -91,9 +92,10 @@ class Reclamo extends Component {
             <div>
                {
                   imagenesLinks.map(item => (
-                     <img style={{height: 100}} src={item} />   
+                     <img style={{width: 100}} src={item.imagen} ref={img => this.img = img} onError={
+                        () => this.img.src = item.alernativa
+                     }/>
                   ))
-                  
                }
             </div>
 
