@@ -426,21 +426,19 @@ public class HomeController {
 				
 		//agregarReclamo
 				@RequestMapping(value = "/agregarReclamo", method = RequestMethod.POST)
-				public ResponseEntity <Void> agregarReclamo(@RequestParam(value="codigo", required=true) int codigo, @RequestParam(value="piso", required=true) String piso, @RequestParam(value="numero", required=true) String numero, @RequestParam(value="documento", required=true) String documento, @RequestParam(value="ubicacion", required=true) String ubicacion, @RequestParam(value="descripcion", required=true) String descripcion) {
+				public @ResponseBody<json> String agregarReclamo(@RequestParam(value="codigo", required=true) int codigo, @RequestParam(value="piso", required=true) String piso, @RequestParam(value="numero", required=true) String numero, @RequestParam(value="documento", required=true) String documento, @RequestParam(value="ubicacion", required=true) String ubicacion, @RequestParam(value="descripcion", required=true) String descripcion)  throws JsonProcessingException {
+					int numReclamo = 0;
 					try {
-						int numReclamo = Controlador.getInstancia().agregarReclamo(codigo, piso, numero, documento, ubicacion, descripcion);
-						//CAMBIAR PARA QUE DEVUELVA EL NUMERO DE RECLAMO EN VEZ DE LOS CODIGOS
-						return new ResponseEntity<Void>(HttpStatus.CREATED);
+						numReclamo = Controlador.getInstancia().agregarReclamo(codigo, piso, numero, documento, ubicacion, descripcion);
 					} catch (EdificioException e) {
-						return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-						//e.getMessage();
+						e.getMessage();
 					} catch (UnidadException e) {
-						return new ResponseEntity<Void>(HttpStatus.CONFLICT);						
-						//e.getMessage();
+						e.getMessage();
 					} catch (PersonaException e) {
-						return new ResponseEntity<Void>(HttpStatus.CONFLICT);						
-						//e.getMessage();
+						e.getMessage();
 					}
+					ObjectMapper mapper = new ObjectMapper();
+					return mapper.writeValueAsString(numReclamo);
 				}
 		//cambiarEstado
 				@RequestMapping(value = "/cambiarEstado", method = RequestMethod.PUT)
