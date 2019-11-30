@@ -35,9 +35,9 @@ class Reclamo extends Component {
       }
       else
       {
-         console.log(reclamo);
          var ubicacion = "";
          var imagenesLinks = [];
+         var sinImagenes = "";
 
          if(reclamo.ubicacion == null)
          {
@@ -50,8 +50,13 @@ class Reclamo extends Component {
          }
 
          reclamo.imagenes.forEach(function(img){
-            imagenesLinks.push("http://api.axel.dx.am/" + img.direccion + "." + img.tipo);
+            imagenesLinks.push("https://grupo6api.000webhostapp.com/" + img.direccion + "." + img.tipo);
          });
+
+         if(imagenesLinks.length == 0)
+         {
+            sinImagenes = "Sin imágenes";
+         }
 
 
          if(sessionStorage.getItem("administrador") === "true"){
@@ -62,15 +67,15 @@ class Reclamo extends Component {
                <p>Usuario: {reclamo.usuario.nombre}</p>
                <p>Ubicacion: {reclamo.edificio.nombre}, {ubicacion}</p>
                <p>Descripcion: {reclamo.descripcion}</p>
-               <p>Imagenes: <strong>*IMAGENES*</strong></p>
-               
-               {
-                  imagenesLinks.map(item => (
-                     <img src={item} />   
-                  ))
-                 
-               }
-               
+               <p>Imagenes: {sinImagenes}</p>
+               <div>
+                  {
+                     imagenesLinks.map(item => (
+                        <img src={item} />   
+                     ))
+                  
+                  }
+               </div>
                <button onClick={this.props.history.goBack}>Volver</button>
                </div>
             );
@@ -82,14 +87,15 @@ class Reclamo extends Component {
             <p>Estado: <b>{reclamo.estado}</b></p>
             <p>Ubicacion: {reclamo.edificio.nombre}, {ubicacion}</p>
             <p>Descripcion: {reclamo.descripcion}</p>
-            <p>Imagenes: <strong>*IMAGENES*</strong></p>
-
-            {
+            <p>Imagenes: {sinImagenes}</p>
+            <div>
+               {
                   imagenesLinks.map(item => (
-                     <img src={item} />   
+                     <img style={{height: 100}} src={item} />   
                   ))
-                 
-            }
+                  
+               }
+            </div>
 
             <button onClick={this.props.history.goBack}>Volver</button>
             </div>

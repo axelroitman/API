@@ -3,11 +3,11 @@ CONEXIÓN AL SERVIDOR FTP DESDE FILEZILLA:
 Archivo->Gestor de Sitios-> New Site
 
 
-Servidor: api.axel.dx.am
+Servidor: files.000webhost.com
 Puerto: 21
-Cifrado: Usar solo FTP plano (inseguro)
+Cifrado: Usar FTP explícito sobre TLS si está disponible
 Modo de acceso: Normal
-Usuario: 3187270_API
+Usuario: grupo6api
 Contraseña: API20192c
 
 
