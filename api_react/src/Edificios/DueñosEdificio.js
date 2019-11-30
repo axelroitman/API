@@ -65,7 +65,7 @@ class DueñosEdificio extends Component {
      if (this.state.cargado)
      {
       if(!isLoaded) {
-        return <div>Loading...</div>
+        return <div>Cargando...</div>
     }
     else if (duenios.length == 0)
      {
