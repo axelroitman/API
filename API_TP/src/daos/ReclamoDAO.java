@@ -43,13 +43,14 @@ public class ReclamoDAO {
 		return toNegocio(reclamo);
 	}
 	
-	public void save(Reclamo reclamo){
+	public int save(Reclamo reclamo){
 		ReclamoEntity aGrabar = toEntity(reclamo);
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 		s.save(aGrabar);
 		s.getTransaction().commit();
 		s.close();
+		return aGrabar.getId();
 	}
 	
 	public void update(Reclamo reclamo){

@@ -428,7 +428,8 @@ public class HomeController {
 				@RequestMapping(value = "/agregarReclamo", method = RequestMethod.POST)
 				public ResponseEntity <Void> agregarReclamo(@RequestParam(value="codigo", required=true) int codigo, @RequestParam(value="piso", required=true) String piso, @RequestParam(value="numero", required=true) String numero, @RequestParam(value="documento", required=true) String documento, @RequestParam(value="ubicacion", required=true) String ubicacion, @RequestParam(value="descripcion", required=true) String descripcion) {
 					try {
-						Controlador.getInstancia().agregarReclamo(codigo, piso, numero, documento, ubicacion, descripcion);
+						int numReclamo = Controlador.getInstancia().agregarReclamo(codigo, piso, numero, documento, ubicacion, descripcion);
+						//CAMBIAR PARA QUE DEVUELVA EL NUMERO DE RECLAMO EN VEZ DE LOS CODIGOS
 						return new ResponseEntity<Void>(HttpStatus.CREATED);
 					} catch (EdificioException e) {
 						return new ResponseEntity<Void>(HttpStatus.CONFLICT);

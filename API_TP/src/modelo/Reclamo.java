@@ -110,7 +110,8 @@ public class Reclamo {
 	}
 
 	public void save() {
-		ReclamoDAO.getInstancia().save(this);
+		int idReclamo = ReclamoDAO.getInstancia().save(this);
+		setNumero(idReclamo);
 	}
 	
 	public void update() {
