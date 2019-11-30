@@ -147,7 +147,7 @@ class ReclamoForm extends Component {
                      
                      var extension = datos[1];
                      
-                     if(extension != 'jpg' && extension != 'png' && extension != 'gif')
+                     if(extension != 'jpg' && extension != 'png' && extension != 'gif' && extension != 'jpeg')
                      {
                         error = true;
                      }
@@ -159,6 +159,7 @@ class ReclamoForm extends Component {
 
                if(error == false)
                {
+                  var cantImagenes = 0;
                   var id_reclamo = 0;
                   //FETCH
                   fetch('http://localhost:8080/apitp/agregarReclamo?codigo=' + edificio + '&piso=' + piso + '&numero=' + numero + '&documento=' + sessionStorage.getItem("documento") + '&ubicacion=' + ubicacion + '&descripcion=' + descripcion, {
@@ -178,61 +179,76 @@ class ReclamoForm extends Component {
                            console.log(imagen);
                            var blob = imagen.slice(0, imagen.size, 'image/png'); 
                            imagen = new File([blob], id_reclamo + '_' + imagen.name , {type: 'image/png'});
-                           var token = 'fae789eb-544f-451d-8601-361249ff8f0a';
-                           var file = imagen;
-                           var reader = new FileReader();
-                           reader.readAsDataURL(file);
-                           reader.addEventListener("load",
-                              function() {
-                                 var base64 = this.result;               
-                                 var xhr = new XMLHttpRequest();
-                                 if ("withCredentials" in xhr) {
-                                    // Check if the XMLHttpRequest object has a "withCredentials" property.
-                                    // "withCredentials" only exists on XMLHTTPRequest2 objects.
-                                    xhr.open('POST', "http://ftp.apixml.net/upload.aspx", true);
-                                 } else {
-                                    // Otherwise, CORS is not supported by the browser.
-                                    xhr = null;
-                                 }
-                                 if (!xhr) {
-                                    throw new Error('CORS not supported');
-                                 }
-                              xhr.onreadystatechange = function() {
-                                if (xhr.readyState == 4 && xhr.status == 200) {
-                                    var nombreArchivo = file.name;
-                                    var data = nombreArchivo.split('_');
-                                    var numeroReclamo = data.shift();
-                                    var nombreYExtension = data.join('_');
-                      
-                                    nombreYExtension = nombreYExtension.split('.');
-                      
-                                    fetch('http://localhost:8080/apitp/agregarImagenAReclamo?numero=' + numeroReclamo + "&direccion=" + nombreYExtension[0] + "&tipo=" + nombreYExtension[1],
-                                    {method: 'POST'})
-                                    .then(response => {
-                                      if (response.status != 200) 
-                                      {
-                                        alert("Error al cargar imagen");
-                                      }
-                                      else
-                                      {
-                                         if(i == imagenes.length - 1)
-                                         {
-                                             alert("Reclamo creado.");
-                                             window.location = '/reclamo/' + id_reclamo;
+                              var Ftp = {
+                                 createCORSRequest: function (method, url) {
+                                    var xhr = new XMLHttpRequest();
+                                    if ("withCredentials" in xhr) {
+                                       // Check if the XMLHttpRequest object has a "withCredentials" property.
+                                       // "withCredentials" only exists on XMLHTTPRequest2 objects.
+                                       xhr.open(method, url, true);
+                                    } else {
+                                       // Otherwise, CORS is not supported by the browser.
+                                       xhr = null;
+                                    }
+                                    return xhr;
+                                 },
+                                 upload: function(token, file) {
+                                    var reader = new FileReader();
+                                    reader.readAsDataURL(file);
+                                    reader.addEventListener("load",
+                                       function() {
+                                             var base64 = this.result;               
+                                             var xhr = Ftp.createCORSRequest('POST', "http://ftp.apixml.net/upload.aspx");
+                                             if (!xhr) {
+                                                throw new Error('CORS not supported');
+                                             }
+                                       xhr.onreadystatechange = function() {
+                                          if (xhr.readyState == 4 && xhr.status == 200) {
+                                             Ftp.callback(file);
                                           }
-                                      }
-                                    }).catch((error) =>{
-                                     alert("Error en API" + error);
-                                    });
-                                }
-                              };
-                                 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                                 xhr.send("token=" + token + "&data=" + encodeURIComponent(base64) + "&file=" + file.name);
-                              },
-                              false);
+                                       };
+                                             xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                                             xhr.send("token=" + token + "&data=" + encodeURIComponent(base64) + "&file=" + file.name);
+                                       },
+                                       false);
+                                 },
+                              callback: function(file)
+                              {      
+                                 var nombreArchivo = file.name;
+                                 var data = nombreArchivo.split('_');
+                                 var numeroReclamo = data.shift();
+                                 var nombreYExtension = data.join('_');
+                           
+                                 nombreYExtension = nombreYExtension.split('.');
+                           
+                                 fetch('http://localhost:8080/apitp/agregarImagenAReclamo?numero=' + numeroReclamo + "&direccion=" + nombreYExtension[0] + "&tipo=" + nombreYExtension[1],
+                                 {method: 'POST'})
+                                 .then(response => {
+                                    if (response.status != 200) 
+                                    {
+                                       alert("Error al cargar imagen");
+                                    } 
+                                    else
+                                    { 
+                                        cantImagenes++;
+                                        if (cantImagenes == imagenes.length)
+                                        {
+                                           alert("Reclamo creado.");
+                                           window.location = '/reclamo/' + id_reclamo;
+                                        }
+                                     }
+                                 }).catch((error) =>{
+                                 alert("Error en API" + error);
+                                 });
+                              }
+                              };                     
+      
+      
+                              Ftp.upload('fae789eb-544f-451d-8601-361249ff8f0a', imagen);		      
 
 
-                           i++;
+
+                              i++;
                         }         
                      }
                      else
@@ -250,7 +266,7 @@ class ReclamoForm extends Component {
                }
                else
                {
-                  alert("El archivo subido debe ser una imagen jpg, png o gif.");
+                  alert("El archivo subido debe ser una imagen jpg, jpeg, png o gif.");
                }
             }
          }
