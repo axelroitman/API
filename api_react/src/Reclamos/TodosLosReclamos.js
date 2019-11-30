@@ -51,7 +51,7 @@ import React, {Component} from 'react';
                       return item.unidad != null ?
                        <li key={item.id} onClick={this.handlerClickItem.bind(this,item.numero)}>Usuario: {item.usuario.nombre}, nro. {item.numero} - {item.edificio.nombre}, {item.unidad.piso}° {item.unidad.numero}</li>
                        :
-                       <li key={item.id} onClick={this.handlerClickItem.bind(this,item.numero)}> #{item.numero} - {item.ubicacion}</li>
+                       <li key={item.id} onClick={this.handlerClickItem.bind(this,item.numero)}> Usuario: {item.usuario.nombre}, nro. {item.numero} - {item.edificio.nombre}</li>
 
                     })
                  }

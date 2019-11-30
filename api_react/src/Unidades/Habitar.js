@@ -102,7 +102,7 @@ handleSubmit = (event) => {
      
       return (
          <form onSubmit={this.handleSubmit}>
-             <h1>Liberar Unidad</h1>
+             <h1>Habitar Unidad</h1>
             <select id="listaEdificios" onChange={this.handleChange}>
                <option value="-1">Seleccione un edificio</option>
 
