@@ -103,7 +103,7 @@ handleSubmit = (event) => {
                console.log(documento)
             }
                fetch('http://localhost:8080/apitp/agregarInquilinoUnidad?codigo=' + edificio + '&piso=' + piso + '&numero=' + numero + '&documento=' + documento, {
-                  method: 'POST'
+                  method: 'PUT'
                 }).then(response => {
                   if (response.status === 200) 
                   {
@@ -135,7 +135,7 @@ handleSubmit = (event) => {
       var  {isLoaded, edificios, unidades: unidadesListadas, personas: personasListadas} =this.state;
 
       if(!isLoaded) {
-         return <div>Loading...</div>
+         return <div>Cargando...</div>
       }
       else
       {

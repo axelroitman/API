@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom'
 
-class AgregarDueño extends Component {
+class Alquilar extends Component {
    constructor(props) {
       super(props);
       this.state  = {
@@ -102,17 +102,17 @@ handleSubmit = (event) => {
                documento = persona;
                console.log(documento)
             }
-               fetch('http://localhost:8080/apitp/agregarDuenioUnidad?codigo=' + edificio + '&piso=' + piso + '&numero=' + numero + '&documento=' + documento, {
-                  method: 'PUT'
+               fetch('http://localhost:8080/apitp/alquilarUnidad?codigo=' + edificio + '&piso=' + piso + '&numero=' + numero + '&documento=' + documento, {
+                  method: 'POST'
                 }).then(response => {
                   if (response.status === 200) 
                   {
-                    alert("Dueño agregado exitosamente.");
+                    alert("Se ha alquilado la unidad");
                     window.location = '/';
                   }
                   else if (response.status === 409)
                   {
-                      alert("Error al agregar al dueño.");
+                      alert("Error al alquilar.");
                   }
                   else
                   {
@@ -135,12 +135,13 @@ handleSubmit = (event) => {
       var  {isLoaded, edificios, unidades: unidadesListadas, personas: personasListadas} =this.state;
 
       if(!isLoaded) {
-         return <div>Cargando...</div>
+         return <div>Loading...</div>
       }
       else
       {
          return (
             <form onSubmit={this.handleSubmit}>
+                <h1>Alquilar unidad</h1>
                <select id="listaEdificios" onChange={this.handleChange}>
                   <option value="-1">Seleccione un edificio</option>
 
@@ -178,4 +179,4 @@ handleSubmit = (event) => {
       }
    }
 }
-export default AgregarDueño;
+export default Alquilar;
