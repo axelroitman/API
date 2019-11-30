@@ -3,8 +3,10 @@ package modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import daos.ImagenDAO;
 import daos.ReclamoDAO;
 import views.Estado;
+import views.ImagenView;
 import views.ReclamoView;
 
 public class Reclamo {
@@ -27,7 +29,7 @@ public class Reclamo {
 		this.unidad = unidad;
 		this.estado = Estado.nuevo;
 		this.actualizacion = actualizacion;
-		imagenes = new ArrayList<Imagen>();
+		imagenes = getImagenes();
 	}
 	
 	public String getActualizacion() {
@@ -47,7 +49,7 @@ public class Reclamo {
 		this.estado = estado;
 		this.numero = numero;
 		this.actualizacion = actualizacion;
-		imagenes = new ArrayList<Imagen>();
+		imagenes = getImagenes();
 	}
 
 
@@ -90,7 +92,16 @@ public class Reclamo {
 	}
 	
 	public List<Imagen> getImagenes(){
-		return this.imagenes;
+		if(imagenes == null || imagenes.size() == 0)
+		{
+			imagenes = ImagenDAO.getInstancia().getImagenesOfReclamo(numero);
+			
+			if(imagenes.size() == 0) 
+			{
+				imagenes = new ArrayList<Imagen>();
+			}
+		}
+		return imagenes;
 	}
 	
 	public void cambiarEstado(Estado estado) {
@@ -107,13 +118,20 @@ public class Reclamo {
 	}
 	
 	public ReclamoView toView(){
+		
+		List<ImagenView> imagenesView = new ArrayList<ImagenView>();
+		for(Imagen i : imagenes) 
+		{
+			imagenesView.add(i.toView());
+		}
+		
 		if(unidad == null) 
 		{
-			return new ReclamoView(usuario.toView(), edificio.toView(), ubicacion, descripcion, null, estado, numero);				
+			return new ReclamoView(usuario.toView(), edificio.toView(), ubicacion, descripcion, null, estado, numero, imagenesView);				
 		}
 		else 
 		{
-			return new ReclamoView(usuario.toView(), edificio.toView(), ubicacion, descripcion, unidad.toView(), estado, numero);			
+			return new ReclamoView(usuario.toView(), edificio.toView(), ubicacion, descripcion, unidad.toView(), estado, numero, imagenesView);			
 		}
 	}
 }

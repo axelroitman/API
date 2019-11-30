@@ -46,7 +46,7 @@ public class ImagenDAO {
 
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
-		imagenes = (List<ImagenEntity>) s.createQuery("from ImagenEntity ie where ie.reclamo = ?").setInteger(0, idReclamo).list();
+		imagenes = (List<ImagenEntity>) s.createQuery("from ImagenEntity ie where ie.reclamo.id = ?").setInteger(0, idReclamo).list();
 		s.getTransaction().commit();
 		
 		for(ImagenEntity im : imagenes)
@@ -76,7 +76,7 @@ public class ImagenDAO {
 	}
 	
 	private Imagen toNegocio(ImagenEntity entity) {
-		return new Imagen(entity.getPath(), entity.getTipo());
+		return new Imagen(entity.getNumero(), entity.getPath(), entity.getTipo());
 	}
 	
 	private ImagenEntity toEntity(Imagen im, int idReclamo) {

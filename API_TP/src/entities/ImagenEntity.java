@@ -24,7 +24,14 @@ public class ImagenEntity {
 	@JoinColumn(name="idReclamo")
 	private ReclamoEntity reclamo;
 	
-	
+	public ImagenEntity() {}
+
+	public ImagenEntity(int numero, String path, String tipo) {
+		this.numero = numero;
+		this.path = path;
+		this.tipo = tipo;
+	}
+
 	public ImagenEntity(int numero, String path,String tipo, ReclamoEntity reclamo) {
 		super();
 		this.numero = numero;
