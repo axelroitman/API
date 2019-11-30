@@ -172,7 +172,7 @@ handleSubmit = (event) => {
                      ))
                   }
                </select>
-               <input type="submit" value="Agregar" />
+               <input type="submit" value="Alquilar" />
             </form>
          );
 

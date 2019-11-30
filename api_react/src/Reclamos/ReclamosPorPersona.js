@@ -86,7 +86,7 @@ class ReclamosPorPersona extends Component {
              }
               </ul>
 
-    </div>
+            </div>
        );
      }
     }

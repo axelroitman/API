@@ -8,7 +8,6 @@ class AgregarDueño extends Component {
         edificios: [],
         unidades: [],
         personas: [],
-        isLoaded:false
       }
       this.handleSubmit = this.handleSubmit.bind(this);
 	  this.handleChange = this.handleChange.bind(this);
@@ -132,50 +131,45 @@ handleSubmit = (event) => {
       }
 
   render() {
-      var  {isLoaded, edificios, unidades: unidadesListadas, personas: personasListadas} =this.state;
+      var  {edificios, unidades: unidadesListadas, personas: personasListadas} =this.state;
 
-      if(!isLoaded) {
-         return <div>Cargando...</div>
-      }
-      else
-      {
-         return (
-            <form onSubmit={this.handleSubmit}>
-               <select id="listaEdificios" onChange={this.handleChange}>
-                  <option value="-1">Seleccione un edificio</option>
+     
+      return (
+         <form onSubmit={this.handleSubmit}>
+            <select id="listaEdificios" onChange={this.handleChange}>
+               <option value="-1">Seleccione un edificio</option>
 
-                  {
-                     edificios.map(item => (
-                        <option value={item.codigo}>{item.nombre}</option>
+               {
+                  edificios.map(item => (
+                     <option value={item.codigo}>{item.nombre}</option>
 
-                     ))
-                  }
-               </select>
-               <select id="listaUnidades" onChange={this.handleChange}>
-                  <option value="-1">Seleccione una unidad</option>
+                  ))
+               }
+            </select>
+            <select id="listaUnidades" onChange={this.handleChange}>
+               <option value="-1">Seleccione una unidad</option>
 
-                  {
-                     unidadesListadas.map(item => (
-                     <option value={item.identificador}> {item.piso}° {item.numero}</option>
+               {
+                  unidadesListadas.map(item => (
+                  <option value={item.identificador}> {item.piso}° {item.numero}</option>
 
-                     ))
-                  } 
-               </select>
-               <select id="listaPersonas" >
-                  <option value="-1">Seleccione una persona</option>
+                  ))
+               } 
+            </select>
+            <select id="listaPersonas" >
+               <option value="-1">Seleccione una persona</option>
 
-                  {
-                     personasListadas.map(item => (
-                        <option value={item.documento}>{item.nombre}</option>
+               {
+                  personasListadas.map(item => (
+                     <option value={item.documento}>{item.nombre}</option>
 
-                     ))
-                  }
-               </select>
-               <input type="submit" value="Agregar" />
-            </form>
-         );
+                  ))
+               }
+            </select>
+            <input type="submit" value="Agregar" />
+         </form>
+      );
 
-      }
    }
 }
 export default AgregarDueño;
