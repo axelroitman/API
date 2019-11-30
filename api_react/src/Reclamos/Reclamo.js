@@ -26,6 +26,11 @@ class Reclamo extends Component {
        });
    }
 
+   handlePageChange(numReclamo) {
+      window.location = '/cambiar_estado/' + numReclamo;
+    }
+  
+  
 
   render() {
       var  {isLoaded, reclamo} =this.state;
@@ -77,6 +82,7 @@ class Reclamo extends Component {
                   ))
                }
                </div>
+               <button onClick={this.handlePageChange.bind(this, reclamo.numero)}>Cambiar estado</button>
                <button onClick={this.props.history.goBack}>Volver</button>
                </div>
             );
