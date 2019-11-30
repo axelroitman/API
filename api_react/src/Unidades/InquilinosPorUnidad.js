@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom'
 
-class AgregarDueño extends Component {
+class InquilinosPorUnidad extends Component {
    constructor(props) {
       super(props);
       this.state  = {
         edificios: [],
         unidades: [],
-        personas: [],
+        inquilinos: [],
+        cargar: false,
         isLoaded:false
       }
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,16 +20,6 @@ class AgregarDueño extends Component {
        this.setState({
         isLoaded: true,
         edificios: json
-      });
-    }).catch((error) =>{
-      alert("Error en API" + error);
-    });
-    
-    fetch('http://localhost:8080/apitp/getPersonas')
-    .then((res) => res.json()).then((json) => {
-       this.setState({
-        isLoaded: true,
-        personas: json
       });
     }).catch((error) =>{
       alert("Error en API" + error);
@@ -83,62 +74,36 @@ handleSubmit = (event) => {
                      numero = un.numero;
                   }
                });
-      
-            }
-         var persona = document.getElementById("listaPersonas").value;
-         if(persona == 0)
-         {
-            persona = null;
-         }
+            fetch('http://localhost:8080/apitp/getInquilinosPorUnidad?codigo=' + edificio + '&piso=' + piso + '&numero=' + numero)
+            .then((res) => res.json()).then((json) => {
+               this.setState({
+               inquilinos: json,
 
-         if(persona == -1)
-         {
-            alert("Debe seleccionar una persona");
+               cargar: true
+            });
+            }).catch((error) =>{
+            alert("Error en API" + error);
+            });
          }
-         else
-         {
-            if(persona != 0)
-            {
-               documento = persona;
-               console.log(documento)
-            }
-               fetch('http://localhost:8080/apitp/agregarDuenioUnidad?codigo=' + edificio + '&piso=' + piso + '&numero=' + numero + '&documento=' + documento, {
-                  method: 'POST'
-                }).then(response => {
-                  if (response.status === 200) 
-                  {
-                    alert("Dueño agregado exitosamente.");
-                    window.location = '/';
-                  }
-                  else if (response.status === 409)
-                  {
-                      alert("Error al agregar al dueño.");
-                  }
-                  else
-                  {
-                     alert("Respuesta misteriosa.");
-                  }
-   
-                })
-                .catch(error => {
-                  alert("ERROR");
-                  console.log("Error.", error);
-                     });
-                  }
-            }
             
             
          }
       }
+   }
+
+   handlerClickItem(id){
+      this.props.history.push('/persona/' + id);
+   }
 
   render() {
-      var  {isLoaded, edificios, unidades: unidadesListadas, personas: personasListadas} =this.state;
+      var  {isLoaded, edificios, unidades: unidadesListadas, inquilinos, cargar} = this.state;
 
       if(!isLoaded) {
          return <div>Loading...</div>
       }
       else
       {
+         if(cargar === false){
          return (
             <form onSubmit={this.handleSubmit}>
                <select id="listaEdificios" onChange={this.handleChange}>
@@ -161,21 +126,37 @@ handleSubmit = (event) => {
                      ))
                   } 
                </select>
-               <select id="listaPersonas" >
-                  <option value="-1">Seleccione una persona</option>
-
-                  {
-                     personasListadas.map(item => (
-                        <option value={item.documento}>{item.nombre}</option>
-
-                     ))
-                  }
-               </select>
-               <input type="submit" value="Agregar" />
+               <input type="submit" value="Buscar" />
             </form>
          );
+      }
+      else if(cargar === true){
+         if(!isLoaded) {
+            return <div>Cargando...</div>
+        }
+       else
+       {
+         if (inquilinos.length === 0)
+         {
+            return(
+              <p>No hay inquilinos en esta unidad.</p>
+            );
+         }
+         else{
+            return(
+               <ul className="listaInquilinos">
+                  {
+                  inquilinos.map(item => (
+                     <li key={item.id} onClick={this.handlerClickItem.bind(this,item.documento)}> {item.nombre}</li>
+                  ))
+                  }
 
+               </ul>
+            );
+         }
       }
    }
 }
-export default AgregarDueño;
+}
+}
+export default InquilinosPorUnidad;

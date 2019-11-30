@@ -48,6 +48,9 @@ export default class InicioAdmin extends Component {
               <Link to="/agregarDueño"><h3>Agregar dueño</h3></Link>
             </li>
             <li  style={{ listStyleType: "none" }}>
+              <Link to="/agregarInquilino"><h3>Agregar inquilino</h3></Link>
+            </li>
+            <li  style={{ listStyleType: "none" }}>
               <Link to="/alquilarUnidad"><h3>Alquilar unidad</h3></Link>
             </li>
 

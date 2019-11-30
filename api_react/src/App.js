@@ -23,6 +23,9 @@ import ReclamosPorEdificio from './Edificios/ReclamosPorEdificio'
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 import TodosLosReclamos from './Reclamos/TodosLosReclamos';
 import AgregarDueño from './Unidades/AgregarDueño';
+import AgregarInquilino from './Unidades/AgregarInquilino';
+import DueñosEdificio from './Edificios/DueñosEdificio';
+import InquilinosPorUnidad from './Unidades/InquilinosPorUnidad';
 
 function App() {
 
@@ -43,6 +46,10 @@ function App() {
 				<Route  path="/verReclamos" component={TodosLosReclamos} />
 				<Route  path="/agregarDueño" component={AgregarDueño} />
 				<Route  path="/habilitadosPorEdificio" component={Habilitados} />
+				<Route  path="/agregarInquilino" component={AgregarInquilino} />
+				<Route  path="/dueñosPorEdificio" component={DueñosEdificio} />
+				<Route  path="/inquilinosPorUnidad" component={InquilinosPorUnidad} />
+
 
 				<Route  path="/reclamo/:id" component={Reclamo} />
 				<Route  path="/nuevo-reclamo" component={ReclamoForm} />

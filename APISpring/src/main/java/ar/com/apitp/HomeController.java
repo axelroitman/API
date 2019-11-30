@@ -300,7 +300,7 @@ public class HomeController {
 					//ObjectMapper: Es una clase de Jackson que permite convertir una colección a un JSON usando el método writeValueAsString
 						try {
 							Controlador.getInstancia().agregarInquilinoUnidad(codigo, piso, numero, documento);
-							return new ResponseEntity<Void>(HttpStatus.CREATED);																			
+							return new ResponseEntity<Void>(HttpStatus.OK);																			
 							
 						} catch (UnidadException e) {
 							// TODO Auto-generated catch block

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom'
 
-class AgregarDueño extends Component {
+class AgregarInquilino extends Component {
    constructor(props) {
       super(props);
       this.state  = {
@@ -102,17 +102,17 @@ handleSubmit = (event) => {
                documento = persona;
                console.log(documento)
             }
-               fetch('http://localhost:8080/apitp/agregarDuenioUnidad?codigo=' + edificio + '&piso=' + piso + '&numero=' + numero + '&documento=' + documento, {
+               fetch('http://localhost:8080/apitp/agregarInquilinoUnidad?codigo=' + edificio + '&piso=' + piso + '&numero=' + numero + '&documento=' + documento, {
                   method: 'POST'
                 }).then(response => {
                   if (response.status === 200) 
                   {
-                    alert("Dueño agregado exitosamente.");
+                    alert("Inquilino agregado exitosamente.");
                     window.location = '/';
                   }
                   else if (response.status === 409)
                   {
-                      alert("Error al agregar al dueño.");
+                      alert("Error al agregar al inquilino.");
                   }
                   else
                   {
@@ -178,4 +178,4 @@ handleSubmit = (event) => {
       }
    }
 }
-export default AgregarDueño;
+export default AgregarInquilino;

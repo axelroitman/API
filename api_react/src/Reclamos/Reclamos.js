@@ -34,7 +34,7 @@ import React, {Component} from 'react';
     var  {isLoaded, reclamos} =this.state;
 
     if(!isLoaded) {
-        return <div>Loading...</div>
+        return <div>Cargando...</div>
     }
    else
    {
