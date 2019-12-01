@@ -35,7 +35,7 @@ public class DuenioDAO {
 
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
-		personasDuen = (List<DuenioEntity>) s.createQuery("select d from DuenioEntity d inner join d.persona").list();
+		personasDuen = (List<DuenioEntity>) s.createQuery("select d from DuenioEntity d inner join d.persona order by nombre").list();
 		s.getTransaction().commit();
 		
 		for(DuenioEntity de : personasDuen)
@@ -76,7 +76,7 @@ public Unidad getUnidadPorDuenioId(int id) throws PersonaException{
 		List<Persona> duenios = new ArrayList<Persona>();
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
-			List<DuenioEntity> dueniosEntity = s.createQuery("from DuenioEntity d where d.unidad.id = ? ")
+			List<DuenioEntity> dueniosEntity = s.createQuery("from DuenioEntity d where d.unidad.id = ? order by d.persona.nombre")
 					.setInteger(0, id).list();
 			if(dueniosEntity == null)
 			{

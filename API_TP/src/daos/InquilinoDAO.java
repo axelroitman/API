@@ -35,7 +35,7 @@ public class InquilinoDAO {
 
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
-		personasInq = (List<InquilinoEntity>) s.createQuery("select i from InquilinoEntity i inner join i.persona").list();		
+		personasInq = (List<InquilinoEntity>) s.createQuery("select i from InquilinoEntity i inner join i.persona order by nombre").list();		
 		s.getTransaction().commit();
 		
 		for(InquilinoEntity pe : personasInq)
@@ -78,7 +78,7 @@ public Unidad getUnidadPorInquilinoId(int id) throws PersonaException{
 		List<Persona> inquilinos = new ArrayList<Persona>();
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
-			List<InquilinoEntity> inquilinosEntity = s.createQuery("from InquilinoEntity i where i.unidad.id = ? ")
+			List<InquilinoEntity> inquilinosEntity = s.createQuery("from InquilinoEntity i where i.unidad.id = ? order by i.persona.nombre")
 					.setInteger(0, id).list();
 			s.getTransaction().commit();		
 			s.close();
@@ -106,7 +106,7 @@ public Unidad getUnidadPorInquilinoId(int id) throws PersonaException{
 
 		for(InquilinoEntity i : inquilinosEntity) 
 		{
-			UnidadEntity ue = (UnidadEntity) s.createQuery("from UnidadEntity u where u.id = ?").setInteger(0, i.getUnidad().getId()).uniqueResult();
+			UnidadEntity ue = (UnidadEntity) s.createQuery("from UnidadEntity u where u.id = ? ").setInteger(0, i.getUnidad().getId()).uniqueResult();
 			rdo.add(UnidadDAO.getInstancia().toNegocio(ue));
 		}
 		s.getTransaction().commit();		

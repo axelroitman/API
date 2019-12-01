@@ -24,9 +24,6 @@ export default class InicioAdmin extends Component {
               <Link to="/verReclamos"><h3>Todos los reclamos</h3></Link>
             </li>    
             <li  style={{ listStyleType: "none" }}>
-              <Link to="/unidades"><h3>Ver unidades</h3></Link>
-            </li>
-            <li  style={{ listStyleType: "none" }}>
               <Link to="/edificios"><h3>Ver edificios</h3></Link>
             </li>  
             <li  style={{ listStyleType: "none" }}>

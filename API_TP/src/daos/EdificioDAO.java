@@ -24,7 +24,7 @@ public class EdificioDAO {
 		List<Edificio> resultado = new ArrayList<Edificio>();
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
-		List<EdificioEntity> edificios = s.createQuery("from EdificioEntity").list();
+		List<EdificioEntity> edificios = s.createQuery("from EdificioEntity order by nombre").list();
 		s.getTransaction().commit();
 		s.close();
 		for(EdificioEntity ee : edificios)
