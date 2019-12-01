@@ -44,16 +44,21 @@ class UnidadesPorInquilino extends Component {
      else{
       return (
          
-          <div>
-             <h1>Mis Alquileres</h1>
-
-              <ul className="listUnidades">
+          <div className='container'>
+             <h2>Mis Alquileres</h2>
+             <div className="tabla">
+              <table>
+                    <tr>
+                    <th>Edificio</th>
+                    <th>Piso</th>
+                    <th>N°</th>
+                    </tr>
              {
                unidades.map(item => { 
-                return <li key={item.id}> {item.edificio.nombre}, {item.piso}° {item.numero}</li>
-              })
+               return <tr> <td>{item.edificio.nombre}</td><td>{item.piso}</td><td>{item.numero}</td> </tr>})
              }
-              </ul>
+              </table>
+              </div>
              </div>
 
             );
