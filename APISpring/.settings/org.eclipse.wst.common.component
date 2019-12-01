@@ -4,41 +4,40 @@
 		<wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
 		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
 		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
+        <dependent-module archiveName="commons-logging-1.1.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/GitHub/API/lib/commons-logging-1.1.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <dependent-module archiveName="API_TP.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/API_TP/API_TP">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="hibernate-annotations.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/diego/Documents/GitHub/API/lib/hibernate-annotations.jar">
+        <dependent-module archiveName="hibernate3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/GitHub/API/lib/hibernate3.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="dom4j-1.6.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/diego/Documents/GitHub/API/lib/dom4j-1.6.1.jar">
+        <dependent-module archiveName="jta-1.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/GitHub/API/lib/jta-1.1.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="commons-collections-3.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/diego/Documents/GitHub/API/lib/commons-collections-3.1.jar">
+        <dependent-module archiveName="ejb3-persistence.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/GitHub/API/lib/ejb3-persistence.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="jta-1.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/diego/Documents/GitHub/API/lib/jta-1.1.jar">
+        <dependent-module archiveName="hibernate-commons-annotations.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/GitHub/API/lib/hibernate-commons-annotations.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="hibernate3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/diego/Documents/GitHub/API/lib/hibernate3.jar">
+        <dependent-module archiveName="hibernate-annotations.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/GitHub/API/lib/hibernate-annotations.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="ejb3-persistence.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/diego/Documents/GitHub/API/lib/ejb3-persistence.jar">
+        <dependent-module archiveName="jtds-1.2.5.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/GitHub/API/lib/jtds-1.2.5.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="javassist-3.4.GA.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/diego/Documents/GitHub/API/lib/javassist-3.4.GA.jar">
+        <dependent-module archiveName="dom4j-1.6.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/GitHub/API/lib/dom4j-1.6.1.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="commons-logging-1.1.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/diego/Documents/GitHub/API/lib/commons-logging-1.1.1.jar">
+        <dependent-module archiveName="antlr-2.7.6.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/GitHub/API/lib/antlr-2.7.6.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="jtds-1.2.5.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/diego/Documents/GitHub/API/lib/jtds-1.2.5.jar">
+        <dependent-module archiveName="commons-collections-3.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/GitHub/API/lib/commons-collections-3.1.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="antlr-2.7.6.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/diego/Documents/GitHub/API/lib/antlr-2.7.6.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="hibernate-commons-annotations.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/diego/Documents/GitHub/API/lib/hibernate-commons-annotations.jar">
+        <dependent-module archiveName="javassist-3.4.GA.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/GitHub/API/lib/javassist-3.4.GA.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
 		<property name="java-output-path" value="target/classes"/>
