@@ -39,6 +39,7 @@ import Habitar from './Unidades/Habitar';
 import ModificarPersona from './Personas/ModificarPersona';
 import EliminarPersona from './Personas/EliminarPersona';
 import ReclamosPorEdificioUsuario from './Edificios/ReclamosPorEdificioUsuario';
+import ReclamosPorEstado from './Reclamos/ReclamosPorEstado';
 
 
 function App() {
@@ -67,6 +68,7 @@ function App() {
 				<Route  path="/transferir" component={Transferir} />
 				<Route  path="/modificarPersona" component={ModificarPersona} />
 				<Route  path="/recEdif" component={ReclamosPorEdificioUsuario} />
+				<Route  path="/recPorEst" component={ReclamosPorEstado} />
 
 
 				<Route  path="/reclamo/:id" component={Reclamo} />

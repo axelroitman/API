@@ -65,6 +65,9 @@ export default class InicioAdmin extends Component {
             <li  style={{ listStyleType: "none" }}>
               <Link to="/eliminarPersona"><h3>Eliminar persona</h3></Link>
             </li>
+            <li  style={{ listStyleType: "none" }}>
+              <Link to="/recPorEst"><h3>Ver reclamos por estado</h3></Link>
+            </li>
 
           </ul> 
         ) 
