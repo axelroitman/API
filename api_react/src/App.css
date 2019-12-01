@@ -21,11 +21,23 @@ h1{
   color: #FFFFFF
 }
 
+.actualizaciones.container{
+  margin: 5% 5%;
+  padding-bottom: 2%;
+  border: 1px solid green;
+  padding-top: 1%;
+  border-radius: 20px;
+  text-align: center;
+}
+
 h1, h2, h3, h4, h5, p, label, button
 {
   font-family: 'Sulphur Point', sans-serif;
 
 } 
+.updateRec{
+  font-family: 'Sulphur Point', sans-serif;
+}
 
 .container
 {

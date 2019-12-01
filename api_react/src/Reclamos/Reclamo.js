@@ -94,11 +94,11 @@ class Reclamo extends Component {
             return (
             
                <div className="reclamos container"><h2 className="selectedReclamo">Reclamo #{this.props.match.params.id}</h2>  
-               <p>Estado: <b>{reclamo.estado}</b></p>
-               <p>Usuario: {reclamo.usuario.nombre}</p>
-               <p>Ubicacion: {reclamo.edificio.nombre}, {ubicacion}</p>
-               <p>Descripcion: {reclamo.descripcion}</p>
-               <p>Imagenes: {sinImagenes}</p>
+               <p><b>Estado: </b>{reclamo.estado}</p>
+               <p><b>Usuario: </b>{reclamo.usuario.nombre}</p>
+               <p><b>Ubicacion: </b>{reclamo.edificio.nombre}, {ubicacion}</p>
+               <p><b>Descripcion: </b>{reclamo.descripcion}</p>
+               <p><b>Imágenes: </b>{sinImagenes}</p>
                <div>
                {
                   imagenesLinks.map(item => (
@@ -108,11 +108,12 @@ class Reclamo extends Component {
                   ))
                }
                </div>
-               <p>Actualizaciones: {actualizaciones}</p>
-               <div>
+             
+               <p><b>Actualizaciones: </b>{actualizaciones}</p>
+               <div className="actualizaciones container">
                   {
                      arrayActualizaciones.map(item => (
-                        <div><b>{item[0]}</b>{item[1]}<b>{item[2]}</b>{item[3]}<br/>{item[4]}</div>
+                  <div className="updateRec"><b>{item[0]}</b>{item[1]}<b>{item[2]}</b>{item[3]}<br/>{item[4]}</div>
                         ))
                   }
                </div>
@@ -130,11 +131,11 @@ class Reclamo extends Component {
          else{
          return (
             
-            <div className="reclamos"><h2 className="selectedReclamo">Reclamo #{this.props.match.params.id}</h2>  
-            <p>Estado: <b>{reclamo.estado}</b></p>
-            <p>Ubicacion: {reclamo.edificio.nombre}, {ubicacion}</p>
-            <p>Descripcion: {reclamo.descripcion}</p>
-            <p>Imagenes: {sinImagenes}</p>
+            <div className="reclamos container"><h2 className="selectedReclamo">Reclamo #{this.props.match.params.id}</h2>  
+            <p><b>Estado: </b>{reclamo.estado}</p>
+            <p><b>Ubicacion:</b> {reclamo.edificio.nombre}, {ubicacion}</p>
+            <p><b>Descripcion:</b> {reclamo.descripcion}</p>
+            <p><b>Imagenes:</b> {sinImagenes}</p>
             <div>
                {
                   imagenesLinks.map(item => (
@@ -144,12 +145,13 @@ class Reclamo extends Component {
                   ))
                }
             </div>
-            <p>Actualizaciones: {actualizaciones}</p>
-            <div>
+            <p><b>Actualizaciones:</b> {actualizaciones}</p>
+            <div className="actualizaciones container">
+
                {
                   
                   arrayActualizaciones.map(item => (
-                  <div><b>{item[0]}</b>{item[1]}<b>{item[2]}</b>{item[3]}<br/>{item[4]}</div>
+                  <div className="updateRec"><b>{item[0]}</b>{item[1]}<b>{item[2]}</b>{item[3]}<br/>{item[4]}</div>
 
                   ))
                }
