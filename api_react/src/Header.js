@@ -70,7 +70,6 @@ class Header extends React.Component {
       return (
         <div className="topBlue">
            <h1>Claimer</h1>
-
        </div>
        );
     }

@@ -55,7 +55,6 @@ function App() {
 				<Route  path="/personas" component={Personas} />
 				<Route  path="/persona/:id" component={Persona} />
 				<Route  path="/reclamos" component={Reclamos} />
-
 				<Route  path="/habitantesPorEdificio" component={Habitantes} />
 				<Route  path="/recPorEd" component={ReclamosPorEdificio} />
 				<Route  path="/verReclamos" component={TodosLosReclamos} />
@@ -69,8 +68,6 @@ function App() {
 				<Route  path="/modificarPersona" component={ModificarPersona} />
 				<Route  path="/recEdif" component={ReclamosPorEdificioUsuario} />
 				<Route  path="/recPorEst" component={ReclamosPorEstado} />
-
-
 				<Route  path="/reclamo/:id" component={Reclamo} />
 				<Route  path="/nuevo-reclamo" component={ReclamoForm} />
 				<Route  path="/recPorPers" component={ReclamosPorPersona} />
@@ -81,7 +78,6 @@ function App() {
 				<Route  path="/liberarUnidad" component={Liberar} />
 				<Route  path="/habitarUnidad" component={Habitar} />
 				<Route  path="/eliminarPersona" component={EliminarPersona} />
-
 				<Route  path="/edificios" component={Edificios} />
 				<Route  path="/cambiar_estado/:id" component={CambiarEstado} />
 
