@@ -105,8 +105,8 @@ export default class Login extends Component {
 	  
 				<div className="row divBotones">
 
-					<button type="submit">Login</button>				
-					<button onClick={this.handlePageChange}>Ir al registro</button>
+					<button type="button" onClick={this.handlePageChange}>Ir al registro</button>
+					<button type="submit">Iniciar sesión</button>				
 
 				</div>
 
