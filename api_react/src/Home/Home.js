@@ -82,7 +82,8 @@ export default class Login extends Component {
 	  else
 	  {
 		return (
-			<div>
+			<div className="container">
+			  <h2>Iniciar sesión</h2>
 			  <form onSubmit={this.handleSubmit}>
 				<div className="row">
 					<div className="col-md-2">
