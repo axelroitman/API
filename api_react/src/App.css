@@ -107,3 +107,18 @@ button:hover {
   
   }
   
+  .panelAdmin
+  {
+    padding-left: 0px;
+  }
+
+  .panelAdmin a
+  {
+    text-decoration: none;
+    color: #656565;
+  }
+
+  .panelAdmin a:hover
+  {
+    color: #478ad0;
+  }
