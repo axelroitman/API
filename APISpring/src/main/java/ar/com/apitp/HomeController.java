@@ -479,6 +479,37 @@ public class HomeController {
 					}
 
 				}
+				@RequestMapping(value = "/getReclamosPorEstado", method = RequestMethod.GET)
+				public ResponseEntity <Void> getReclamosPorEstado(@RequestParam(value="estado", required=true) int estado) {
+					String nombreEstado = "";
+					Estado est = null;
+					if(estado == 1) {
+						nombreEstado = "Nuevo";
+						est = Estado.nuevo;
+					}
+					else if (estado == 2) {
+						nombreEstado = "Abierto";
+						est= Estado.abierto;
+					}
+					else if(estado == 3) {
+						nombreEstado = "En proceso";
+						est= Estado.enProceso;
+					}
+					else if(estado == 4) {
+						nombreEstado = "Desestimado";
+						est= Estado.desestimado;
+					}
+					else if(estado == 5) {
+						nombreEstado = "Anulado";
+						est= Estado.anulado;
+					}
+					else if(estado == 6) {
+						nombreEstado = "Terminado";
+						est= Estado.terminado;
+					}
+					Controlador.getInstancia().reclamosPorEstado(est);
+					return new ResponseEntity<Void>(HttpStatus.OK);
+				}
 				
 		//agregarImagenAReclamo
 				@RequestMapping(value = "/agregarImagenAReclamo", method = RequestMethod.POST)

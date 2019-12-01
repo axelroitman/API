@@ -267,6 +267,20 @@ public class Controlador {
 		
 		return resultado;
 	}
+	public List<ReclamoView> reclamosPorEstado(Estado estado){  
+		List<ReclamoView> resultado = new ArrayList<ReclamoView>();
+		List<Reclamo> reclamos = ReclamoDAO.getInstancia().getReclamos();
+		
+		if(!reclamos.isEmpty() || reclamos != null) {
+			for(Reclamo r : reclamos) {
+					if(r.getEstado().equals(estado)) {
+						resultado.add(r.toView());
+					}
+				}
+		}
+		
+		return resultado;
+	}
 	
 	public List<ReclamoView> getAllReclamos(){
 		List<ReclamoView> resultado = new ArrayList<ReclamoView>();
@@ -338,6 +352,7 @@ public class Controlador {
 		reclamo.cambiarEstado(estado, actualizacion);
 		reclamo.update();
 	}
+	
 	
 	private Edificio buscarEdificio(int codigo) throws EdificioException { 
 		Edificio aBuscar = null;
