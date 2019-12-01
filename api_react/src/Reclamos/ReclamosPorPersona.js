@@ -70,7 +70,9 @@ class ReclamosPorPersona extends Component {
     else if (reclamos.length == 0)
      {
         return(
-          <p>La persona seleccionada no tiene ningún reclamo.</p>
+          <div className="containerTabla">
+            <p>La persona seleccionada no tiene ningún reclamo.</p>
+          </div>
         );
      }
     else{

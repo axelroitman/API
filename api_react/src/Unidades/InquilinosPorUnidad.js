@@ -106,7 +106,9 @@ handleSubmit = (event) => {
          if(cargar === false){
          return (
             <form onSubmit={this.handleSubmit}>
-               <h1>Inquilinos Por Unidad</h1>
+                <div className='container'>
+
+               <h2>Inquilinos Por Unidad</h2>
                <select id="listaEdificios" onChange={this.handleChange}>
                   <option value="-1">Seleccione un edificio</option>
 
@@ -117,6 +119,7 @@ handleSubmit = (event) => {
                      ))
                   }
                </select>
+               <br></br>
                <select id="listaUnidades" onChange={this.handleChange}>
                   <option value="-1">Seleccione una unidad</option>
 
@@ -127,7 +130,11 @@ handleSubmit = (event) => {
                      ))
                   } 
                </select>
+               <br></br>
+               <br></br>
+
                <input type="submit" value="Buscar" />
+               </div>
             </form>
          );
       }
@@ -140,14 +147,16 @@ handleSubmit = (event) => {
          if (inquilinos.length === 0)
          {
             return(
-               <div>
-               <h1>Inquilinos Por Unidad</h1>
-              <p>No hay inquilinos en esta unidad.</p>
-              </div>
+               <div className='container'>
+               <h2>Inquilinos Por Unidad</h2>
+               <p>No hay inquilinos en esta unidad.</p>
+               </div>
             );
          }
          else{
             return(
+               <div className='container'>
+
                <ul className="listaInquilinos">
                   {
                   inquilinos.map(item => (
@@ -156,6 +165,7 @@ handleSubmit = (event) => {
                   }
 
                </ul>
+               </div>
             );
          }
       }
