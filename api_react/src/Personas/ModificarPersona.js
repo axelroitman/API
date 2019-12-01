@@ -51,7 +51,7 @@ class ModificarPersona extends Component{
 
           })
           .catch(error => {
-            alert("ERROR" + error);
+            alert("ERROR");
                });
     }
 

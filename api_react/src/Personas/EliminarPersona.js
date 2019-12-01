@@ -43,6 +43,7 @@ class EliminarPersona extends Component{
 
           })
           .catch(error => {
+              console.log(error)
             alert("ERROR");
                });
     }
