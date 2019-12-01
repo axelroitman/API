@@ -38,15 +38,26 @@ import React, {Component} from 'react';
    else
    {
     return (
-      <div>
-      <ul className="listEdificios">
-               {
-                  edificios.map(item => (
-                     <li key={item.id} onClick={this.handlerClickItem.bind(this,item.codigo)}>{item.nombre}</li>
-                  ))
-               }
-            </ul>
+      <div className="containerTabla">
+         <h2>Listado de edificios</h2>
+         <div className="tabla">
+              <table>
+                    <tr>
+                    <th>Nombre</th>
+                    <th>Dirección</th>
+                    </tr>
 
+                   {
+                  edificios.map(item => {
+                     return (
+                     <tr>
+                     <td>{item.nombre}</td>
+                     <td>{item.direccion}</td>
+                     </tr>
+                  );})
+               }
+            </table>
+         </div>
       </div>
      );
    }
