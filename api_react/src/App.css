@@ -61,3 +61,37 @@ button:hover {
     margin-top: 10px 
   }
   
+  table, td, th {
+    text-align: center;
+    font-family: 'Sulphur Point', sans-serif;
+  }
+  
+  table {
+    width: 100%;
+  }
+  td{
+    border-bottom: 0.3px solid rgb(0, 0, 0) !important;
+    background-color: white;
+  }
+  
+  th {
+    height: 50px;
+    background-color: black;
+    color: white;
+    box-shadow: white;
+  }
+
+  .tabla{
+    overflow-x:auto;
+    padding: 0 5%;
+  }
+  .containerTabla
+  {
+    margin: 5% 10%;
+    padding-bottom: 2%;
+    padding-top: 1%;
+    background-color: #ece9e9d6;
+    border-radius: 20px;
+  
+  }
+  
