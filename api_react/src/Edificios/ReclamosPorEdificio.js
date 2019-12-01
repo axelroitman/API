@@ -65,38 +65,62 @@ class ReclamosPorEdificio extends Component {
      if (this.state.cargado)
      {
       if(!isLoaded) {
-        return <div>Loading...</div>
+        return <div className='container'>Cargando...</div>
     }
     else if (reclamos.length == 0)
      {
         return(
+          <div className='container'>
+           <h2>Reclamos por edificio</h2>
           <p>No hay reclamos en el edificio seleccionado.</p>
+          </div>
         );
      }
     else{
       return (
-          <div>
-              <ul className="listReclamos">
-                 {
-                    reclamos.map(item => {
-                      return item.unidad != null ?
-                       <li key={item.id} onClick={this.handlerClickItem.bind(this,item.numero)}> #{item.numero} - {item.edificio.nombre}, {item.unidad.piso}° {item.unidad.numero}</li>
-                       :
-                       <li key={item.id} onClick={this.handlerClickItem.bind(this,item.numero)}> #{item.numero} - {item.ubicacion}</li>
-
-                    })
-                 }
-              </ul>
-
-    </div>
+        <div className="containerTabla">
+              <h2>Reclamos por edificio</h2>
+              <div className="tabla">
+            <table>
+                  <tr>
+                          <th>N° Reclamo</th>
+                          <th>Edificio</th>
+                          <th>Unidad/Ubicación</th>
+                          <th>Estado</th>
+                          <th>Reclamo</th>
+                          </tr>
+                         
+                          {
+                        reclamos.map(item => {
+                          return item.unidad != null ?
+                          <tr>
+                            <td>#{item.numero} </td>
+                            <td>{item.edificio.nombre}</td>
+                            <td>{item.unidad.piso}° {item.unidad.numero}</td>
+                            <td>{item.estado}</td>
+                            <td><button onClick={this.handlerClickItem.bind(this,item.numero)}>Ver</button></td>
+                            </tr>
+                          :
+                            <tr>
+                            <td>#{item.numero} </td>
+                            <td>{item.edificio.nombre}</td>
+                            <td>{item.ubicacion}</td>
+                            <td>{item.estado}</td>
+                            <td><button onClick={this.handlerClickItem.bind(this,item.numero)}>Ver</button></td>
+                            </tr>
+                        })
+                    }
+                  </table>
+              </div>
+        </div>
        );
      }
     }
      else{
       return (
-
-
         <form onSubmit={this.handleSubmit}>
+           <div className='container'>
+             <h2>Reclamos por edificio</h2>
           <select id="listaEdificios" onChange={this.handleChange}>
                   <option value="-1">Seleccione un edificio</option>
 
@@ -107,7 +131,10 @@ class ReclamosPorEdificio extends Component {
                      ))
                   }
                </select>
+               <br></br>
+               <br></br>
           <input type="submit" value="Buscar" />
+          </div>
         </form>
       );
     }
