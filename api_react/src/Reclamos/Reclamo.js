@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './Reclamos.css';
 import { Link } from 'react-router-dom'
 import Image from 'react-bootstrap/Image'
+import { array } from 'prop-types';
 
 class Reclamo extends Component {
    constructor(props) {
@@ -84,7 +85,7 @@ class Reclamo extends Component {
          {
             sinImagenes = "Sin imágenes";
          }
-         if(actualizaciones == [""])
+         if(arrayActualizaciones[0] == "")
          {
             actualizaciones = "No hubieron actualizaciones de este reclamo.";
          }
@@ -110,13 +111,17 @@ class Reclamo extends Component {
                </div>
              
                <p><b>Actualizaciones: </b>{actualizaciones}</p>
-               <div className="actualizaciones container">
-                  {
-                     arrayActualizaciones.map(item => (
-                  <div className="updateRec"><b>{item[0]}</b>{item[1]}<b>{item[2]}</b>{item[3]}<br/>{item[4]}</div>
-                        ))
-                  }
+               <div>
+
+               {
+                     arrayActualizaciones.map(item => {
+                        return arrayActualizaciones[0] == "" ? '' :
+                        <div className="actualizaciones container updateRec"><b>{item[0]}</b>{item[1]}<b>{item[2]}</b>{item[3]}<br/>{item[4]}</div>
+                     })
+
+               }
                </div>
+
                {reclamo.estado == "nuevo" || reclamo.estado == "abierto" || reclamo.estado == "enProceso"  ? (
                   <button onClick={this.handlePageChange.bind(this, reclamo.numero)}>Cambiar estado</button>
                ) : (
@@ -146,14 +151,14 @@ class Reclamo extends Component {
                }
             </div>
             <p><b>Actualizaciones:</b> {actualizaciones}</p>
-            <div className="actualizaciones container">
+            <div>
 
                {
-                  
-                  arrayActualizaciones.map(item => (
-                  <div className="updateRec"><b>{item[0]}</b>{item[1]}<b>{item[2]}</b>{item[3]}<br/>{item[4]}</div>
+                     arrayActualizaciones.map(item => {
+                        return arrayActualizaciones[0] == "" ? '' :
+                          <div className="actualizaciones container updateRec"><b>{item[0]}</b>{item[1]}<b>{item[2]}</b>{item[3]}<br/>{item[4]}</div>
+                     })
 
-                  ))
                }
             </div>
 
