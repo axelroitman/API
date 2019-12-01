@@ -56,6 +56,9 @@ export default class Login extends Component {
 	  
 	  event.preventDefault();
 	}
+	handlePageChange() {
+		window.location = '/registro';
+	  }
   
 	render() {
 
@@ -100,12 +103,14 @@ export default class Login extends Component {
 					</div>
 				</div>
 	  
-	  
-				<button type="submit">Login</button>
+				<div className="row divBotones">
+
+					<button className="loginButton" type="submit">Login</button>				
+					<button onClick={this.handlePageChange}>Ir al registro</button>
+
+				</div>
+
 				<div>
-				<button>
-				<Link to="/registro">Registro</Link>
-				</button>
 				</div>
 			  </form>
 			</div>

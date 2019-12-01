@@ -28,6 +28,30 @@ h1{
     margin-top: 5%;
     padding-bottom: 2%;
     padding-top: 1%;
-    background-color: #ece9e991;
+    background-color: #ece9e9d6;
+    border-radius: 20px;
+
 }
 
+button {
+  border: none;
+  background: #0c0c0cb3;
+  color: #ffffff !important;
+  font-weight: 700;
+  padding: 10px;
+  text-transform: uppercase;
+  border-radius: 6px;
+  display: inline-block;
+  transition: all 0.3s ease 0s;
+  }
+button:hover {
+    color: #404040 !important;
+    font-weight: 700 !important;
+    background-color: #8db9e6;
+  } 
+
+  .divBotones
+  {
+    margin-top: 10px 
+  }
+  
