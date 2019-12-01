@@ -100,44 +100,71 @@ class CambiarEstado extends Component {
          if(sessionStorage.getItem("administrador") == "true")
          {
             return (
-               <form id="frm-estados" onSubmit={this.handleSubmit}>
-                  <h1>Cambiar estado</h1>
-                  <select id="estados">
-                     <option value="-1">Seleccione un estado</option>
-                     {reclamo.estado == "nuevo" ? (
-                     <option value="2">Abierto</option>
-                     ) : (
-                     ''
-                        )
-                     }
-                     {reclamo.estado == "nuevo" || reclamo.estado == "abierto" ? (
-                     <option value="3">En proceso</option>
-                     ) : (
-                     ''
-                        )
-                     }
-                     <option value="4">Desestimado</option>
-                     <option value="6">Terminado</option>
-                  </select>
-                  <textarea onChange={this.handleChangeInput} name="actualizacion" id="actualizacion" rows="10" cols="50" maxLength="800" placeholder="Actualizacion"></textarea>
-                  <button type="submit">Cambiar estado</button>
-   
-               </form>
+               <div className="container">
+                  <form id="frm-estados" onSubmit={this.handleSubmit}>
+                     <h2>Cambiar estado</h2>
+                     <div className="row">
+                        <div className="col-md-2">
+                           <label>Nuevo estado:</label>
+                        </div>
+                        <div className="col-md-10">
+
+                           <select id="estados">
+                              
+                              <option value="-1">Seleccione un estado</option>
+                              {reclamo.estado == "nuevo" ? (
+                              <option value="2">Abierto</option>
+                              ) : (
+                              ''
+                                 )
+                              }
+                              {reclamo.estado == "nuevo" || reclamo.estado == "abierto" ? (
+                              <option value="3">En proceso</option>
+                              ) : (
+                              ''
+                                 )
+                              }
+                              <option value="4">Desestimado</option>
+                              <option value="6">Terminado</option>
+                           </select>
+                        </div>
+                        <div className="col-md-2">
+                           <label>Motivo del cambio de estado:</label>
+                        </div>
+                        <div className="col-md-10">
+                           <textarea style={{resize: "none"}}  onChange={this.handleChangeInput} name="actualizacion" id="actualizacion" rows="10" cols="50" maxLength="800" placeholder="Actualizacion"></textarea>
+                        </div>
+                     </div>   
+                     <div className="row divBotones">
+                        <button type="submit">Cambiar estado</button>
+                     </div>
+                  </form>
+               </div>
             );
    
          }
          else
          {
             return (
-               <form id="frm-estados" onSubmit={this.handleSubmit}>
-                  <h1>Anular reclamo</h1>
-
-                  <input type="hidden" name="estados" id="estados" value="5"/>
-
-                  <textarea onChange={this.handleChangeInput} name="actualizacion" id="actualizacion" rows="10" cols="50" maxLength="800" placeholder="Actualizacion"></textarea>
-                  <button type="submit">Anular estado</button>
-   
-               </form>
+               <div className="container">
+                  <form id="frm-estados" onSubmit={this.handleSubmit}>
+                     <h2>Anular reclamo</h2>  
+                     <div className="row">
+                        <div className="col-md-12">
+                           <input type="hidden" name="estados" id="estados" value="5"/>
+                        </div>
+                        <div className="col-md-2">
+                           <label>Motivo de anulación del reclamo:</label>
+                        </div>
+                        <div className="col-md-10">
+                            <textarea style={{resize: "none"}} onChange={this.handleChangeInput} name="actualizacion" id="actualizacion" rows="10" cols="50" maxLength="800" placeholder="Actualizacion"></textarea>
+                        </div>
+                     </div>
+                     <div className="row divBotones">
+                        <button type="submit">Anular reclamo</button>
+                     </div>
+                  </form>
+               </div>
             );
          }
 

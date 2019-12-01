@@ -73,11 +73,11 @@ class ReclamoForm extends Component {
       {
          if(valorSel == 0)
          {
-            document.getElementById("ubicacion").style.display = "inline";           
+            document.getElementById("ubicacionMostrar").style.display = "inline";           
          }
          else
          {
-            document.getElementById("ubicacion").style.display = "none";          
+            document.getElementById("ubicacionMostrar").style.display = "none";          
          }
       }
       
@@ -298,34 +298,71 @@ class ReclamoForm extends Component {
       else
       {
          return (
-            <form id="frm-reclamo" onSubmit={this.handleSubmit}>
-               <h1>Crear Reclamo</h1>
-               <select id="listaEdificios" onChange={this.handleChange}>
-                  <option value="-1">Seleccione un edificio</option>
+            <div className="container">
+               <form id="frm-reclamo" onSubmit={this.handleSubmit}>
+                  <h2>Crear Reclamo</h2>
+                  <div className="row">
+                     
+                     <div className="col-md-2">
+                        <label>Edificio</label>
+                     </div>
+                     <div className="col-md-10">
+                        <select id="listaEdificios" onChange={this.handleChange}>
+                           <option value="-1">Seleccione un edificio</option>
 
-                  {
-                     edificios.map(item => (
-                        <option value={item.codigo}>{item.nombre}</option>
+                           {
+                              edificios.map(item => (
+                                 <option value={item.codigo}>{item.nombre}</option>
 
-                     ))
-                  }
-               </select>
-               <select id="listaUnidades" onChange={this.handleChange}>
-                  <option value="-1">Seleccione una unidad</option>
-                  <option value="0" id="espacioComun" style={{display:'none'}}>Espacio común</option> 
-                  {
-                     unidadesListadas.map(item => (
-                     <option value={item.identificador}> {item.piso}° {item.numero}</option>
+                              ))
+                           }
+                        </select>
+                     </div> 
 
-                     ))
-                  } 
-               </select>
-               <input style={{display: 'none'}} type="text" id="ubicacion" name="ubicacion" placeholder="Ubicacion"/>
-               <textarea onChange={this.handleChangeInput} name="descripcion" id="descripcion" maxLength="800" rows="10" cols="50" placeholder="Descripcion"></textarea>
-               <input type = "file" name = "file" id="imagenes" size = "50" multiple/>
-               <button type="submit">Crear reclamo</button>
+                     <div className="col-md-2">
+                        <label>Unidad/Ubicación</label>
+                     </div>
+                     <div className="col-md-10">
+                        <select id="listaUnidades" onChange={this.handleChange}>
+                           <option value="-1">Seleccione una unidad</option>
+                           <option value="0" id="espacioComun" style={{display:'none'}}>Espacio común</option> 
+                           {
+                              unidadesListadas.map(item => (
+                              <option value={item.identificador}> {item.piso}° {item.numero}</option>
 
-            </form>
+                              ))
+                           } 
+                        </select>
+                     </div> 
+                     <div id="ubicacionMostrar" style={{display: 'none'}}>
+                        <div className="col-md-2">
+                           <label>Nombre de la ubicación</label>
+                        </div>
+                        <div className="col-md-10">
+                        <input type="text" id="ubicacion" name="ubicacion" placeholder="Ubicacion"/>
+                        </div> 
+                     </div>
+                     <div className="col-md-2">
+                        <label>Descripción</label>
+                     </div>
+                     <div className="col-md-10">
+                        <textarea style={{resize: "none"}}  onChange={this.handleChangeInput} name="descripcion" id="descripcion" maxLength="800" rows="10" cols="50" placeholder="Descripcion"></textarea>
+                     </div> 
+                     <div className="col-md-2">
+                        <label>Imagenes</label>
+                     </div>
+                     <div className="col-md-10">
+                        <input type = "file" name = "file" id="imagenes" size = "50" multiple/>
+                     </div> 
+
+                  </div>
+                  <div className="row divBotones">
+                     <button type="submit">Crear reclamo</button>
+                  </div>
+
+
+               </form>
+            </div>
          );
 
       }
