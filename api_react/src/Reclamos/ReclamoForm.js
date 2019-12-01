@@ -278,6 +278,17 @@ class ReclamoForm extends Component {
      
    }
 
+   handleChangeInput = event => {
+      const { value, maxLength } = event.target;
+      const message = value.slice(0, maxLength);
+  
+      this.setState({
+        form: {
+          message
+        }
+      });
+    };
+  
   render() {
       var  {isLoaded, edificios, unidadesListadas} =this.state;
 
@@ -310,7 +321,7 @@ class ReclamoForm extends Component {
                   } 
                </select>
                <input style={{display: 'none'}} type="text" id="ubicacion" name="ubicacion" placeholder="Ubicacion"/>
-               <textarea name="descripcion" id="descripcion" rows="10" cols="50" placeholder="Descripcion"></textarea>
+               <textarea onChange={this.handleChangeInput} name="descripcion" id="descripcion" maxLength="800" rows="10" cols="50" placeholder="Descripcion"></textarea>
                <input type = "file" name = "file" id="imagenes" size = "50" multiple/>
                <button type="submit">Crear reclamo</button>
 

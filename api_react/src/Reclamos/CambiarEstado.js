@@ -78,6 +78,16 @@ class CambiarEstado extends Component {
       }
      
    }
+   handleChangeInput = event => {
+      const { value, maxLength } = event.target;
+      const message = value.slice(0, maxLength);
+  
+      this.setState({
+        form: {
+          message
+        }
+      });
+    };
 
   render() {
       var  {isLoaded, reclamo, unidadesListadas} =this.state;
@@ -109,7 +119,7 @@ class CambiarEstado extends Component {
                      <option value="4">Desestimado</option>
                      <option value="6">Terminado</option>
                   </select>
-                  <textarea name="actualizacion" id="actualizacion" rows="10" cols="50" placeholder="Actualizacion"></textarea>
+                  <textarea onChange={this.handleChangeInput} name="actualizacion" id="actualizacion" rows="10" cols="50" maxLength="800" placeholder="Actualizacion"></textarea>
                   <button type="submit">Cambiar estado</button>
    
                </form>
@@ -124,7 +134,7 @@ class CambiarEstado extends Component {
 
                   <input type="hidden" name="estados" id="estados" value="5"/>
 
-                  <textarea name="actualizacion" id="actualizacion" rows="10" cols="50" placeholder="Actualizacion"></textarea>
+                  <textarea onChange={this.handleChangeInput} name="actualizacion" id="actualizacion" rows="10" cols="50" maxLength="800" placeholder="Actualizacion"></textarea>
                   <button type="submit">Anular estado</button>
    
                </form>
