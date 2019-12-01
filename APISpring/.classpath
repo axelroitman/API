@@ -35,19 +35,17 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/GitHub/API/lib/antlr-2.7.6.jar"/>
-	<classpathentry kind="lib" path="C:/GitHub/API/lib/commons-collections-3.1.jar"/>
-	<classpathentry kind="lib" path="C:/GitHub/API/lib/commons-logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/GitHub/API/lib/dom4j-1.6.1.jar"/>
-	<classpathentry kind="lib" path="C:/GitHub/API/lib/ejb3-persistence.jar"/>
-	<classpathentry kind="lib" path="C:/GitHub/API/lib/hibernate3.jar"/>
-	<classpathentry kind="lib" path="C:/GitHub/API/lib/hibernate-annotations.jar"/>
-	<classpathentry kind="lib" path="C:/GitHub/API/lib/hibernate-commons-annotations.jar"/>
-	<classpathentry kind="lib" path="C:/GitHub/API/lib/javassist-3.4.GA.jar"/>
-	<classpathentry kind="lib" path="C:/GitHub/API/lib/jta-1.1.jar"/>
-	<classpathentry kind="lib" path="C:/GitHub/API/lib/jtds-1.2.5.jar"/>
-	<classpathentry kind="lib" path="C:/GitHub/API/lib/slf4j-api-1.5.6.jar"/>
-	<classpathentry kind="lib" path="C:/GitHub/API/lib/slf4j-simple-1.5.6.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/API_TP"/>
+	<classpathentry kind="lib" path="C:/Users/diego/Documents/GitHub/API/lib/antlr-2.7.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/diego/Documents/GitHub/API/lib/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/diego/Documents/GitHub/API/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/diego/Documents/GitHub/API/lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/diego/Documents/GitHub/API/lib/ejb3-persistence.jar"/>
+	<classpathentry kind="lib" path="C:/Users/diego/Documents/GitHub/API/lib/hibernate3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/diego/Documents/GitHub/API/lib/hibernate-annotations.jar"/>
+	<classpathentry kind="lib" path="C:/Users/diego/Documents/GitHub/API/lib/hibernate-commons-annotations.jar"/>
+	<classpathentry kind="lib" path="C:/Users/diego/Documents/GitHub/API/lib/javassist-3.4.GA.jar"/>
+	<classpathentry kind="lib" path="C:/Users/diego/Documents/GitHub/API/lib/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/diego/Documents/GitHub/API/lib/jtds-1.2.5.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
