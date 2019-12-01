@@ -37,12 +37,20 @@ class CambiarEstado extends Component {
             if(actualizacion.length == 1)
             {
                fetch('http://localhost:8080/apitp/cambiarEstado?numero=' + this.props.match.params.id + '&estado=' + estado + '&actualizacion=' + actualizacion + '&nombre=' + sessionStorage.getItem("nombre"), {
-                  method: 'PUT' // or 'PUT'
+                  method: 'PUT' 
                }).then(response => {
                   console.log(response);
                   if (response.status === 200) 
                   {
-                     alert("Estado cambiado.");
+                     if(sessionStorage.getItem("administrador") == "true")
+                     {
+            
+                        alert("Estado cambiado.");
+                     }
+                     else
+                     {
+                        alert("Reclamo anulado");
+                     }
                      window.location = "/reclamo/" + this.props.match.params.id;
                   }
                   else if (response.status === 409)
@@ -79,32 +87,50 @@ class CambiarEstado extends Component {
       }
       else
       {
-         return (
-            <form id="frm-estados" onSubmit={this.handleSubmit}>
-               <h1>Cambiar estado</h1>
-               <select id="estados">
-                  <option value="-1">Seleccione un estado</option>
-                  {reclamo.estado == "nuevo" ? (
-                  <option value="2">Abierto</option>
-                  ) : (
-                  ''
-                     )
-                  }
-                  {reclamo.estado == "nuevo" || reclamo.estado == "abierto" ? (
-                  <option value="3">En proceso</option>
-                  ) : (
-                  ''
-                     )
-                  }
-                  <option value="4">Desestimado</option>
-                  <option value="5">Anulado</option>
-                  <option value="6">Terminado</option>
-               </select>
-               <textarea name="actualizacion" id="actualizacion" rows="10" cols="50" placeholder="Actualizacion"></textarea>
-               <button type="submit">Cambiar estado</button>
+         if(sessionStorage.getItem("administrador") == "true")
+         {
+            return (
+               <form id="frm-estados" onSubmit={this.handleSubmit}>
+                  <h1>Cambiar estado</h1>
+                  <select id="estados">
+                     <option value="-1">Seleccione un estado</option>
+                     {reclamo.estado == "nuevo" ? (
+                     <option value="2">Abierto</option>
+                     ) : (
+                     ''
+                        )
+                     }
+                     {reclamo.estado == "nuevo" || reclamo.estado == "abierto" ? (
+                     <option value="3">En proceso</option>
+                     ) : (
+                     ''
+                        )
+                     }
+                     <option value="4">Desestimado</option>
+                     <option value="6">Terminado</option>
+                  </select>
+                  <textarea name="actualizacion" id="actualizacion" rows="10" cols="50" placeholder="Actualizacion"></textarea>
+                  <button type="submit">Cambiar estado</button>
+   
+               </form>
+            );
+   
+         }
+         else
+         {
+            return (
+               <form id="frm-estados" onSubmit={this.handleSubmit}>
+                  <h1>Anular reclamo</h1>
 
-            </form>
-         );
+                  <input type="hidden" name="estados" id="estados" value="5"/>
+
+                  <textarea name="actualizacion" id="actualizacion" rows="10" cols="50" placeholder="Actualizacion"></textarea>
+                  <button type="submit">Anular estado</button>
+   
+               </form>
+            );
+         }
+
 
       }
    }

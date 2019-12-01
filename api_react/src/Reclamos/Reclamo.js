@@ -108,12 +108,6 @@ class Reclamo extends Component {
                   ))
                }
                </div>
-               {reclamo.estado == "nuevo" || reclamo.estado == "abierto" || reclamo.estado == "enProceso"  ? (
-                  <button onClick={this.handlePageChange.bind(this, reclamo.numero)}>Cambiar estado</button>
-               ) : (
-                  ''
-               )
-               }
                <p>Actualizaciones: {actualizaciones}</p>
                <div>
                   {
@@ -122,6 +116,12 @@ class Reclamo extends Component {
                         ))
                   }
                </div>
+               {reclamo.estado == "nuevo" || reclamo.estado == "abierto" || reclamo.estado == "enProceso"  ? (
+                  <button onClick={this.handlePageChange.bind(this, reclamo.numero)}>Cambiar estado</button>
+               ) : (
+                  ''
+               )
+               }
 
                <button onClick={this.props.history.goBack}>Volver</button>
                </div>
@@ -155,7 +155,13 @@ class Reclamo extends Component {
                }
             </div>
 
-            
+            {reclamo.estado == "nuevo" || reclamo.estado == "abierto" || reclamo.estado == "enProceso"  ? (
+                  <button onClick={this.handlePageChange.bind(this, reclamo.numero)}>Anular reclamo</button>
+               ) : (
+                  ''
+               )
+               }
+
             <button onClick={this.props.history.goBack}>Volver</button>
             </div>
             );
