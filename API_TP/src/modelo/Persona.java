@@ -63,6 +63,13 @@ public class Persona {
 		this.administrador = administrador;
 	}
 
+	public Persona(String documento, String usuario, String pass, boolean administrador) {
+		this.documento = documento;
+		this.usuario = usuario;
+		this.pass = pass;
+		this.administrador = administrador;	
+	}
+
 	public String getDocumento() {
 		return documento;
 	}

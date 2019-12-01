@@ -239,6 +239,11 @@ public class Controlador {
 		}
 	}
 	
+	public void modificarPersona(String documento, String usuario, String password, boolean administrador) throws PersonaException {
+		Persona persona = new Persona(documento, usuario, password, administrador);
+		PersonaDAO.getInstancia().update(persona);
+	}
+	
 	public void eliminarPersona(String documento) throws PersonaException { 
 		Persona persona = buscarPersona(documento);
 		persona.delete();

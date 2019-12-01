@@ -8,7 +8,8 @@ class ModificarPersona extends Component{
             nombre:"",
             usuario:"",
             documento:"",
-            privilegio: "",
+            privilegio: false,
+            password: "",
             isLoaded: false,
             cargado:false
         }
@@ -27,6 +28,32 @@ class ModificarPersona extends Component{
     }
 
     handleSubmit = (event) => {
+        var  {documento, usuario, password, privilegio} =this.state;
+
+        event.preventDefault();
+
+        fetch('http://localhost:8080/apitp/modificarPersona?documento=' + documento + '?usuario=' + usuario + '?password=' + password + '?administrador=' + privilegio, {
+            method: 'PUT'
+          }).then(response => {
+            if (response.status === 200) 
+            {
+              alert("Persona modificada exitosamente.");
+              window.location = '/';
+            }
+            else if (response.status === 409)
+            {
+                alert("Error al modificar a la persona.");
+            }
+            else
+            {
+               alert("Respuesta misteriosa.");
+            }
+
+          })
+          .catch(error => {
+            alert("ERROR");
+            console.log("Error.", error);
+               });
     }
 
     handleChange = (event) => {
@@ -41,6 +68,7 @@ class ModificarPersona extends Component{
             var nombre= null;
             var administrador = null;
             var usuario = null;
+            var contraseña=null;
             if(persona == 0)
             {
                persona = null;
@@ -56,34 +84,48 @@ class ModificarPersona extends Component{
                     {
                        documento= pers.documento;
                        administrador= pers.administrador;
+                       contraseña= pers.pass;
                        nombre= pers.nombre;
                        usuario= pers.usuario;
                     }
                 });
+                if(usuario === null || usuario===""){
+                    usuario="";
+                }
+                if(contraseña === null || contraseña==="" ){
+                 contraseña="";
+             }
                 if(persona != 0){
                     this.setState({documento: documento});
                     this.setState({nombre: nombre});
                     this.setState({usuario: usuario});
-                    this.setState({admin : administrador})
+                    this.setState({privilegio : administrador})
+                    this.setState({password : contraseña})
                     console.log(administrador)
-                    if(administrador){
-                        this.setState({privilegio: "administrador"});
+
+                   /* if(administrador){
+                        this.setState({privilegio: true});
                     }
                     else{
-                        this.setState({privilegio: "usuario"});
-                    }
+                        this.setState({privilegio: false});
+                    }*/
                 }
 
             }
         }
-        else if(event.target.id ==="listaPrivilegios"){
-            this.setState({privilegio: event.target.value})
+        else if(event.target.id === "listaPrivilegios"){
+            var administrador = event.target.value;
+            this.setState({privilegio: administrador})            
         }
         else if(event.target.id === "usuario"){
+            console.log(event.target.value)
             this.setState({usuario: event.target.value})
         }
         else if(event.target.id === "documento"){
             this.setState({documento: event.target.value})
+        }
+        else if(event.target.id === "contraseña"){
+            this.setState({password: event.target.value})
         }
     }
     
@@ -105,13 +147,17 @@ class ModificarPersona extends Component{
                             ))
                         }
                     </select>
-                    <select id="listaPrivilegios" value={this.state.privilegio} onChange={this.handleChange}>
+                    <select id="listaPrivilegios" value={privilegio} onChange={this.handleChange}>
                         <option value="administrador"> Administrador </option>
                         <option value="usuario"> Usuario </option>
                     </select>
-                    <input type="text" name="usuario" placeholder="Usuario" value={this.state.usuario} onChange={this.handleChange} required />
                     <br></br>
-                    <input type="text" name="documento" placeholder="Documento" value={this.state.documento} onChange={this.handleChange} required />
+
+                    <input type="text" id="usuario" name="usuario" placeholder="Usuario" value={this.state.usuario} onChange={this.handleChange} required />
+                    <input type="password" id="contraseña" name="contraseña" placeholder="Password" onChange={this.handleChange} required />
+                    <br></br>
+                    <input type="text" id="documento" name="documento" placeholder="Documento" value={this.state.documento}  disabled/>
+
                     <br></br>
 
                     <input type="submit" value="Guardar cambios"/>

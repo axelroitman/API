@@ -392,6 +392,25 @@ public class HomeController {
 					}
 					
 				}
+				//modificarPersona
+				@RequestMapping(value = "/modificarPersona", method = RequestMethod.PUT)
+				public ResponseEntity<Void> modificarPersona(@RequestParam(value="documento", required=true) String documento, @RequestParam(value="usuario", required=true) String usuario, @RequestParam(value="password", required=true) String password, @RequestParam(value="administrador", required=true) String administrador) {
+						boolean admin = false;
+					try {
+						if(administrador.equals("administrador")) {
+							admin = true;
+						}
+						else {
+							admin=false;
+						}
+						Controlador.getInstancia().modificarPersona(documento, usuario, password, admin);
+						return new ResponseEntity<Void>(HttpStatus.OK);						
+					} catch (PersonaException e) {
+						return new ResponseEntity<Void>(HttpStatus.CONFLICT);												
+						
+					}
+					
+				}
 		//reclamosPorEdificio
 				@RequestMapping(value = "/getReclamosPorEdificio", method = RequestMethod.GET, produces = {"application/json"})
 				public @ResponseBody<json> String getReclamosPorEdificio(@RequestParam(value="codigo", required=true) int codigo) throws JsonProcessingException {
