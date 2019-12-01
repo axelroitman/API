@@ -23,7 +23,7 @@ class ModificarPersona extends Component{
             personas: json
           });
         }).catch((error) =>{
-          alert("Error en API" + error);
+            alert("Error en API" + error);
         });
     }
 
@@ -51,7 +51,7 @@ class ModificarPersona extends Component{
 
           })
           .catch(error => {
-            alert("ERROR");
+            alert("ERROR" + error);
                });
     }
 

@@ -60,7 +60,10 @@ export default class InicioAdmin extends Component {
               <Link to="/habitarUnidad"><h3>Habitar unidad</h3></Link>
             </li>
             <li  style={{ listStyleType: "none" }}>
-              <Link to="/modificarPersona"><h3>Modificar Persona</h3></Link>
+              <Link to="/modificarPersona"><h3>Modificar persona</h3></Link>
+            </li>
+            <li  style={{ listStyleType: "none" }}>
+              <Link to="/eliminarPersona"><h3>Eliminar persona</h3></Link>
             </li>
 
           </ul> 

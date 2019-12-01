@@ -37,6 +37,8 @@ import Liberar from './Unidades/Liberar';
 import DueñosPorUnidad from './Unidades/DueñosPorUnidad';
 import Habitar from './Unidades/Habitar';
 import ModificarPersona from './Personas/ModificarPersona';
+import EliminarPersona from './Personas/EliminarPersona';
+
 
 function App() {
 
@@ -74,6 +76,7 @@ function App() {
 				<Route  path="/recPorUn" component={ReclamosPorUnidad} />
 				<Route  path="/liberarUnidad" component={Liberar} />
 				<Route  path="/habitarUnidad" component={Habitar} />
+				<Route  path="/eliminarPersona" component={EliminarPersona} />
 
 				<Route  path="/edificios" component={Edificios} />
 				<Route  path="/cambiar_estado/:id" component={CambiarEstado} />
