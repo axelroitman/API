@@ -99,14 +99,15 @@ handleSubmit = (event) => {
       var  {isLoaded, edificios, unidades: unidadesListadas, dueños, cargar} = this.state;
 
       if(!isLoaded) {
-         return <div>Cargando...</div>
+         return <div className='container'>Cargando...</div>
       }
       else
       {
          if(cargar === false){
          return (
             <form onSubmit={this.handleSubmit}>
-                <h1>Dueños Por Unidad</h1>
+               <div className='container'>
+                <h2>Dueños Por Unidad</h2>
                <select id="listaEdificios" onChange={this.handleChange}>
                   <option value="-1">Seleccione un edificio</option>
 
@@ -117,6 +118,7 @@ handleSubmit = (event) => {
                      ))
                   }
                </select>
+               <br></br>
                <select id="listaUnidades" onChange={this.handleChange}>
                   <option value="-1">Seleccione una unidad</option>
 
@@ -127,38 +129,52 @@ handleSubmit = (event) => {
                      ))
                   } 
                </select>
+               <br></br>
+               <br></br>
+
                <input type="submit" value="Buscar" />
+               </div>
             </form>
          );
       }
       else if(cargar === true){
          if(!isLoaded) {
-            return <div>Cargando...</div>
+            return <div className='container'>Cargando...</div>
         }
        else
        {
          if (dueños.length === 0)
          {
             return(
-                <div>
-              <h1>Dueños Por Unidad</h1>
+               <div className='container'>
+              <h2>Dueños Por Unidad</h2>
               <p>Esta unidad no tiene dueños.</p>
                 </div>
             );
          }
          else{
             return(
-                <div>
-                <h1>Dueños Por Unidad</h1>
-               <ul className="listaDueños">
-                  {
-                  dueños.map(item => (
-                     <li key={item.id} onClick={this.handlerClickItem.bind(this,item.documento)}> {item.nombre}</li>
-                  ))
-                  }
+               <div className='container'>
+                <h2>Dueños Por Unidad</h2>
+                <table>
+                    <tr>
+                    <th>Nombre</th>
+                    <th>Documento</th>
+                    <th>Persona</th>
+                    </tr>
 
-               </ul>
-               </div>
+               {
+                  dueños.map(item => {
+                     return (
+                     <tr>
+                     <td>{item.nombre}</td>
+                     <td>{item.documento}</td>
+                     <td><button onClick={this.handlerClickItem.bind(this,item.documento)}>Ver</button></td>
+                     </tr>
+                  );})
+               }
+               </table>
+            </div>
             );
          }
       }
