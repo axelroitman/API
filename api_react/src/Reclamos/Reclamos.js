@@ -34,14 +34,14 @@ import React, {Component} from 'react';
     var  {isLoaded, reclamos} =this.state;
 
     if(!isLoaded) {
-        return <div>Cargando...</div>
+        return <div className="container">Cargando...</div>
     }
    else
    {
      if (reclamos.length == 0)
      {
         return(
-          <p>No hay reclamos para mostrar.</p>
+          <div className="container"><p>No hay reclamos para mostrar.</p></div>
         );
      }
      else{
