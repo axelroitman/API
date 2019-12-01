@@ -52,13 +52,12 @@ class ModificarPersona extends Component{
           })
           .catch(error => {
             alert("ERROR");
-            console.log("Error.", error);
                });
     }
 
     handleChange = (event) => {
         var valorSel = event.target.value;
-        this.state.cargado= true;
+        this.setState({cargado: true});
 
         if(event.target.id === "listaPersonas"){
 
@@ -81,7 +80,6 @@ class ModificarPersona extends Component{
                 this.state.personas.forEach(function(pers){
                     if(pers.documento === persona)
                     {
-                        console.log(pers.documento)
                         nombre = pers.nombre;
                         documento= pers.documento;
                         administrador= pers.administrador;
@@ -99,20 +97,36 @@ class ModificarPersona extends Component{
                     this.setState({documento: documento});
                     this.setState({nombre: nombre});
                     this.setState({usuario: usuario});
-                    this.setState({privilegio : administrador})
-                    this.setState({password : contraseña})
-                    console.log(administrador)
+                    if(administrador == true)
+                    {
+                        this.setState({privilegio : "administrador"});
+
+                    }
+                    else
+                    {
+                        this.setState({privilegio : "usuario"});
+
+                    }
+                    this.setState({password : contraseña});
+
                 }
 
             }
         }
         else if(event.target.id === "listaPrivilegios"){
             var administrador = event.target.value;
-            this.setState({privilegio: administrador})  
-            console.log(this.state.privilegio)          
+            if(administrador == true)
+            {
+                this.setState({privilegio : "administrador"});
+
+            }
+            else
+            {
+                this.setState({privilegio : "usuario"});
+
+            }
         }
         else if(event.target.id === "usuario"){
-            console.log(event.target.value)
             this.setState({usuario: event.target.value})
         }
         else if(event.target.id === "documento"){
@@ -141,7 +155,7 @@ class ModificarPersona extends Component{
                             ))
                         }
                     </select>
-                    <select id="listaPrivilegios" value={privilegio} onChange={this.handleChange}>
+                    <select id="listaPrivilegios" value={this.state.privilegio} onChange={this.handleChange}>
                         <option value="administrador"> Administrador </option>
                         <option value="usuario"> Usuario </option>
                     </select>
