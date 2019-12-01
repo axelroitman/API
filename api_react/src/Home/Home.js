@@ -39,7 +39,10 @@ export default class Login extends Component {
 				{
 					sessionStorage.setItem("usuario", json.usuario);
 					sessionStorage.setItem("administrador", json.administrador);
-					sessionStorage.setItem("documento", json.documento);				
+					sessionStorage.setItem("documento", json.documento);					
+					sessionStorage.setItem("nombre", json.nombre);				
+
+
 				}
 				
 			}

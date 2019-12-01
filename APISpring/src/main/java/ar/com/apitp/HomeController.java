@@ -461,7 +461,7 @@ public class HomeController {
 				}
 		//cambiarEstado
 				@RequestMapping(value = "/cambiarEstado", method = RequestMethod.PUT)
-				public ResponseEntity <Void> cambiarEstado(@RequestParam(value="numero", required=true) int numero, @RequestParam(value="estado", required=true) int estado) {
+				public ResponseEntity <Void> cambiarEstado(@RequestParam(value="numero", required=true) int numero, @RequestParam(value="estado", required=true) int estado, @RequestParam(value="actualizacion", required=true) String actualizacion, @RequestParam(value="nombre", required=true) String nombre) {
 					try {
 						Estado est = null;
 						if(estado == 1) {

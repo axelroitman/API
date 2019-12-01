@@ -240,7 +240,10 @@ public class Controlador {
 	}
 	
 	public void modificarPersona(String documento, String usuario, String password, boolean administrador) throws PersonaException {
-		Persona persona = new Persona(documento, usuario, password, administrador);
+		Persona persona = buscarPersona(documento);
+		persona.setUsuario(usuario);
+		persona.setPass(password);
+		persona.setAdministrador(administrador);
 		PersonaDAO.getInstancia().update(persona);
 	}
 	

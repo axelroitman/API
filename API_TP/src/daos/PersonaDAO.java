@@ -74,6 +74,7 @@ private static PersonaDAO instancia;
 	}
 	
 	public void update(Persona persona){
+
 		PersonaEntity aGrabar = toEntity(persona);
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();

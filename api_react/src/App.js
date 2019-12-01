@@ -18,6 +18,7 @@ import Habitantes from './Edificios/Habitantes'
 import Habilitados from './Edificios/Habilitados';
 
 import ReclamosPorEdificio from './Edificios/ReclamosPorEdificio'
+import CambiarEstado from './Reclamos/CambiarEstado'
 
 
 import { Route, BrowserRouter as Router } from 'react-router-dom'
@@ -74,6 +75,8 @@ function App() {
 				<Route  path="/liberarUnidad" component={Liberar} />
 				<Route  path="/habitarUnidad" component={Habitar} />
 
+				<Route  path="/edificios" component={Edificios} />
+				<Route  path="/cambiar_estado/:id" component={CambiarEstado} />
 
 		</Router>
       

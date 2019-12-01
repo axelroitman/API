@@ -63,7 +63,7 @@ class Reclamo extends Component {
          {
             sinImagenes = "Sin imágenes";
          }
-
+         console.log(reclamo);
          if(sessionStorage.getItem("administrador") === "true"){
             return (
             
@@ -82,7 +82,13 @@ class Reclamo extends Component {
                   ))
                }
                </div>
-               <button onClick={this.handlePageChange.bind(this, reclamo.numero)}>Cambiar estado</button>
+               {reclamo.estado == "nuevo" || reclamo.estado == "abierto" || reclamo.estado == "enProceso"  ? (
+                  <button onClick={this.handlePageChange.bind(this, reclamo.numero)}>Cambiar estado</button>
+               ) : (
+                  ''
+               )
+               }
+
                <button onClick={this.props.history.goBack}>Volver</button>
                </div>
             );
