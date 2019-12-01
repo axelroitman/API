@@ -62,28 +62,7 @@ public class HomeController {
 	//reclamosPorPersona
 	@RequestMapping(value = "/getEdificiosParaReclamosUsuario", method = RequestMethod.GET, produces = {"application/json"})
 	public @ResponseBody<json> String getEdificiosParaReclamosUsuario(@RequestParam(value="documento", required=true) String documento) throws JsonProcessingException {
-		/*List<EdificioView> edificios = Controlador.getInstancia().getEdificios();
-		List<EdificioView> listado = new ArrayList<EdificioView>();
-		for(EdificioView ed : edificios)
-		{
-			List<PersonaView> hab;
-			try {
-				hab = Controlador.getInstancia().habilitadosPorEdificio(ed.getCodigo());
-				boolean aparecio = false;
-				for(PersonaView p : hab)
-				{
-					if(p.getDocumento().equals(documento) && aparecio == false) 
-					{
-						aparecio = true;
-						listado.add(ed);
-					}
-				}
-
-			} catch (EdificioException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}*/
+		
 		List<UnidadView> listado = new ArrayList<UnidadView>();
 		listado = Controlador.getInstancia().getUnidadesParaReclamosUsuario(documento);
 		
@@ -382,8 +361,6 @@ public class HomeController {
 		//eliminarPersona
 				@RequestMapping(value = "/eliminarPersona", method = RequestMethod.DELETE)
 				public ResponseEntity<Void> eliminarPersona(@RequestParam(value="documento", required=true) String documento) {
-					//ResponseBody<json>: Aclara que el String guarda un JSON
-					//ObjectMapper: Es una clase de Jackson que permite convertir una colección a un JSON usando el método writeValueAsString
 					try {
 						Controlador.getInstancia().eliminarPersona(documento);
 						return new ResponseEntity<Void>(HttpStatus.OK);						

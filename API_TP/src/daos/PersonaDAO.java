@@ -5,12 +5,10 @@ import java.util.List;
 
 import org.hibernate.classic.Session;
 
-import entities.InquilinoEntity;
 import entities.PersonaEntity;
 import exceptions.PersonaException;
 import hibernate.HibernateUtil;
 import modelo.Persona;
-import modelo.Unidad;
 
 public class PersonaDAO {
 	
@@ -108,18 +106,16 @@ private static PersonaDAO instancia;
 		}
 		
 		if(bandera == false) {
+			PersonaEntity aEliminar = toEntity(persona);
 			Session s = HibernateUtil.getSessionFactory().openSession();
 			s.beginTransaction();
-			PersonaEntity aEliminar = (PersonaEntity) s.createQuery("from PersonaEntity p where p.documento = ?")
-					.setString(0, persona.getDocumento())
-					.uniqueResult();
-			s.delete(aEliminar);
+			s.update(aEliminar);
 			s.getTransaction().commit();
 			s.close();
-			System.out.println("La persona ha sido eliminada con ï¿½xito."); //CORREGIR EN LA PRï¿½XIMA ETAPA DEL TP (ADAPTAR A INTERFAZ)
+
 		}
 		else {
-			System.out.println("No se puede eliminar a la persona porque es un dueï¿½o o un inquilino."); //CORREGIR EN LA PRï¿½XIMA ETAPA DEL TP (ADAPTAR A INTERFAZ)
+			throw new PersonaException("No se puede eliminar a la persona porque es dueño o inquilino.");
 		}
 	}
 }

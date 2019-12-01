@@ -24,6 +24,8 @@ class EliminarPersona extends Component{
     }
 
     handleSubmit = (event) => {
+        event.preventDefault();
+
         fetch('http://localhost:8080/apitp/eliminarPersona?documento=' + this.state.documento, {
             method: 'DELETE'
           }).then(response => {
@@ -34,11 +36,7 @@ class EliminarPersona extends Component{
             }
             else if (response.status === 409)
             {
-                alert("Error al eliminar a la persona.");
-            }
-            else
-            {
-               alert("Respuesta misteriosa.");
+                alert("Error al eliminar a la persona. Verifique que esta no esta no sea dueño o inquilino de una unidad.");
             }
 
           })

@@ -87,6 +87,8 @@ public class Persona {
 	}
 
 	public void delete() {
+		this.activo = false;
+
 		try {
 			PersonaDAO.getInstancia().delete(this);
 		} catch (PersonaException e) {
