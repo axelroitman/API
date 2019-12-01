@@ -26,7 +26,7 @@ private static PersonaDAO instancia;
 		List<Persona> resultado = new ArrayList<Persona>();
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
-		List<PersonaEntity> personas = s.createQuery("from PersonaEntity").list();
+		List<PersonaEntity> personas = s.createQuery("from PersonaEntity where activo = 1 order by nombre").list();
 		s.getTransaction().commit();
 		s.close();
 		for(PersonaEntity pe : personas)
