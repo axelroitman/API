@@ -68,63 +68,52 @@ export default class Registro extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-        <input
-            type="nombre"
-            name="nombre"
-            placeholder="Nombre"
-            value={this.state.nombre}
-            onChange={this.handleChange}
-            required
-          />
-        <input
-            type="apellido"
-            name="apellido"
-            placeholder="Apellido"
-            value={this.state.apellido}
-            onChange={this.handleChange}
-            required
-          />
-          <input
-            type="documento"
-            name="documento"
-            placeholder="Documento"
-            value={this.state.documento}
-            onChange={this.handleChange}
-            required
-          />
-
-          <input
-            type="usuario"
-            name="usuario"
-            placeholder="Usuario"
-            value={this.state.usuario}
-            onChange={this.handleChange}
-            required
-          />
-
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={this.state.password}
-            onChange={this.handleChange}
-            required
-          />
-
-          <input
-            type="password"
-            name="password_confirmation"
-            placeholder="Password confirmation"
-            value={this.state.password_confirmation}
-            onChange={this.handleChange}
-            required
-          />
-
+  <div className="container">
+    <div>
+      <form onSubmit={this.handleSubmit}>
+       
+       <div className="row">
+          <div className="col-md-2">
+						<label>Nombre</label>
+					</div>
+          <div className="col-md-10">
+            <input type="nombre"name="nombre"placeholder="Nombre"value={this.state.nombre}onChange={this.handleChange}required/>  
+          </div>
+          <div className="col-md-2">
+						<label>Apellido</label>
+					</div>
+          <div className="col-md-10">
+            <input type="apellido"name="apellido"placeholder="Apellido"value={this.state.apellido}onChange={this.handleChange}required/>
+          </div> 
+          <div className="col-md-2">
+						<label>Documento</label>
+					</div>
+          <div className="col-md-10">
+            <input type="documento"name="documento"placeholder="Documento"value={this.state.documento}onChange={this.handleChange}required/>
+          </div>
+          <div className="col-md-2">
+						<label>Usuario</label>
+					</div>
+          <div className="col-md-10">
+            <input type="usuario"name="usuario"placeholder="Usuario"value={this.state.usuario}onChange={this.handleChange}required/>
+          </div>
+          <div className="col-md-2">
+						<label>Contraseña</label>
+					</div>
+          <div className="col-md-10">  
+            <input type="password"name="password" placeholder="Password"value={this.state.password} onChange={this.handleChange}required />
+          </div> 
+          <div className="col-md-2">
+						<label>Repita contraseña</label>
+					</div>
+          <div className="col-md-10">
+            <input type="password" name="password_confirmation" placeholder="Password confirmation"value={this.state.password_confirmation} onChange={this.handleChange}required/>
+          </div> 
+        </div>
           <button type="submit">Registrar</button>
-        </form>
-      </div>
+      </form>
+    </div>
+  </div>
     );
   }
 }
