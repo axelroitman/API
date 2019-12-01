@@ -8,7 +8,7 @@ class ModificarPersona extends Component{
             nombre:"",
             usuario:"",
             documento:"",
-            privilegio: false,
+            privilegio: "",
             password: "",
             isLoaded: false,
             cargado:false
@@ -32,7 +32,7 @@ class ModificarPersona extends Component{
 
         event.preventDefault();
 
-        fetch('http://localhost:8080/apitp/modificarPersona?documento=' + documento + '?usuario=' + usuario + '?password=' + password + '?administrador=' + privilegio, {
+        fetch('http://localhost:8080/apitp/modificarPersona?documento=' + documento + '&usuario=' + usuario + '&password=' + password + '&administrador=' + privilegio, {
             method: 'PUT'
           }).then(response => {
             if (response.status === 200) 
@@ -62,7 +62,6 @@ class ModificarPersona extends Component{
 
         if(event.target.id === "listaPersonas"){
 
-            this.setState({documento: valorSel});
             var persona = document.getElementById("listaPersonas").value;
             var documento= null;
             var nombre= null;
@@ -82,11 +81,12 @@ class ModificarPersona extends Component{
                 this.state.personas.forEach(function(pers){
                     if(pers.documento === persona)
                     {
-                       documento= pers.documento;
-                       administrador= pers.administrador;
-                       contraseña= pers.pass;
-                       nombre= pers.nombre;
-                       usuario= pers.usuario;
+                        console.log(pers.documento)
+                        nombre = pers.nombre;
+                        documento= pers.documento;
+                        administrador= pers.administrador;
+                        contraseña= pers.pass;
+                        usuario = pers.usuario;
                     }
                 });
                 if(usuario === null || usuario===""){
@@ -94,7 +94,7 @@ class ModificarPersona extends Component{
                 }
                 if(contraseña === null || contraseña==="" ){
                  contraseña="";
-             }
+                 }
                 if(persona != 0){
                     this.setState({documento: documento});
                     this.setState({nombre: nombre});
@@ -102,20 +102,14 @@ class ModificarPersona extends Component{
                     this.setState({privilegio : administrador})
                     this.setState({password : contraseña})
                     console.log(administrador)
-
-                   /* if(administrador){
-                        this.setState({privilegio: true});
-                    }
-                    else{
-                        this.setState({privilegio: false});
-                    }*/
                 }
 
             }
         }
         else if(event.target.id === "listaPrivilegios"){
             var administrador = event.target.value;
-            this.setState({privilegio: administrador})            
+            this.setState({privilegio: administrador})  
+            console.log(this.state.privilegio)          
         }
         else if(event.target.id === "usuario"){
             console.log(event.target.value)
@@ -153,8 +147,8 @@ class ModificarPersona extends Component{
                     </select>
                     <br></br>
 
-                    <input type="text" id="usuario" name="usuario" placeholder="Usuario" value={this.state.usuario} onChange={this.handleChange} required />
-                    <input type="password" id="contraseña" name="contraseña" placeholder="Password" onChange={this.handleChange} required />
+                    <input type="text" id="usuario" name="usuario" placeholder="Usuario" value={this.state.usuario} onChange={this.handleChange}  />
+                    <input type="password" id="contraseña" name="contraseña" placeholder="Password" value={this.state.password} onChange={this.handleChange}  />
                     <br></br>
                     <input type="text" id="documento" name="documento" placeholder="Documento" value={this.state.documento}  disabled/>
 
