@@ -38,6 +38,7 @@ import DueñosPorUnidad from './Unidades/DueñosPorUnidad';
 import Habitar from './Unidades/Habitar';
 import ModificarPersona from './Personas/ModificarPersona';
 import EliminarPersona from './Personas/EliminarPersona';
+import ReclamosPorEdificioUsuario from './Edificios/ReclamosPorEdificioUsuario';
 
 
 function App() {
@@ -65,6 +66,7 @@ function App() {
 				<Route  path="/dueñosPorUnidad" component={DueñosPorUnidad} />
 				<Route  path="/transferir" component={Transferir} />
 				<Route  path="/modificarPersona" component={ModificarPersona} />
+				<Route  path="/recEdif" component={ReclamosPorEdificioUsuario} />
 
 
 				<Route  path="/reclamo/:id" component={Reclamo} />

@@ -51,6 +51,9 @@ class Header extends React.Component {
               <li  style={{ listStyleType: "none" }}>
                 <Link to="/unidadesPropias"><h3>Mis Propiedades</h3></Link>
               </li>
+              <li  style={{ listStyleType: "none" }}>
+                <Link to="/recEdif"><h3>Reclamos en mis edificios</h3></Link>
+              </li>
 
               <li  onClick={this.handlerClickItem.bind()} style={{ listStyleType: "none" }}>
                 <Link to=""><h3>Cerrar sesión</h3></Link>
