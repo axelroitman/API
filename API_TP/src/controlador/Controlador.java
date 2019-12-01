@@ -43,8 +43,13 @@ public class Controlador {
 		for(Unidad u : unidadesInquilino)
 			resultado.add(u.toView());
 		for(Unidad u : unidadesPorDuenio)
-			resultado.add(u.toView());
-			
+		{
+			List<Persona> inquilinos = u.getInquilinos();
+			if(inquilinos == null)
+			{
+				resultado.add(u.toView());
+			}
+		}	
 		return resultado;
 	}
 	
