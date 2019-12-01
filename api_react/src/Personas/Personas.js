@@ -33,7 +33,7 @@ import React, {Component} from 'react';
     var  {isLoaded, personas} =this.state;
 
     if(!isLoaded) {
-        return <div>Loading...</div>
+        return <div className='container'>Cargando...</div>
     }
    else
    {

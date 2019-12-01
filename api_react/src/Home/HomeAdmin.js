@@ -11,7 +11,7 @@ export default class InicioAdmin extends Component {
     render(){ 
         return( 
           <div class="container">
-            <h2>Panel de administrador</h2>
+            <h2 className="adminPanel">Panel de administrador</h2>
             <ul className="panelAdmin">
               <li  style={{ listStyleType: "none" }}>
                     <Link to="/recPorPers"><h3>Ver reclamos por persona</h3></Link>

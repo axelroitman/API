@@ -32,30 +32,52 @@ import React, {Component} from 'react';
     var  {isLoaded, reclamos} =this.state;
 
     if(!isLoaded) {
-        return <div>Loading...</div>
+        return <div className='container'>Cargando...</div>
     }
    else
    {
      if (reclamos.length == 0)
      {
         return(
-          <p>No hay reclamos para mostrar.</p>
+          <div className='container'><p>No hay reclamos para mostrar.</p></div>
         );
      }
      else{
       return (
-        <div>
-        <ul className="listReclamos">
-                 {
-                    reclamos.map(item => {
-                      return item.unidad != null ?
-                       <li key={item.id} onClick={this.handlerClickItem.bind(this,item.numero)}>Usuario: {item.usuario.nombre}, nro. {item.numero} - {item.edificio.nombre}, {item.unidad.piso}° {item.unidad.numero}</li>
-                       :
-                       <li key={item.id} onClick={this.handlerClickItem.bind(this,item.numero)}> Usuario: {item.usuario.nombre}, nro. {item.numero} - {item.edificio.nombre}</li>
+        <div className="containerTabla">
+          <h2>Todos los reclamos</h2>
+          <div className="tabla">
+            <table>
+                  <tr>
+                          <th>N° Reclamo</th>
+                          <th>Edificio</th>
+                          <th>Unidad/Ubicación</th>
+                          <th>Estado</th>
+                          <th>Reclamo</th>
 
-                    })
-                 }
-              </ul>
+                          </tr>
+                    {
+                        reclamos.map(item => {
+                          return item.unidad != null ?
+                          <tr>
+                            <td>#{item.numero} </td>
+                            <td>{item.edificio.nombre}</td>
+                            <td>{item.unidad.piso}° {item.unidad.numero}</td>
+                            <td>{item.estado}</td>
+                            <td><button onClick={this.handlerClickItem.bind(this,item.numero)}>Ver</button></td>
+                            </tr>
+                          :
+                            <tr>
+                            <td>#{item.numero} </td>
+                            <td>{item.edificio.nombre}</td>
+                            <td>{item.ubicacion}</td>
+                            <td>{item.estado}</td>
+                            <td><button onClick={this.handlerClickItem.bind(this,item.numero)}>Ver</button></td>
+                            </tr>
+                        })
+                    }
+                  </table>
+              </div>
         </div>
        );
      }
