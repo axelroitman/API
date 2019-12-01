@@ -38,15 +38,28 @@ import React, {Component} from 'react';
    else
    {
     return (
-      <div>
-      <ul className="listPersonas">
-               {
-                  personas.map(item => (
-                     <li key={item.id} onClick={this.handlerClickItem.bind(this,item.documento)}> {item.nombre}</li>
-                  ))
-               }
-            </ul>
+      <div className='container'>
+         <h2>Todas las personas</h2>
+         <div className="tabla">
+              <table>
+                    <tr>
+                    <th>Nombre</th>
+                    <th>Documento</th>
+                    <th>Persona</th>
+                    </tr>
 
+                   {
+                  personas.map(item => {
+                     return (
+                     <tr>
+                     <td>{item.nombre}</td>
+                     <td>{item.documento}</td>
+                     <td><button onClick={this.handlerClickItem.bind(this,item.documento)}>Ver</button></td>
+                     </tr>
+                  );})
+               }
+            </table>
+         </div>
       </div>
      );
    }
