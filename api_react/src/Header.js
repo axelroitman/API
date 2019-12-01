@@ -69,13 +69,8 @@ class Header extends React.Component {
     {
       return (
         <div className="topBlue">
-           <Link to="/home"><h1>Claimer</h1></Link>
-           <ul className="menu" >
-         <li  style={{ listStyleType: "none" }}>
-           <Link to="/home"><h3>Home</h3></Link>
-         </li>
-       </ul>
-          <hr/>
+           <h1>Claimer</h1>
+
        </div>
        );
     }

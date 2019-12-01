@@ -24,8 +24,12 @@
   color: blue;
 }
 
+@import url('https://fonts.googleapis.com/css?family=Sulphur+Point&display=swap');
+
 .topBlue {
-  background-color:black;
+  background-color:rgb(255, 255, 255);
+  font-family: 'Sulphur Point', sans-serif;
+  font-size: 25 px;
 }
 
 .App-logo {
