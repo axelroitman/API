@@ -33,12 +33,12 @@ class UnidadesPorInquilino extends Component {
       var  {isLoaded, unidades, cargado} = this.state;
 
     if(!isLoaded) {
-        return <div>Cargando...</div>
+        return <div className='container'>Cargando...</div>
      }   
      else if (unidades.length == 0)
      {
         return(
-          <p>No hay unidades para mostrar.</p>
+          <div className='container'><p>No hay unidades para mostrar.</p></div>
         );
      }
      else{
