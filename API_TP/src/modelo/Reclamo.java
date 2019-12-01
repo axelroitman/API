@@ -104,8 +104,16 @@ public class Reclamo {
 		return imagenes;
 	}
 	
-	public void cambiarEstado(Estado estado) {
+	public void cambiarEstado(Estado estado, String actualizacion) {
 		this.estado = estado;
+		if(this.actualizacion == null) 
+		{
+			this.actualizacion = actualizacion;
+		}
+		else 
+		{
+			this.actualizacion = this.actualizacion + "|@@|" + actualizacion;
+		}
 		ReclamoDAO.getInstancia().update(this);
 	}
 
@@ -128,11 +136,11 @@ public class Reclamo {
 		
 		if(unidad == null) 
 		{
-			return new ReclamoView(usuario.toView(), edificio.toView(), ubicacion, descripcion, null, estado, numero, imagenesView);				
+			return new ReclamoView(usuario.toView(), edificio.toView(), ubicacion, descripcion, null, estado, numero, imagenesView, actualizacion);				
 		}
 		else 
 		{
-			return new ReclamoView(usuario.toView(), edificio.toView(), ubicacion, descripcion, unidad.toView(), estado, numero, imagenesView);			
+			return new ReclamoView(usuario.toView(), edificio.toView(), ubicacion, descripcion, unidad.toView(), estado, numero, imagenesView, actualizacion);			
 		}
 	}
 }

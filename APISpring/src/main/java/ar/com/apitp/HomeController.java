@@ -1,7 +1,9 @@
 package ar.com.apitp;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -463,26 +465,35 @@ public class HomeController {
 				@RequestMapping(value = "/cambiarEstado", method = RequestMethod.PUT)
 				public ResponseEntity <Void> cambiarEstado(@RequestParam(value="numero", required=true) int numero, @RequestParam(value="estado", required=true) int estado, @RequestParam(value="actualizacion", required=true) String actualizacion, @RequestParam(value="nombre", required=true) String nombre) {
 					try {
+						String nombreEstado = "";
 						Estado est = null;
 						if(estado == 1) {
+							nombreEstado = "Nuevo";
 							est = Estado.nuevo;
 						}
 						else if (estado == 2) {
+							nombreEstado = "Abierto";
 							est= Estado.abierto;
 						}
 						else if(estado == 3) {
+							nombreEstado = "En proceso";
 							est= Estado.enProceso;
 						}
 						else if(estado == 4) {
+							nombreEstado = "Desestimado";
 							est= Estado.desestimado;
 						}
 						else if(estado == 5) {
+							nombreEstado = "Anulado";
 							est= Estado.anulado;
 						}
 						else if(estado == 6) {
+							nombreEstado = "Terminado";
 							est= Estado.terminado;
 						}
-						Controlador.getInstancia().cambiarEstado(numero, est);
+						String timeStamp = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
+						String textoActualizacion =  nombre + "|/| ha cambiado el estado del reporte a |/|" + nombreEstado + "|/| el " + timeStamp + ": |/|" + actualizacion;
+						Controlador.getInstancia().cambiarEstado(numero, est, textoActualizacion);
 						return new ResponseEntity<Void>(HttpStatus.OK);
 						
 					} catch (ReclamoException e) {

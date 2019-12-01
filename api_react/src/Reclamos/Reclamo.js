@@ -43,6 +43,7 @@ class Reclamo extends Component {
          var ubicacion = "";
          var imagenesLinks = [];
          var sinImagenes = "";
+         var actualizaciones = "";
 
          if(reclamo.ubicacion == null)
          {
@@ -59,11 +60,36 @@ class Reclamo extends Component {
             imagenesLinks.push({imagen : "https://grupo6api.000webhostapp.com/" + reclamo.numero + "_" + img.direccion + "." + img.tipo, alernativa: "https://grupo6api.000webhostapp.com/FtpTrial-" + reclamo.numero + "_" + img.direccion + "." + img.tipo});
          });
 
+         var arrayActualizaciones = [""];
+         if(reclamo.actualizacion != null)
+         {
+            arrayActualizaciones = reclamo.actualizacion.split('|@@|');
+            var arrayTemp = [];
+            arrayActualizaciones.forEach(function(act){
+               act = act.split('|/|');
+               arrayTemp.push(act);
+               
+               
+            });
+
+            if(arrayTemp != [])
+            {
+               arrayActualizaciones = arrayTemp;
+            }
+            
+   
+         }
+
          if(imagenesLinks.length == 0)
          {
             sinImagenes = "Sin imágenes";
          }
-         console.log(reclamo);
+         if(actualizaciones == [""])
+         {
+            actualizaciones = "No hubieron actualizaciones de este reclamo.";
+         }
+
+         console.log(arrayActualizaciones);
          if(sessionStorage.getItem("administrador") === "true"){
             return (
             
@@ -88,6 +114,14 @@ class Reclamo extends Component {
                   ''
                )
                }
+               <p>Actualizaciones: {actualizaciones}</p>
+               <div>
+                  {
+                     arrayActualizaciones.map(item => (
+                        <div><b>{item[0]}</b>{item[1]}<b>{item[2]}</b>{item[3]}<br/>{item[4]}</div>
+                        ))
+                  }
+               </div>
 
                <button onClick={this.props.history.goBack}>Volver</button>
                </div>
@@ -110,7 +144,18 @@ class Reclamo extends Component {
                   ))
                }
             </div>
+            <p>Actualizaciones: {actualizaciones}</p>
+            <div>
+               {
+                  
+                  arrayActualizaciones.map(item => (
+                  <div><b>{item[0]}</b>{item[1]}<b>{item[2]}</b>{item[3]}<br/>{item[4]}</div>
 
+                  ))
+               }
+            </div>
+
+            
             <button onClick={this.props.history.goBack}>Volver</button>
             </div>
             );

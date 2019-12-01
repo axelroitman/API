@@ -333,9 +333,9 @@ public class Controlador {
 		reclamo.agregarImagen(direccion, tipo);
 	}
 	
-	public void cambiarEstado(int numero, Estado estado) throws ReclamoException { 	
+	public void cambiarEstado(int numero, Estado estado, String actualizacion) throws ReclamoException { 	
 		Reclamo reclamo = buscarReclamo(numero);
-		reclamo.cambiarEstado(estado);
+		reclamo.cambiarEstado(estado, actualizacion);
 		reclamo.update();
 	}
 	
