@@ -93,7 +93,7 @@ class Reclamo extends Component {
          if(sessionStorage.getItem("administrador") === "true"){
             return (
             
-               <div className="reclamos"><h2 className="selectedReclamo">Reclamo #{this.props.match.params.id}</h2>  
+               <div className="reclamos container"><h2 className="selectedReclamo">Reclamo #{this.props.match.params.id}</h2>  
                <p>Estado: <b>{reclamo.estado}</b></p>
                <p>Usuario: {reclamo.usuario.nombre}</p>
                <p>Ubicacion: {reclamo.edificio.nombre}, {ubicacion}</p>

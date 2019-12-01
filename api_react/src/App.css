@@ -21,19 +21,24 @@ h1{
   color: #FFFFFF
 }
 
+h1, h2, h3, h4, h5, p
+{
+  font-family: 'Sulphur Point', sans-serif;
+
+} 
+
 .container
 {
-  margin-left: 25%;
-    margin-right: 25%;
-    margin-top: 5%;
-    padding-bottom: 2%;
-    padding-top: 1%;
-    background-color: #ece9e9d6;
-    border-radius: 20px;
+  margin: 5% 25%;
+  padding-bottom: 2%;
+  padding-top: 1%;
+  background-color: #ece9e9d6;
+  border-radius: 20px;
 
 }
 
 button {
+  margin: 0 10px;
   border: none;
   background: #0c0c0cb3;
   color: #ffffff !important;
