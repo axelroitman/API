@@ -10,6 +10,9 @@ class Header extends React.Component {
 
     window.location = '/';  
  }
+ handlePageChange() {
+  window.location = '/';
+  }
 
   render() {
 
@@ -19,7 +22,7 @@ class Header extends React.Component {
       {
         return (
           <div className="topBlue">
-              <h1>Claimer</h1>
+              <h1 onClick={this.handlePageChange}>Claimer</h1>
              <ul className="menu" >
                 <li  style={{ listStyleType: "none" }}>
                   <Link to="/personas"><h3>Personas</h3></Link>
@@ -37,7 +40,7 @@ class Header extends React.Component {
       {
         return (
           <div className="topBlue">
-             <h1>Claimer</h1>
+              <h1 onClick={this.handlePageChange}>Claimer</h1>
              <ul className="menu" >
               <li  style={{ listStyleType: "none" }}>
                 <Link to="/"><h3>Reclamos</h3></Link>
@@ -69,7 +72,7 @@ class Header extends React.Component {
     {
       return (
         <div className="topBlue">
-           <h1>Claimer</h1>
+          <h1 onClick={this.handlePageChange}>Claimer</h1>
        </div>
        );
     }

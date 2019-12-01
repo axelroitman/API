@@ -70,6 +70,8 @@ export default class Registro extends Component {
     return (
   <div className="container">
     <div>
+      <h2>Registro</h2>
+
       <form onSubmit={this.handleSubmit}>
        
        <div className="row">
@@ -101,16 +103,19 @@ export default class Registro extends Component {
 						<label>Contraseña</label>
 					</div>
           <div className="col-md-10">  
-            <input type="password"name="password" placeholder="Password"value={this.state.password} onChange={this.handleChange}required />
+            <input type="password"name="password" placeholder="Contraseña" value={this.state.password} onChange={this.handleChange}required />
           </div> 
           <div className="col-md-2">
 						<label>Repita contraseña</label>
 					</div>
           <div className="col-md-10">
-            <input type="password" name="password_confirmation" placeholder="Password confirmation"value={this.state.password_confirmation} onChange={this.handleChange}required/>
+            <input type="password" name="password_confirmation" placeholder="Repita su contraseña"value={this.state.password_confirmation} onChange={this.handleChange}required/>
           </div> 
         </div>
-          <button type="submit">Registrar</button>
+        <div className="row divBotones">
+          <button type="submit">Registrarse</button>
+        </div>
+
       </form>
     </div>
   </div>
