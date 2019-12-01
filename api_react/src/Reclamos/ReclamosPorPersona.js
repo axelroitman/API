@@ -34,6 +34,8 @@ class ReclamosPorPersona extends Component {
   
     
     handleSubmit(event) {
+      console.log(document.getElementById("listaPersonas"));
+
       this.setState({cargado: true})
       const {documento} = this.state;
       fetch('http://localhost:8080/apitp/getReclamosPorPersona?documento=' + documento)
@@ -51,7 +53,7 @@ class ReclamosPorPersona extends Component {
 
     }
    
-    handlerClickItem(id) {
+    handlePageChange(id) {
       this.props.history.push('/reclamo/' + id)
    }
   
@@ -73,41 +75,66 @@ class ReclamosPorPersona extends Component {
      }
     else{
       return (
-          <div>
-              <ul className="listReclamos">
-             {
-               reclamos.map(item => {
-                return item.unidad != null ?
-                 <li key={item.id} onClick={this.handlerClickItem.bind(this,item.numero)}> #{item.numero} - {item.edificio.nombre}, {item.unidad.piso}° {item.unidad.numero}</li>
-                 :
-                 <li key={item.id} onClick={this.handlerClickItem.bind(this,item.numero)}> #{item.numero} - {item.edificio.nombre}, {item.ubicacion}</li>
+        <div className="containerTabla">
+        <h2>Reclamos de {reclamos[0].usuario.nombre}</h2>
+        <div className="tabla">
+          <table>
+                  <tr>
+                  <th>N° Reclamo</th>
+                  <th>Edificio</th>
+                  <th>Unidad/Ubicación</th>
+                  <th>Estado</th>
+                  <th>Reclamo</th>
 
-              })
-             }
-              </ul>
+                  </tr>
+                  {
+                    reclamos.map(item => {
+                      return item.unidad != null ?
+                      <tr>
+                      <td>#{item.numero} </td>
+                      <td>{item.edificio.nombre}</td>
+                      <td>{item.unidad.piso}° {item.unidad.numero}</td>
+                      <td>{item.estado}</td>
+                      <td><button onClick={this.handlePageChange.bind(this,item.numero)}>Ver</button></td>
+                      </tr>
 
-            </div>
+                      :                    
+                      <tr>
+                      <td>#{item.numero} </td>
+                      <td>{item.edificio.nombre}</td>
+                      <td>{item.ubicacion}</td>
+                      <td>{item.estado}</td>
+                      <td><button onClick={this.handlePageChange.bind(this,item.numero)}>Ver</button></td>
+                      </tr>
+                    })
+                  }  
+              
+              </table>
+          </div>
+      </div>
        );
      }
     }
      else{
       return (
 
+        <div className="container">
+          <h2>Reclamos por persona</h2>
+          <form onSubmit={this.handleSubmit}>
+            <select id="listaPersonas" onChange={this.handleChange}>
+                    <option value="-1">Seleccione a una persona</option>
 
-        <form onSubmit={this.handleSubmit}>
-          <select id="listaPersonas" onChange={this.handleChange}>
-                  <option value="-1">Seleccione a una persona</option>
+                    {
+                      personas.map(item => (
+                          <option value={item.documento}>{item.nombre}</option>
 
-                  {
-                     personas.map(item => (
-                        <option value={item.documento}>{item.nombre}</option>
-
-                     ))
-                  }
-               </select>
-          <input type="submit" value="Buscar" />
-        </form>
-      );
+                      ))
+                    }
+                </select>
+            <input type="submit" value="Buscar" />
+          </form>
+        </div>
+        );
     }
   }
 }
