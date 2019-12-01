@@ -34,11 +34,11 @@ class Persona extends Component {
       }
       else
       {
-         
         return (
-<div className="personas"><h2 className="selectedPersona">Detalle de la persona: "{persona.nombre}"</h2>
+         <div className="personas container"><h2 className="selectedPersona">Detalle de la persona: "{persona.nombre}"</h2>
             <p>Documento: {persona.documento}</p>
-            <p>Usuario: {persona.usuario}</p>
+            <p>Usuario: {persona.usuario == null ? "-" : persona.usuario}</p>
+            <p>Rol: {persona.administrador == true ? "Administrador" : "Usuario"}</p>
             <button onClick={this.props.history.goBack}>Volver</button>
 
             </div>
