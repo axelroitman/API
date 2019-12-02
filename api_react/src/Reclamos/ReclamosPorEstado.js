@@ -39,7 +39,9 @@ class ReclamosPorEstado extends Component {
       if(!isLoaded){
               return (
                     <form onSubmit={this.handleSubmit}>
-                        <h1>Ver reclamos por estado</h1>
+                      <div className="containerTabla">
+                         <h2>Reclamos por estado</h2>
+                      
                         <select id="estados">
                           <option value="-1">Seleccione un estado</option>
                           <option value="1">Nuevo</option>
@@ -50,31 +52,62 @@ class ReclamosPorEstado extends Component {
                           <option value="6">Terminado</option>
 
                        </select>
+                       <br />
+                       <br />
                        <button type="submit">Ver reclamos</button>
+                       </div>
                       </form>
                       );
                     }
       else{
         if (reclamos.length == 0){
-          return <p>No hay reclamos con el estado seleccionado.</p>
+          return (
+            <div className="containerTabla">
+            <h2>Reclamos por estado</h2>
+            <p>No hay reclamos con el estado seleccionado.</p>
+            </div>);
         }
         else{
-         return (
-          <div>
-              <ul className="listReclamos">
-             {
-               reclamos.map(item => {
-                return item.unidad != null ?
-                 <li key={item.id} onClick={this.handlerClickItem.bind(this,item.numero)}> #{item.numero} - {item.edificio.nombre}, {item.unidad.piso}° {item.unidad.numero}</li>
-                 :
-                 <li key={item.id} onClick={this.handlerClickItem.bind(this,item.numero)}> #{item.numero} - {item.edificio.nombre}, {item.ubicacion}</li>
-
-              })
-             }
-              </ul>
-
+          return (
+            <div className="containerTabla">
+              <h2>Reclamos por estado</h2>
+              <div className="tabla">
+                <table>
+                        <tr>
+                        <th>N° Reclamo</th>
+                        <th>Edificio</th>
+                        <th>Unidad/Ubicación</th>
+                        <th>Estado</th>
+                        <th>Reclamo</th>
+    
+                        </tr>
+                        {
+                          reclamos.map(item => {
+                            return item.unidad != null ?
+                            <tr>
+                            <td>#{item.numero} </td>
+                            <td>{item.edificio.nombre}</td>
+                            <td>{item.unidad.piso}° {item.unidad.numero}</td>
+                            <td>{item.estado}</td>
+                            <td><button onClick={this.handlerClickItem.bind(this,item.numero)}>Ver</button></td>
+                            </tr>
+    
+                            :                    
+                            <tr>
+                            <td>#{item.numero} </td>
+                            <td>{item.edificio.nombre}</td>
+                            <td>{item.ubicacion}</td>
+                            <td>{item.estado}</td>
+                            <td><button onClick={this.handlerClickItem.bind(this,item.numero)}>Ver</button></td>
+                            </tr>
+                          })
+                         }  
+                    
+                    </table>
             </div>
-       );
+    
+            </div>
+           );
       }
     }
   }
