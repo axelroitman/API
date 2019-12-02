@@ -37,7 +37,11 @@ class Reclamo extends Component {
       var  {isLoaded, reclamo} =this.state;
       
       if(!isLoaded) {
-         return <div>Loading...</div>
+         return (
+            <div classname="container">
+            <div>Cargando...</div>
+            </div>
+            )
       }
       else
       {

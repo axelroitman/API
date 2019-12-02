@@ -93,7 +93,11 @@ class CambiarEstado extends Component {
       var  {isLoaded, reclamo, unidadesListadas} =this.state;
 
       if(!isLoaded) {
-         return <div>Cargando...</div>
+         return (
+            <div classname="container">
+            <div>Cargando...</div>
+            </div>
+            )
       }
       else
       {

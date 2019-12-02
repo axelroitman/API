@@ -293,7 +293,7 @@ class ReclamoForm extends Component {
       var  {isLoaded, edificios, unidadesListadas} =this.state;
 
       if(!isLoaded) {
-         return <div className="container">Loading...</div>
+         return <div className="container">Cargando...</div>
       }
       else
       {

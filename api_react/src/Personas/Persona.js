@@ -30,7 +30,11 @@ class Persona extends Component {
       var  {isLoaded, persona} = this.state;
 
       if(!isLoaded) {
-         return <div>Loading...</div>
+         return (
+         <div classname="container">
+         <div>Loading...</div>
+         </div>
+         )
       }
       else
       {
