@@ -115,7 +115,7 @@ class ModificarPersona extends Component{
         }
         else if(event.target.id === "listaPrivilegios"){
             var administrador = event.target.value;
-            if(administrador == true)
+            if(administrador == "administrador")
             {
                 this.setState({privilegio : "administrador"});
 
@@ -141,12 +141,19 @@ class ModificarPersona extends Component{
         var  {isLoaded, personas, privilegio, cargado} = this.state;
 
         if(!isLoaded){
-            return <div>Cargando...</div>
+            return (
+                <div className='container'>
+                <h2>Modificar persona</h2>
+                Cargando...
+            </div>
+            );
         }
         else if(cargado === true){
             return(
                 <form onSubmit={this.handleSubmit}>
-                    <h1>Modificar Persona</h1>
+                    <div className='container'>
+                        <h2>Modificar persona</h2>
+                    
                     <select id="listaPersonas" onChange={this.handleChange}>
                         <option value="-1"> Seleccione a una persona </option>
                         {
@@ -155,6 +162,7 @@ class ModificarPersona extends Component{
                             ))
                         }
                     </select>
+
                     <select id="listaPrivilegios" value={this.state.privilegio} onChange={this.handleChange}>
                         <option value="administrador"> Administrador </option>
                         <option value="usuario"> Usuario </option>
@@ -162,6 +170,7 @@ class ModificarPersona extends Component{
                     <br></br>
 
                     <input type="text" id="usuario" name="usuario" placeholder="Usuario" value={this.state.usuario} onChange={this.handleChange}  />
+                   
                     <input type="password" id="contraseña" name="contraseña" placeholder="Password" value={this.state.password} onChange={this.handleChange}  />
                     <br></br>
                     <input type="text" id="documento" name="documento" placeholder="Documento" value={this.state.documento}  disabled/>
@@ -169,13 +178,15 @@ class ModificarPersona extends Component{
                     <br></br>
 
                     <input type="submit" value="Guardar cambios"/>
+                    </div>
                 </form>
             );
         }
         else{
             return(
                 <form onSubmit={this.handleSubmit}>
-                    <h1>Modificar Persona</h1>
+                    <div className='container'>
+                        <h2>Modificar persona</h2>
                     <select id="listaPersonas" onChange={this.handleChange}>
                         <option value="-1"> Seleccione a una persona </option>
                         {
@@ -186,6 +197,7 @@ class ModificarPersona extends Component{
                     </select>
                     <br></br>
                     <input type="submit" value="Guardar cambios"/>
+                    </div>
                 </form>
             );
         }
