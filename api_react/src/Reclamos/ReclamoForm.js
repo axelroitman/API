@@ -166,7 +166,6 @@ class ReclamoForm extends Component {
                      method: 'POST'
                   }).then((res) => res.json()).then((json) => {
 
-                     console.log(json);
                      if (json != null && json > 0) 
                      {
                         id_reclamo = json;
@@ -249,7 +248,14 @@ class ReclamoForm extends Component {
 
 
                               i++;
-                        }         
+                        }
+                        
+                        if(i == 0)
+                        {
+                           alert("Reclamo creado.");
+                           window.location = '/reclamo/' + id_reclamo;
+
+                        }
                      }
                      else
                      {

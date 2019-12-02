@@ -114,9 +114,7 @@ class Reclamo extends Component {
                {
                   
                   imagenesLinks.map(item => (
-                      <img className="imagenReclamo" src={item.imagen} ref={img => this.img = img} onError={
-                        () => this.img.src = item.alernativa
-                     }/> 
+                      <img className="imagenReclamo" alt="Error del servidor FTP" src={item.imagen} ref={img => this.img = img} /> 
                   ))
                }
                </Carousel>
@@ -159,10 +157,8 @@ class Reclamo extends Component {
                {
                   imagenesLinks.map(item => (
                      
-                     <img  className="imagenReclamo" src={item.imagen} ref={img => this.img = img} onError={
-                        () => this.img.src = item.alernativa
-                     }/>
-                  ))
+                     <img className="imagenReclamo" alt="Error del servidor FTP" src={item.imagen} ref={img => this.img = img} /> 
+                     ))
                }
                </Carousel>
             </div>
