@@ -32,6 +32,7 @@ class ReclamosPorUnidad extends Component {
         var valorSel = event.target.value;
     
         if(event.target.id === 'listaEdificios'){
+          if(event.target.value != -1){
             this.setState({codigo: valorSel})
             fetch('http://localhost:8080/apitp/getUnidadesPorEdificio?codigo=' + valorSel)
             .then((res) => res.json()).then((json) => {
@@ -43,6 +44,7 @@ class ReclamosPorUnidad extends Component {
             alert("Error en API" + error);
             });
         }
+      }
     }
   
     
@@ -76,8 +78,8 @@ class ReclamosPorUnidad extends Component {
                   }
                });
       
-            }
-            fetch('http://localhost:8080/apitp/getReclamosPorUnidad?codigo=' + edificio + '&piso=' + piso + '&numero=' + numero + '&documento=')
+            
+            fetch('http://localhost:8080/apitp/getReclamosPorUnidad?codigo=' + edificio + '&piso=' + piso + '&numero=' + numero)
                 .then((res) => res.json()).then((json) => {
                 this.setState({
                     isLoaded: true,
@@ -87,7 +89,7 @@ class ReclamosPorUnidad extends Component {
                 }).catch((error) =>{
                 alert("Error en API" + error);
                 });
-       
+              }
         }
     }
 }
@@ -103,12 +105,19 @@ class ReclamosPorUnidad extends Component {
      if (this.state.cargado)
      {
       if(!isLoaded) {
-        return <div>Cargando...</div>
+        return (
+        <div className='container'>
+        <h2>Reclamos por unidad</h2>
+        Cargando...
+        </div>);
     }
     else if (reclamos.length == 0)
      {
         return(
+          <div className='container'>
+            <h2>Reclamos por unidad</h2>
           <p>La unidad seleccionada no tiene ningún reclamo.</p>
+          </div>
         );
      }
     else{
@@ -135,6 +144,9 @@ class ReclamosPorUnidad extends Component {
 
 
         <form onSubmit={this.handleSubmit}>
+            <div className='container'>
+            <h2>Reclamos por unidad</h2>
+
           <select id="listaEdificios" onChange={this.handleChange}>
                   <option value="-1">Seleccione un edificio</option>
 
@@ -145,6 +157,7 @@ class ReclamosPorUnidad extends Component {
                      ))
                   }
                </select>
+               <br></br>
                <select id="listaUnidades" onChange={this.handleChange}>
                <option value="-1">Seleccione una unidad</option>
 
@@ -155,7 +168,10 @@ class ReclamosPorUnidad extends Component {
                   ))
                } 
             </select>
+            <br></br>
+            <br></br>
           <input type="submit" value="Buscar" />
+          </div>
         </form>
       );
     }
