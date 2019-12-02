@@ -70,21 +70,37 @@ class Habitantes extends Component {
     else if (habitantes.length == 0)
      {
         return(
+          <div className='container'>
+            <h2>Habitantes por edificio</h2>
           <p>Nadie habita el edificio seleccionado.</p>
+          </div>
         );
      }
     else{
       return (
-          <div>
-              <ul className="listHabitantes">
-             {
-                habitantes.map(item => (
-                   <li key={item.id} onClick={this.handlerClickItem.bind(this,item.documento)}> {item.nombre}</li>
-                ))
-             }
-              </ul>
-
-    </div>
+        <div className='container'>
+           <h2>Habitantes por edificio</h2>
+           <div className="tabla">
+                <table>
+                      <tr>
+                      <th>Nombre</th>
+                      <th>Documento</th>
+                      <th>Persona</th>
+                      </tr>
+  
+                     {
+                    habitantes.map(item => {
+                       return (
+                       <tr>
+                       <td>{item.nombre}</td>
+                       <td>{item.documento}</td>
+                       <td><button onClick={this.handlerClickItem.bind(this,item.documento)}>Ver</button></td>
+                       </tr>
+                    );})
+                 }
+              </table>
+           </div>
+        </div>
        );
      }
     }
@@ -93,6 +109,9 @@ class Habitantes extends Component {
 
 
         <form onSubmit={this.handleSubmit}>
+           <div className='container'>
+           <h2>Habitantes por edificio</h2>
+
           <select id="listaEdificios" onChange={this.handleChange}>
                   <option value="-1">Seleccione un edificio</option>
 
@@ -103,7 +122,10 @@ class Habitantes extends Component {
                      ))
                   }
                </select>
+               <br></br>
+               <br></br>
           <input type="submit" value="Buscar" />
+          </div>
         </form>
       );
     }
