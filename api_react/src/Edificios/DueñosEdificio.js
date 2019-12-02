@@ -65,26 +65,44 @@ class DueñosEdificio extends Component {
      if (this.state.cargado)
      {
       if(!isLoaded) {
-        return <div>Cargando...</div>
+        return <div className='container'>
+          <h2>Dueños por edificio</h2>
+          Cargando...</div>
     }
     else if (duenios.length == 0)
      {
         return(
-          <p>El edificio seleccionado no contiene dueños.</p>
+          <div className='container'>
+            <h2>Dueños por edificio</h2>
+            <p>El edificio seleccionado no contiene dueños.</p>
+          </div>
         );
      }
     else{
       return (
-          <div>
-              <ul className="listDuenios">
-             {
-                duenios.map(item => (
-                   <li key={item.id} onClick={this.handlerClickItem.bind(this,item.documento)}> {item.nombre}</li>
-                ))
-             }
-              </ul>
-
-    </div>
+        <div className='container'>
+           <h2>Dueños por edificio</h2>
+           <div className="tabla">
+                <table>
+                      <tr>
+                      <th>Nombre</th>
+                      <th>Documento</th>
+                      <th>Persona</th>
+                      </tr>
+  
+                     {
+                    duenios.map(item => {
+                       return (
+                       <tr>
+                       <td>{item.nombre}</td>
+                       <td>{item.documento}</td>
+                       <td><button onClick={this.handlerClickItem.bind(this,item.documento)}>Ver</button></td>
+                       </tr>
+                    );})
+                 }
+              </table>
+           </div>
+        </div>
        );
      }
     }
@@ -93,6 +111,9 @@ class DueñosEdificio extends Component {
 
 
         <form onSubmit={this.handleSubmit}>
+          <div className='container'>
+            <h2>Dueños por edificio</h2>
+          
           <select id="listaEdificios" onChange={this.handleChange}>
                   <option value="-1">Seleccione un edificio</option>
 
@@ -104,6 +125,7 @@ class DueñosEdificio extends Component {
                   }
                </select>
           <input type="submit" value="Buscar" />
+          </div>
         </form>
       );
     }
