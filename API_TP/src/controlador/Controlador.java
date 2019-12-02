@@ -302,11 +302,14 @@ public class Controlador {
 		
 		if(!reclamos.isEmpty() || reclamos != null) {
 			for(Reclamo r : reclamos) {
+				if(r.getUnidad() != null)
+				{
 					if(r.getEdificio().getCodigo() == codigo && r.getUnidad().getNumero().equals(numero) && r.getUnidad().getPiso().equals(piso)) {
-							resultado.add(r.toView());
-						}
+						resultado.add(r.toView());
 					}
 				}
+			}
+		}
 		return resultado;
 		}
 	
