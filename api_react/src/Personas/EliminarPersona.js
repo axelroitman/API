@@ -79,12 +79,17 @@ class EliminarPersona extends Component{
         var  {isLoaded, personas} =this.state;
 
         if(isLoaded === false){
-            return <div>Cargando...</div>
+            return (
+                <div className='container'>
+                <h2>Eliminar persona</h2>
+                Cargando...
+                </div>);
         }
         else{
             return(
             <form onSubmit={this.handleSubmit}>
-                    <h1>Eliminar Persona</h1>
+                    <div className='container'>
+                    <h2>Eliminar persona</h2>
                     <select id="listaPersonas" onChange={this.handleChange}>
                         <option value="-1"> Seleccione a una persona </option>
                         {
@@ -96,6 +101,7 @@ class EliminarPersona extends Component{
                         <br/>
                         <br/>
                     <input type="submit" value="Eliminar persona"/>
+                    </div>
                 </form>
             )
         }
