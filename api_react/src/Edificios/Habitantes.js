@@ -65,7 +65,12 @@ class Habitantes extends Component {
      if (this.state.cargado)
      {
       if(!isLoaded) {
-        return <div>Loading...</div>
+          return (
+            <div className='container'>
+            <h2>Habitantes por edificio</h2>
+            Cargando...
+            </div>
+            );
     }
     else if (habitantes.length == 0)
      {
