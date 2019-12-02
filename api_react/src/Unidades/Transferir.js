@@ -135,12 +135,18 @@ handleSubmit = (event) => {
       var  {isLoaded, edificios, unidades: unidadesListadas, personas: personasListadas} =this.state;
 
       if(!isLoaded) {
-         return <div>Cargando...</div>
+         return      (
+         <div className='container'>
+         <h2>Transferir unidad</h2>
+         Cargando...
+         </div>);
       }
       else
       {
          return (
             <form onSubmit={this.handleSubmit}>
+               <div className='container'>
+                   <h2>Transferir unidad</h2>
                <select id="listaEdificios" onChange={this.handleChange}>
                   <option value="-1">Seleccione un edificio</option>
 
@@ -151,6 +157,7 @@ handleSubmit = (event) => {
                      ))
                   }
                </select>
+               <br></br>
                <select id="listaUnidades" onChange={this.handleChange}>
                   <option value="-1">Seleccione una unidad</option>
 
@@ -161,6 +168,8 @@ handleSubmit = (event) => {
                      ))
                   } 
                </select>
+               <br></br>
+
                <select id="listaPersonas" >
                   <option value="-1">Seleccione una persona</option>
 
@@ -171,7 +180,11 @@ handleSubmit = (event) => {
                      ))
                   }
                </select>
+               <br></br>
+               <br></br>
+
                <input type="submit" value="Transferir Unidad" />
+               </div>
             </form>
          );
 
