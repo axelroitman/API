@@ -65,7 +65,7 @@ class ReclamosPorPersona extends Component {
      if (this.state.cargado)
      {
       if(!isLoaded) {
-        return <div>Cargando...</div>
+        return <div className="container">Cargando...</div>
     }
     else if (reclamos.length == 0)
      {

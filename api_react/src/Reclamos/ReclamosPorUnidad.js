@@ -94,7 +94,7 @@ class ReclamosPorUnidad extends Component {
     }
 }
    
-    handlerClickItem(id) {
+    handlePageChange(id) {
       this.props.history.push('/reclamo/' + id)
    }
   
@@ -122,20 +122,37 @@ class ReclamosPorUnidad extends Component {
      }
     else{
       return (
-          <div>
-              <ul className="listReclamos">
-             {
-               reclamos.map(item => {
-                return item.unidad != null ?
-                 <li key={item.id} onClick={this.handlerClickItem.bind(this,item.numero)}> #{item.numero} - {item.edificio.nombre}, {item.unidad.piso}° {item.unidad.numero}</li>
-                 :
-                 <li key={item.id} onClick={this.handlerClickItem.bind(this,item.numero)}> #{item.numero} - {item.edificio.nombre}, {item.ubicacion}</li>
+        <div className="containerTabla">
+    <h2>Reclamos de {reclamos[0].edificio.nombre}, {reclamos[0].unidad.piso}° {reclamos[0].unidad.numero}</h2>
+        <div className="tabla">
+          <table>
+                  <tr>
+                  <th>N° Reclamo</th>
+                  <th>Estado</th>
+                  <th>Reclamo</th>
 
-              })
-             }
-              </ul>
+                  </tr>
+                  {
+                    reclamos.map(item => {
+                      return item.unidad != null ?
+                      <tr>
+                      <td>#{item.numero} </td>
+                      <td>{item.estado}</td>
+                      <td><button onClick={this.handlePageChange.bind(this,item.numero)}>Ver</button></td>
+                      </tr>
 
-            </div>
+                      :                    
+                      <tr>
+                      <td>#{item.numero} </td>
+                      <td>{item.estado}</td>
+                      <td><button onClick={this.handlePageChange.bind(this,item.numero)}>Ver</button></td>
+                      </tr>
+                    })
+                  }  
+              
+              </table>
+          </div>
+      </div>
        );
      }
     }
