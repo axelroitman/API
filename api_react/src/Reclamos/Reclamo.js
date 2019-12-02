@@ -3,6 +3,11 @@ import './Reclamos.css';
 import { Link } from 'react-router-dom'
 import Image from 'react-bootstrap/Image'
 import { array } from 'prop-types';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
+
+
+
 
 class Reclamo extends Component {
    constructor(props) {
@@ -37,11 +42,7 @@ class Reclamo extends Component {
       var  {isLoaded, reclamo} =this.state;
       
       if(!isLoaded) {
-         return (
-            <div classname="container">
-            <div>Cargando...</div>
-            </div>
-            )
+         return <div>Loading...</div>
       }
       else
       {
@@ -59,7 +60,7 @@ class Reclamo extends Component {
             ubicacion = reclamo.ubicacion;   
 
          }
-
+        
          reclamo.imagenes.forEach(function(img){
             
             imagenesLinks.push({imagen : "https://grupo6api.000webhostapp.com/" + reclamo.numero + "_" + img.direccion + "." + img.tipo, alernativa: "https://grupo6api.000webhostapp.com/FtpTrial-" + reclamo.numero + "_" + img.direccion + "." + img.tipo});
@@ -105,13 +106,16 @@ class Reclamo extends Component {
                <p><b>Descripcion: </b>{reclamo.descripcion}</p>
                <p><b>Imágenes: </b>{sinImagenes}</p>
                <div>
+               <Carousel>
                {
+                  
                   imagenesLinks.map(item => (
-                     <img style={{width: 100}} src={item.imagen} ref={img => this.img = img} onError={
+                      <img src={item.imagen} ref={img => this.img = img} onError={
                         () => this.img.src = item.alernativa
-                     }/>
+                     }/> 
                   ))
                }
+               </Carousel>
                </div>
              
                <p><b>Actualizaciones: </b>{actualizaciones}</p>
@@ -145,14 +149,18 @@ class Reclamo extends Component {
             <p><b>Ubicacion:</b> {reclamo.edificio.nombre}, {ubicacion}</p>
             <p><b>Descripcion:</b> {reclamo.descripcion}</p>
             <p><b>Imagenes:</b> {sinImagenes}</p>
-            <div>
+           
+               <div> 
+               <Carousel>
                {
                   imagenesLinks.map(item => (
-                     <img style={{width: 100}} src={item.imagen} ref={img => this.img = img} onError={
+                     
+                     <img  src={item.imagen} ref={img => this.img = img} onError={
                         () => this.img.src = item.alernativa
                      }/>
                   ))
                }
+               </Carousel>
             </div>
             <p><b>Actualizaciones:</b> {actualizaciones}</p>
             <div>
