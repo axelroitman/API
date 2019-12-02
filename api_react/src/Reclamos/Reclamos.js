@@ -34,7 +34,12 @@ import React, {Component} from 'react';
     var  {isLoaded, reclamos} =this.state;
 
     if(!isLoaded) {
-        return <div className="container">Cargando...</div>
+        return (
+        <div className="container">
+          <h2>Mis Reclamos</h2>
+          Cargando...
+          </div>
+          );
     }
    else
    {
