@@ -47,7 +47,8 @@ export default class Registro extends Component {
         if (response.status === 201) 
         {
           alert("Usuario creado exitosamente.");
-        }
+          window.location = "/";    
+          }
         else if (response.status === 409)
         {
             alert("Error al crear el usuario.");

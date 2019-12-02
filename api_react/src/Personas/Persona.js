@@ -32,7 +32,7 @@ class Persona extends Component {
       if(!isLoaded) {
          return (
          <div classname="container">
-         <div>Loading...</div>
+         <div>Cargando...</div>
          </div>
          )
       }

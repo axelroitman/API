@@ -139,7 +139,6 @@ class Reclamo extends Component {
                )
                }
 
-               <button onClick={this.props.history.goBack}>Volver</button>
                </div>
             );
          }
@@ -181,7 +180,6 @@ class Reclamo extends Component {
                )
                }
 
-            <button onClick={this.props.history.goBack}>Volver</button>
             </div>
             );
          }
