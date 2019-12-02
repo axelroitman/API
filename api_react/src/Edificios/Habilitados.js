@@ -65,34 +65,55 @@ class Habilitados extends Component {
      if (this.state.cargado)
      {
       if(!isLoaded) {
-        return <div>Cargando...</div>
+        return (
+        <div className='container'>
+        <h2>Habilitados por edificio</h2>
+        Cargando...
+        </div>
+        );
     }
     else if (habilitados.length == 0)
      {
         return(
+          <div className='container'>
+            <h2>Habilitados por edificio</h2>
           <p>No hay personas habilitadas en el edificio seleccionado.</p>
+          </div>
         );
      }
     else{
       return (
-          <div>
-              <ul className="listHabilitados">
-             {
-                habilitados.map(item => (
-                   <li key={item.id} onClick={this.handlerClickItem.bind(this,item.documento)}> {item.nombre}</li>
-                ))
-             }
-              </ul>
-
-    </div>
+        <div className='container'>
+           <h2>Habilitados por edificio</h2>
+           <div className="tabla">
+                <table>
+                      <tr>
+                      <th>Nombre</th>
+                      <th>Documento</th>
+                      <th>Persona</th>
+                      </tr>
+  
+                     {
+                    habilitados.map(item => {
+                       return (
+                       <tr>
+                       <td>{item.nombre}</td>
+                       <td>{item.documento}</td>
+                       <td><button onClick={this.handlerClickItem.bind(this,item.documento)}>Ver</button></td>
+                       </tr>
+                    );})
+                 }
+              </table>
+           </div>
+        </div>
        );
      }
     }
      else{
       return (
-
-
         <form onSubmit={this.handleSubmit}>
+          <div className='container'>
+            <h2>Habilitados por edificio</h2>
           <select id="listaEdificios" onChange={this.handleChange}>
                   <option value="-1">Seleccione un edificio</option>
 
@@ -103,7 +124,11 @@ class Habilitados extends Component {
                      ))
                   }
                </select>
+               <br></br>
+               <br></br>
+
           <input type="submit" value="Buscar" />
+                  </div>
         </form>
       );
     }
