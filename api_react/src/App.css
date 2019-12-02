@@ -5,7 +5,7 @@
 .menu { /*ul del header*/
   font-family: arial;
   font-size: 10pt;
-  color: blue;
+  color: white;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Sulphur+Point&display=swap');
@@ -21,6 +21,20 @@ h1{
   color: #FFFFFF
 }
 
+.menuItem, .menuItem h3
+{
+  max-width: 10%;
+  display: inline;
+  margin: 0 10px;
+}
+.menuItemIzq
+{
+  text-align:left;
+}
+.menuItemIzq
+{
+  text-align:right;
+}
 .actualizaciones.container{
   margin: 5% 5%;
   padding-bottom: 2%;
@@ -116,13 +130,13 @@ button:hover {
     padding-left: 0px;
   }
 
-  .panelAdmin a
+  a
   {
     text-decoration: none;
     color: #656565;
   }
 
-  .panelAdmin a:hover
+  a:hover
   {
     color: #478ad0;
   }
