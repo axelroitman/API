@@ -162,7 +162,7 @@ class Reclamo extends Component {
                }
             </div>
 
-            {reclamo.estado == "nuevo" || reclamo.estado == "abierto" || reclamo.estado == "enProceso"  ? (
+            {reclamo.usuario.documento == sessionStorage.getItem("documento") && (reclamo.estado == "nuevo" || reclamo.estado == "abierto" || reclamo.estado == "enProceso")  ? (
                   <button onClick={this.handlePageChange.bind(this, reclamo.numero)}>Anular reclamo</button>
                ) : (
                   ''
