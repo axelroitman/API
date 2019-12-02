@@ -67,7 +67,7 @@ h1, h2, h3, h4, h5, p, label, button
   font-size: 30px;
 }
 
-button {
+button, input[type=button], input[type=submit] {
   margin: 0 10px;
   border: none;
   background: #0c0c0cb3;
@@ -80,7 +80,7 @@ button {
   transition: all 0.3s ease 0s;
   letter-spacing: 1px;
 }
-button:hover {
+button:hover, input[type=button]:hover, input[type=submit]:hover {
     color: #404040 !important;
     font-weight: 700 !important;
     background-color: #8db9e6;
