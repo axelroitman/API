@@ -29,7 +29,7 @@ class Header extends React.Component {
                   <h3>Hola {sessionStorage.getItem("nombre")}</h3>
                   </div>
                   <div className="menuItem">
-                    <Link to="/"><h3>Panel de administración</h3></Link>
+                    <Link to="/"><h3>Panel de administrador</h3></Link>
                   </div>
                   <div className="menuItem menuItemDer" onClick={this.handlerClickItem.bind()} style={{ listStyleType: "none" }}>
                     <Link to=""><h3>Cerrar sesión</h3></Link>
