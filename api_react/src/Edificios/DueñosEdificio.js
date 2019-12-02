@@ -124,6 +124,8 @@ class DueñosEdificio extends Component {
                      ))
                   }
                </select>
+               <br></br>
+               <br></br>
           <input type="submit" value="Buscar" />
           </div>
         </form>
