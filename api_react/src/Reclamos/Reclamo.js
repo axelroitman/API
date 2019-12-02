@@ -42,7 +42,11 @@ class Reclamo extends Component {
       var  {isLoaded, reclamo} =this.state;
       
       if(!isLoaded) {
-         return <div>Loading...</div>
+         return (
+            <div classname="container">
+            <div>Cargando...</div>
+            </div>
+            )
       }
       else
       {
@@ -106,11 +110,11 @@ class Reclamo extends Component {
                <p><b>Descripcion: </b>{reclamo.descripcion}</p>
                <p><b>Imágenes: </b>{sinImagenes}</p>
                <div>
-               <Carousel>
+               <Carousel className="carousel-reclamo">
                {
                   
                   imagenesLinks.map(item => (
-                      <img src={item.imagen} ref={img => this.img = img} onError={
+                      <img className="imagenReclamo" src={item.imagen} ref={img => this.img = img} onError={
                         () => this.img.src = item.alernativa
                      }/> 
                   ))
@@ -151,11 +155,11 @@ class Reclamo extends Component {
             <p><b>Imagenes:</b> {sinImagenes}</p>
            
                <div> 
-               <Carousel>
+               <Carousel className="carousel-reclamo">
                {
                   imagenesLinks.map(item => (
                      
-                     <img  src={item.imagen} ref={img => this.img = img} onError={
+                     <img  className="imagenReclamo" src={item.imagen} ref={img => this.img = img} onError={
                         () => this.img.src = item.alernativa
                      }/>
                   ))
